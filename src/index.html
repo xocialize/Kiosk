@@ -5,7 +5,9 @@
 	<title>.: Kiosk-Demo :.</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <!-- Styles: Note that main.css contains imports for the rest of the styling and will be concatinated via gulp sass -->
-    <link rel="stylesheet" href="assets/styles/main.min.css">
+    <!-- build:css(src/) assets/styles/main.min.css -->
+    <link rel="stylesheet" href="build/styles/main.css">
+    <!-- endbuild -->
     <style>
 		.demo { display:none; }
 	
@@ -461,9 +463,14 @@
         
     </div>
     
-    <script src="assets/scripts/vendor.min.js"></script>
+    <!-- build:js(src/) assets/scripts/vendor.min.js -->
+    <script src="../node_modules/jquery/dist/jquery.js"></script>
+    <script src="../node_modules/swiper/dist/js/swiper.jquery.js"></script>
+    <!-- endbuild -->
     <script src="scripts/templates.js"></script>
-    <script src="assets/scripts/app.min.js"></script>
+    <!-- build:js(src/) assets/scripts/app.min.js -->
+    <script src="scripts/app.js"></script>
+    <!-- endbuild -->    
     <!-- Initialize Swiper -->
     <script>
 		var swiper = new Swiper('.swiper-container', {
