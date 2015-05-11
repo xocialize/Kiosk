@@ -45,7 +45,7 @@ gulp.task('images', function() {
 // Copy Web Fonts To Dist
 gulp.task('fonts', function() {
   return gulp.src(['src/fonts/**'])
-    .pipe(gulp.dest('assets/fonts'))
+    .pipe(gulp.dest('assets/styles/fonts'))
     .pipe($.size({title: 'fonts'}));
 });
 
