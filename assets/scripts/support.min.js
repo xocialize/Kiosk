@@ -1,0 +1,1 @@
+!function(n){n(function(){n(".button-collapse").sideNav()})}(jQuery);
