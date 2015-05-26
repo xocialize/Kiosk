@@ -14,3 +14,12 @@ kiosk uses GitHub repositories to locally load a web directory to your iPhone/iP
 
 ## Settings
 
+## Roadmap
+
+Version 1.0 which is currently available in the App Store is just an initial release.  Near future planned features include:
+
+1. Barcode Scanner
+2. JavaScript API
+3. Offline data collection for forms or other data
+4. Remote management via Xocialize remote manager
+
