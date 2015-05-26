@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="7700" systemVersion="14D136" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="DataStore" syncable="YES">
+        <attribute name="data" optional="YES" attributeType="Binary" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="synchronized" optional="YES" attributeType="Boolean" syncable="YES"/>
+    </entity>
+    <entity name="Settings" syncable="YES">
+        <attribute name="settingsData" optional="YES" attributeType="Binary" syncable="YES"/>
+    </entity>
+    <entity name="ShoppesCategories" syncable="YES">
+        <attribute name="desc" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="id" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="ShoppesProducts" syncable="YES">
+        <attribute name="categoryId" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="id" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="inStock" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="price" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="productDescription" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="productImages" optional="YES" attributeType="Binary" syncable="YES"/>
+        <attribute name="sku" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="weight" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="SystemScripts" syncable="YES">
+        <attribute name="scriptData" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="scriptName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="scriptVersion" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="DataStore" positionX="-45" positionY="81" width="128" height="90"/>
+        <element name="Settings" positionX="-54" positionY="72" width="128" height="60"/>
+        <element name="ShoppesCategories" positionX="-63" positionY="54" width="128" height="90"/>
+        <element name="ShoppesProducts" positionX="-54" positionY="63" width="128" height="180"/>
+        <element name="SystemScripts" positionX="-54" positionY="126" width="128" height="90"/>
+    </elements>
+</model>
