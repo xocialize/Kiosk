@@ -22,9 +22,9 @@ class SettingsMenuViewController: UITableViewController {
     
     var settings:Dictionary<String,AnyObject> = [:]
     
-    var menuItems = ["GitHub Repository","Password","Orientation","iBeacon","Launch Kiosk"]
+    var menuItems = ["GitHub Repository","Password","Orientation","iBeacon","Xocialize","Launch Kiosk"]
     
-    var menuIcons = ["settings_github.png","settings_password.png","settings_orientation.png","settings_ibeacon.png","settings_launch.png"]
+    var menuIcons = ["settings_github.png","settings_password.png","settings_orientation.png","settings_ibeacon.png","xocialize_120.png","settings_launch.png"]
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -79,6 +79,12 @@ class SettingsMenuViewController: UITableViewController {
             break
             
         case 4:
+            
+            performSegueWithIdentifier("settingsToXocializeSegue", sender: self)
+            
+            break
+            
+        case 5:
             
             prepareToLaunchKiosk()
             

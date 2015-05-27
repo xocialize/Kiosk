@@ -19,6 +19,9 @@ class Scanner: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
     
     var timer : NSTimer?
     
+    @IBAction func scannerCancelButton(sender: AnyObject) {
+    }
+    
     @IBOutlet var scannerView: UIView!
     
     func addPreviewLayer() {
@@ -202,10 +205,6 @@ class Scanner: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
         }
     }
     
-    func doSegue() {
-        
-        self.performSegueWithIdentifier("scannerViewToMain", sender: nil)
-        
-    }
+    
 
 }

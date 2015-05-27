@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -60,6 +60,120 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-18" y="515"/>
+        </scene>
+        <!--Scanner-->
+        <scene sceneID="fdX-50-pf6">
+            <objects>
+                <viewController id="Xha-VG-p0x" customClass="Scanner" customModule="kiosk" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Ert-cF-VhX"/>
+                        <viewControllerLayoutGuide type="bottom" id="8Ew-hq-4V7"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="6bT-TS-4O3">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Myz-Xz-fae">
+                                <rect key="frame" x="16" y="518" width="288" height="30"/>
+                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="h9R-Fg-8lP"/>
+                                    <constraint firstAttribute="width" constant="288" id="rdn-4u-n4d"/>
+                                </constraints>
+                                <state key="normal" title="Cancel">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="scannerCancelButton:" destination="Xha-VG-p0x" eventType="touchUpInside" id="opN-Jy-uYQ"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="centerX" secondItem="Myz-Xz-fae" secondAttribute="centerX" id="B0I-B2-X0J"/>
+                            <constraint firstItem="8Ew-hq-4V7" firstAttribute="top" secondItem="Myz-Xz-fae" secondAttribute="bottom" constant="20" id="cRj-TT-Xqq"/>
+                        </constraints>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <connections>
+                        <outlet property="scannerView" destination="6bT-TS-4O3" id="utH-xm-13q"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="84K-0V-b0J" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="890" y="864"/>
+        </scene>
+        <!--Settings Xocialize View Controller-->
+        <scene sceneID="FaA-Bb-vKi">
+            <objects>
+                <viewController id="2Qb-ke-vOi" customClass="SettingsXocializeViewController" customModule="kiosk" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="e22-xB-qah"/>
+                        <viewControllerLayoutGuide type="bottom" id="ONA-44-BY4"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="hfP-8U-gZA">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="xocialize_120.png" translatesAutoresizingMaskIntoConstraints="NO" id="3YP-xg-QFB">
+                                <rect key="frame" x="100" y="428" width="120" height="120"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="120" id="Bu2-iw-o9L"/>
+                                    <constraint firstAttribute="height" constant="120" id="Wbi-CT-5PT"/>
+                                </constraints>
+                            </imageView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="i1T-S5-37D">
+                                <rect key="frame" x="16" y="44" width="288" height="43"/>
+                                <subviews>
+                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9EZ-3J-NCC">
+                                        <rect key="frame" x="231" y="6" width="51" height="31"/>
+                                    </switch>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Enable Xocialize" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jXW-7D-v9s">
+                                        <rect key="frame" x="13" y="11" width="125" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" red="0.017309538980000001" green="0.23896944719999999" blue="0.64623231390000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="43" id="4Sg-Oa-nmT"/>
+                                    <constraint firstAttribute="width" constant="288" id="gT4-MK-3xn"/>
+                                </constraints>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dl2-i5-p1i">
+                                <rect key="frame" x="16" y="95" width="288" height="30"/>
+                                <color key="backgroundColor" red="0.19874572939999999" green="0.19874572939999999" blue="0.19874572939999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="jTV-Fd-u7N"/>
+                                    <constraint firstAttribute="width" constant="288" id="oGy-6V-oYt"/>
+                                </constraints>
+                                <state key="normal" title="Cancel">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="0.017309538980000001" green="0.23896944719999999" blue="0.64623231390000002" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="dl2-i5-p1i" firstAttribute="top" secondItem="i1T-S5-37D" secondAttribute="bottom" constant="8" id="4JZ-pu-CJy"/>
+                            <constraint firstItem="ONA-44-BY4" firstAttribute="top" secondItem="3YP-xg-QFB" secondAttribute="bottom" constant="20" id="Bxr-Fo-OJf"/>
+                            <constraint firstItem="i1T-S5-37D" firstAttribute="top" secondItem="e22-xB-qah" secondAttribute="bottom" constant="24" id="Zvs-YW-ZQ9"/>
+                            <constraint firstAttribute="centerX" secondItem="3YP-xg-QFB" secondAttribute="centerX" id="kMq-ZE-Cz3"/>
+                            <constraint firstAttribute="centerX" secondItem="dl2-i5-p1i" secondAttribute="centerX" id="lBv-mS-Sdg"/>
+                            <constraint firstAttribute="centerX" secondItem="i1T-S5-37D" secondAttribute="centerX" id="yrP-lu-7dC"/>
+                        </constraints>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <connections>
+                        <segue destination="Xha-VG-p0x" kind="show" identifier="xocializeToScannerSegue" id="qgo-kv-wN2"/>
+                        <segue destination="cYl-Cm-QH4" kind="show" identifier="xocializeToSettingsSegue" id="DkX-3j-EDa"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4de-L6-dL3" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1328" y="864"/>
         </scene>
         <!--Settings Git Hub View Controller-->
         <scene sceneID="PnM-WD-4EZ">
@@ -614,9 +728,9 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="settings_github.png" translatesAutoresizingMaskIntoConstraints="NO" id="MXX-br-thX">
-                                            <rect key="frame" x="0.0" y="0.0" width="99" height="99"/>
+                                            <rect key="frame" x="8" y="8" width="86" height="83"/>
                                             <constraints>
-                                                <constraint firstAttribute="width" constant="99" id="CnE-gp-p3t"/>
+                                                <constraint firstAttribute="width" constant="86" id="CnE-gp-p3t"/>
                                             </constraints>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Settings Text" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bdk-jy-A2u">
@@ -633,9 +747,9 @@
                                     <constraints>
                                         <constraint firstAttribute="centerY" secondItem="bdk-jy-A2u" secondAttribute="centerY" id="C2a-rA-hSZ"/>
                                         <constraint firstItem="MXX-br-thX" firstAttribute="centerY" secondItem="bdk-jy-A2u" secondAttribute="centerY" id="UyG-wM-iVv"/>
-                                        <constraint firstItem="MXX-br-thX" firstAttribute="top" secondItem="fa4-0D-1Qp" secondAttribute="top" id="dbn-Xa-Edm"/>
-                                        <constraint firstItem="bdk-jy-A2u" firstAttribute="leading" secondItem="MXX-br-thX" secondAttribute="trailing" constant="8" symbolic="YES" id="kba-7T-cRB"/>
-                                        <constraint firstItem="MXX-br-thX" firstAttribute="leading" secondItem="fa4-0D-1Qp" secondAttribute="leading" id="w9Z-Yg-uzT"/>
+                                        <constraint firstItem="MXX-br-thX" firstAttribute="top" secondItem="fa4-0D-1Qp" secondAttribute="top" constant="8" id="dbn-Xa-Edm"/>
+                                        <constraint firstItem="bdk-jy-A2u" firstAttribute="leading" secondItem="MXX-br-thX" secondAttribute="trailing" constant="13" id="kba-7T-cRB"/>
+                                        <constraint firstItem="MXX-br-thX" firstAttribute="leading" secondItem="fa4-0D-1Qp" secondAttribute="leading" constant="8" id="w9Z-Yg-uzT"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
@@ -656,6 +770,7 @@
                         <segue destination="Dc4-7X-mjm" kind="show" identifier="settingsToKioskSegue" id="2UM-H5-AEQ"/>
                         <segue destination="WZc-MD-ud7" kind="show" identifier="settingsToBeaconSettingsSegue" id="tEI-36-dHF"/>
                         <segue destination="6wZ-m4-nfL" kind="show" identifier="SettingsToOrientationSettingsSegue" id="UVk-f4-3S2"/>
+                        <segue destination="2Qb-ke-vOi" kind="show" identifier="settingsToXocializeSegue" id="pka-yX-BU7"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Y7R-9B-wPn" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -676,6 +791,9 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <connections>
+                        <segue destination="Xha-VG-p0x" kind="show" identifier="webViewToScannerViewSegue" id="FFN-82-Jhg"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bsN-p9-7KR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -688,9 +806,11 @@
         <image name="settings_ibeacon.png" width="128" height="128"/>
         <image name="settings_orientation.png" width="128" height="128"/>
         <image name="settings_password.png" width="128" height="128"/>
+        <image name="xocialize_120.png" width="120" height="120"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="LzW-Ac-I0u"/>
+        <segue reference="DkX-3j-EDa"/>
+        <segue reference="qgo-kv-wN2"/>
         <segue reference="2UM-H5-AEQ"/>
     </inferredMetricsTieBreakers>
 </document>
