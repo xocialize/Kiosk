@@ -1,5 +1,6 @@
 KIOSK = ( typeof KIOSK == 'undefined' ? {} : KIOSK );
 
+KIOSK.version = 1.1;
 
 KIOSK.BarcodeScanner = {
     
