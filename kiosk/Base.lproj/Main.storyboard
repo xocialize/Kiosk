@@ -73,31 +73,33 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Myz-Xz-fae">
-                                <rect key="frame" x="16" y="518" width="288" height="30"/>
-                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tK1-Aq-HCd">
+                                <rect key="frame" x="16" y="503" width="288" height="37"/>
+                                <color key="backgroundColor" red="0.017309538980000001" green="0.23896944719999999" blue="0.64623231390000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="h9R-Fg-8lP"/>
-                                    <constraint firstAttribute="width" constant="288" id="rdn-4u-n4d"/>
+                                    <constraint firstAttribute="width" constant="288" id="4qz-ng-Va5"/>
+                                    <constraint firstAttribute="height" constant="37" id="C1e-Yh-dXV"/>
                                 </constraints>
                                 <state key="normal" title="Cancel">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="scannerCancelButton:" destination="Xha-VG-p0x" eventType="touchUpInside" id="opN-Jy-uYQ"/>
+                                    <action selector="scannerCancelButton:" destination="Xha-VG-p0x" eventType="touchUpInside" id="SZm-MB-vl6"/>
                                 </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="centerX" secondItem="Myz-Xz-fae" secondAttribute="centerX" id="B0I-B2-X0J"/>
-                            <constraint firstItem="8Ew-hq-4V7" firstAttribute="top" secondItem="Myz-Xz-fae" secondAttribute="bottom" constant="20" id="cRj-TT-Xqq"/>
+                            <constraint firstAttribute="centerX" secondItem="tK1-Aq-HCd" secondAttribute="centerX" id="5m4-RT-Tca"/>
+                            <constraint firstItem="8Ew-hq-4V7" firstAttribute="top" secondItem="tK1-Aq-HCd" secondAttribute="bottom" constant="28" id="MFg-ac-GSV"/>
                         </constraints>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
+                        <outlet property="cancelButton" destination="tK1-Aq-HCd" id="E0x-Km-QFe"/>
                         <outlet property="scannerView" destination="6bT-TS-4O3" id="utH-xm-13q"/>
+                        <segue destination="2Qb-ke-vOi" kind="show" identifier="scannerToXocializeSegue" id="GKA-kF-pEO"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="84K-0V-b0J" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -844,6 +846,7 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="DkX-3j-EDa"/>
+        <segue reference="GKA-kF-pEO"/>
         <segue reference="qgo-kv-wN2"/>
         <segue reference="2UM-H5-AEQ"/>
     </inferredMetricsTieBreakers>

@@ -18,6 +18,10 @@ class SettingsXocializeViewController: UIViewController {
     
     @IBOutlet var enableSwitch: UISwitch!
     
+    var barCodeString: String?
+    
+    var barCodeType: String?
+    
     @IBAction func cancelButton(sender: AnyObject) {
         
         performSegueWithIdentifier("xocializeToSettingsSegue", sender: self)
@@ -43,6 +47,8 @@ class SettingsXocializeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        println(barCodeString)
 
         settings = dm.getSettings()
         
@@ -63,13 +69,42 @@ class SettingsXocializeViewController: UIViewController {
     func stateChanged(switchState: UISwitch) {
         
         if enableSwitch.on {
-        
+            
             println("The Switch is On")
+            
+            if let xocializeId = settings["xocializeId"] as? String {
+                
+                settings["xocializeEnabled"] = true
+            
+                println(xocializeId)
+            
+            } else {
+            
+                performSegueWithIdentifier("xocializeToScannerSegue", sender: self)
+            
+            }
         
         } else {
         
             println("The Switch is Off")
+            
+            settings["xocializeEnabled"] = false
         
+        }
+        
+        dm.saveSettings(settings)
+    }
+    
+    override func prepareForSegue(segue: (UIStoryboardSegue!), sender: AnyObject!) {
+        
+        if (segue.identifier == "xocializeToScannerSegue") {
+            
+            if let destinationVC = segue.destinationViewController as? Scanner{
+                
+                destinationVC.initiator = "xocialize"
+                
+            }
+            
         }
     }
     

@@ -17,10 +17,27 @@ class Scanner: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
     
     var identifiedBorder : DiscoveredBarCodeView?
     
+    var barCodeString: String?
+    
+    var barCodeType: String?
+    
+    var initiator:String = ""
+    
     var timer : NSTimer?
     
+    @IBOutlet var cancelButton: UIButton!
+    
     @IBAction func scannerCancelButton(sender: AnyObject) {
+        
+        if initiator == "xocialize" {
+            
+            session.stopRunning()
+            
+            performSegueWithIdentifier("scannerToXocializeSegue", sender: self)
+            
+        }
     }
+    
     
     @IBOutlet var scannerView: UIView!
     
@@ -48,14 +65,9 @@ class Scanner: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationController!.navigationBar.hidden = false
         
-        /*self.navigationItem.hidesBackButton = true
         
-        let newBackButton = UIBarButtonItem(title: "Back", style: UIBarButtonItemStyle.Plain, target: self, action: "back:")
         
-        self.navigationItem.leftBarButtonItem = newBackButton;
-        */
         let captureDevice = AVCaptureDevice.defaultDeviceWithMediaType(AVMediaTypeVideo)
         
         var error : NSError?
@@ -73,6 +85,12 @@ class Scanner: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
         }
         
         addPreviewLayer()
+        
+        self.view.autoresizesSubviews = true
+        
+        self.view.autoresizingMask = UIViewAutoresizing.FlexibleWidth | UIViewAutoresizing.FlexibleHeight;
+        
+        self.view.bringSubviewToFront(cancelButton)
         
         identifiedBorder = DiscoveredBarCodeView(frame: self.view.bounds)
         
@@ -96,21 +114,105 @@ class Scanner: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
         session.startRunning()
     }
     
-    func back(sender: UIBarButtonItem){
-        
-        println("HERE");
-        
-        session.stopRunning()
-        
-        self.navigationController?.popViewControllerAnimated(true)
+    override func shouldAutorotate() -> Bool{
+        return true
+    }
     
+    override func didRotateFromInterfaceOrientation(fromInterfaceOrientation: UIInterfaceOrientation) {
+        
+        previewLayer?.bounds = self.view.bounds
+        
+        previewLayer?.position = CGPointMake(CGRectGetMidX(self.view.bounds), CGRectGetMidY(self.view.bounds))
+        
+    }
+    
+    
+    /*
+    func deviceOrientationDidChange() {
+        
+        println("DEVICE ORIENTATION DID CHANGE CALLED")
+        let orientation: UIDeviceOrientation = UIDevice.currentDevice().orientation
+        
+        //------ IGNORE THESE ORIENTATIONS ------
+        if orientation == UIDeviceOrientation.FaceUp || orientation == UIDeviceOrientation.FaceDown || orientation == UIDeviceOrientation.Unknown || orientation == UIDeviceOrientation.PortraitUpsideDown || self.currentOrientation == orientation {
+            println("device orientation is \(orientation) --- returning...")
+            return
+        }
+        
+        
+        self.currentOrientation = orientation
+        
+        
+        //------ APPLY A ROTATION USING THE STANDARD ROTATION TRANSFORMATION MATRIX in R3 ------
+        /*
+        
+        x     y      z
+        ---           ---
+        x | cosø  -sinø   0 |
+        y | sinø  cosø    0 |
+        z | 0     0       1 |
+        ---           ---
+        
+        BUT IMPLEMENTED BY APPLE AS
+        
+        x       y       z
+        ---            ---
+        x | cosø    sinø    0 |
+        y | -sinø   consø   0 |
+        z | 0       0       1 |
+        ---            ---
+        */
+        
+        //----- PERFORM VIDEO PREVIEW LAYER ROTATION BEFORE CAMERA CONTROLLER ROTATION ------
+    
+    switch orientation {
+      
+        case UIDeviceOrientation.Portrait:
+            println("Device Orientation Portrait")
+            if self.usingFrontCamera == true {
+            }
+            else {
+                self.playBackTransformation = CGAffineTransformMakeRotation(self.degrees0)
+                self.videoPreviewLayer?.setAffineTransform(self.playBackTransformation!)
+                self.videoPreviewLayer!.frame = self.view.bounds
+            }
+            break
+        case UIDeviceOrientation.LandscapeLeft:
+            println("Device Orientation LandScapeLeft")
+            if self.usingFrontCamera == true {
+            }
+            else {
+                self.playBackTransformation = CGAffineTransformMakeRotation(CGFloat(-self.degrees90))
+                self.videoPreviewLayer?.setAffineTransform(self.playBackTransformation!)
+                self.videoPreviewLayer!.frame = self.view.bounds
+            }
+            break
+        case UIDeviceOrientation.LandscapeRight:
+            println("Device Orientation LandscapeRight")
+            if self.usingFrontCamera == true {
+            }
+            else {
+                self.playBackTransformation = CGAffineTransformMakeRotation(self.degrees90)
+                self.videoPreviewLayer?.setAffineTransform(self.playBackTransformation!)
+                self.videoPreviewLayer!.frame = self.view.bounds
+            }
+            break
+        default:
+            break
+        }
+
+
+    }
+    */
+    
+    override func willRotateToInterfaceOrientation(toInterfaceOrientation: UIInterfaceOrientation, duration: NSTimeInterval) {
+        
     }
     
     override func viewWillAppear(animated: Bool) {
         session.startRunning()
-        
-        
     }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
@@ -153,10 +255,39 @@ class Scanner: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
     }
     
     func captureOutput(captureOutput: AVCaptureOutput!, didOutputMetadataObjects metadataObjects: [AnyObject]!, fromConnection connection: AVCaptureConnection!) {
+        
+        if metadataObjects.count > 0 {
+        
+            if let metaData = metadataObjects[0] as? AVMetadataMachineReadableCodeObject {
+                
+                println(metaData)
+                
+                if previewLayer != nil {
+                
+                    if let testCodeType = metaData.valueForKey("type") as? String {
+                    
+                        barCodeType = testCodeType
+                    }
+                    
+                    if let testCodeString = metaData.valueForKey("stringValue") as? String {
+                        
+                        barCodeString = testCodeString
+                    }
+                    
+                    session.stopRunning()
+                    
+                    performSegueWithIdentifier("scannerToXocializeSegue", sender: self)
+                }
+            }
+        }
+        
+        /*
+        
         for data in metadataObjects {
+            
             let metaData = data as! AVMetadataObject
             
-            println(metaData)
+            //println(metaData)
             
             if previewLayer != nil {
             
@@ -173,6 +304,8 @@ class Scanner: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
             
             }
         }
+        */
+
     }
     
     override func viewDidLayoutSubviews() {
@@ -186,21 +319,13 @@ class Scanner: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
     
     override func prepareForSegue(segue: (UIStoryboardSegue!), sender: AnyObject!) {
         
-        if (segue.identifier == "toScannerSegue") {
+        if (segue.identifier == "scannerToXocializeSegue") {
             
-            var svc = segue!.destinationViewController as! ViewController;
+            var destinationVC = segue!.destinationViewController as! SettingsXocializeViewController;
             
-            //svc.toPass = "test"
+            destinationVC.barCodeString = barCodeString
             
-            println("HERE")
-            
-        }
-        
-        if (segue.identifier == "scannerViewToMain") {
-            
-            var svc = segue!.destinationViewController as! ViewController;
-            
-            //svc.toPass = "test"
+            destinationVC.barCodeType = barCodeType
             
         }
     }
