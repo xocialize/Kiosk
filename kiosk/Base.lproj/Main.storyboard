@@ -149,9 +149,21 @@
                                     <constraint firstAttribute="height" constant="30" id="jTV-Fd-u7N"/>
                                     <constraint firstAttribute="width" constant="288" id="oGy-6V-oYt"/>
                                 </constraints>
-                                <state key="normal" title="Cancel">
+                                <state key="normal" title="Update Xocialize">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sWS-eZ-g40">
+                                <rect key="frame" x="16" y="139" width="288" height="30"/>
+                                <color key="backgroundColor" red="0.19874572939999999" green="0.19874572939999999" blue="0.19874572939999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="e3C-3v-POO"/>
+                                    <constraint firstAttribute="width" constant="288" id="qz1-Da-Ccm"/>
+                                </constraints>
+                                <state key="normal" title="Cancel">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </state>
                             </button>
                         </subviews>
@@ -159,7 +171,9 @@
                         <constraints>
                             <constraint firstItem="dl2-i5-p1i" firstAttribute="top" secondItem="i1T-S5-37D" secondAttribute="bottom" constant="8" id="4JZ-pu-CJy"/>
                             <constraint firstItem="ONA-44-BY4" firstAttribute="top" secondItem="3YP-xg-QFB" secondAttribute="bottom" constant="20" id="Bxr-Fo-OJf"/>
+                            <constraint firstAttribute="centerX" secondItem="sWS-eZ-g40" secondAttribute="centerX" id="J0G-KG-Tq4"/>
                             <constraint firstItem="i1T-S5-37D" firstAttribute="top" secondItem="e22-xB-qah" secondAttribute="bottom" constant="24" id="Zvs-YW-ZQ9"/>
+                            <constraint firstItem="sWS-eZ-g40" firstAttribute="top" secondItem="dl2-i5-p1i" secondAttribute="bottom" constant="14" id="hS5-MA-YNx"/>
                             <constraint firstAttribute="centerX" secondItem="3YP-xg-QFB" secondAttribute="centerX" id="kMq-ZE-Cz3"/>
                             <constraint firstAttribute="centerX" secondItem="dl2-i5-p1i" secondAttribute="centerX" id="lBv-mS-Sdg"/>
                             <constraint firstAttribute="centerX" secondItem="i1T-S5-37D" secondAttribute="centerX" id="yrP-lu-7dC"/>
