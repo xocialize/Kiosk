@@ -52,10 +52,33 @@ class SettingsXocializeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if barCodeString != "" {
+        println("Barcode: "+barCodeString)
         
-            processBarcode()
+        if barCodeString != "" {
             
+            var myArray = barCodeString.componentsSeparatedByString("::")
+            
+            if myArray.count == 3 {
+            
+                if  myArray[0] as String == "xocialize_add_device" {
+                    
+                    println("Is a valid device add")
+                    
+                    enableSwitch.setOn(true, animated:false)
+                    
+                    processBarcode()
+                
+                } else {
+                    
+                    enableSwitch.setOn(false, animated:true)
+                    
+                    self.view.makeToast(message: "Scanned bar code is not a valid Xocialize add device bar code", duration: 5, position: HRToastPositionTop, title: "Bar Code Error")
+                
+                }
+            } else {
+            
+                self.view.makeToast(message: "Scanned bar code is not a valid Xocialize add device bar code", duration: 5, position: HRToastPositionTop, title: "Bar Code Error")
+            }
         }
         
         settings = dm.getSettings()
@@ -118,6 +141,8 @@ class SettingsXocializeViewController: UIViewController {
                     
                     // Okay, the parsedJSON is here, let's get the value for 'success' out of it
                     var success = parseJSON["success"] as? Int
+                    
+                    
                     
                     println("Succes: \(success)")
                     

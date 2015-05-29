@@ -260,8 +260,6 @@ class Scanner: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
         
             if let metaData = metadataObjects[0] as? AVMetadataMachineReadableCodeObject {
                 
-                println(metaData)
-                
                 if previewLayer != nil {
                 
                     if let testCodeType = metaData.valueForKey("type") as? String {
@@ -321,12 +319,26 @@ class Scanner: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
         
         if (segue.identifier == "scannerToXocializeSegue") {
             
+            println("here 1")
+            
             var destinationVC = segue!.destinationViewController as! SettingsXocializeViewController;
             
-            destinationVC.barCodeString = barCodeString!
+            println("here 2")
             
-            destinationVC.barCodeType = barCodeType!
+            if let bcString:String = barCodeString {
             
+                destinationVC.barCodeString = barCodeString!
+            
+            }
+            println("here 3")
+            
+            if let bcType:String = barCodeType {
+            
+                destinationVC.barCodeType = barCodeType!
+                
+            }
+            
+            println("here 4")
         }
     }
     
