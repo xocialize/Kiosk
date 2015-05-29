@@ -323,9 +323,9 @@ class Scanner: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
             
             var destinationVC = segue!.destinationViewController as! SettingsXocializeViewController;
             
-            destinationVC.barCodeString = barCodeString
+            destinationVC.barCodeString = barCodeString!
             
-            destinationVC.barCodeType = barCodeType
+            destinationVC.barCodeType = barCodeType!
             
         }
     }
