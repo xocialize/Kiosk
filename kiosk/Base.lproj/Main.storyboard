@@ -121,8 +121,8 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="xocialize_120.png" translatesAutoresizingMaskIntoConstraints="NO" id="3YP-xg-QFB">
                                 <rect key="frame" x="100" y="428" width="120" height="120"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="120" id="Bu2-iw-o9L"/>
-                                    <constraint firstAttribute="height" constant="120" id="Wbi-CT-5PT"/>
+                                    <constraint firstAttribute="width" constant="120" id="vJD-dD-Xf2"/>
+                                    <constraint firstAttribute="height" constant="120" id="vdT-2i-PGP"/>
                                 </constraints>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="i1T-S5-37D">
@@ -140,31 +140,16 @@
                                 </subviews>
                                 <color key="backgroundColor" red="0.017309538980000001" green="0.23896944719999999" blue="0.64623231390000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="43" id="4Sg-Oa-nmT"/>
-                                    <constraint firstAttribute="width" constant="288" id="gT4-MK-3xn"/>
+                                    <constraint firstAttribute="width" constant="288" id="K8b-gZ-ySV"/>
+                                    <constraint firstAttribute="height" constant="43" id="e24-KQ-fHQ"/>
                                 </constraints>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dl2-i5-p1i">
-                                <rect key="frame" x="16" y="95" width="288" height="30"/>
-                                <color key="backgroundColor" red="0.19874572939999999" green="0.19874572939999999" blue="0.19874572939999999" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="jTV-Fd-u7N"/>
-                                    <constraint firstAttribute="width" constant="288" id="oGy-6V-oYt"/>
-                                </constraints>
-                                <state key="normal" title="Update Xocialize">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="updateButton:" destination="2Qb-ke-vOi" eventType="touchUpInside" id="M3J-Ic-BfD"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sWS-eZ-g40">
-                                <rect key="frame" x="16" y="139" width="288" height="30"/>
+                                <rect key="frame" x="16" y="173" width="288" height="30"/>
                                 <color key="backgroundColor" red="0.19874572939999999" green="0.19874572939999999" blue="0.19874572939999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="e3C-3v-POO"/>
-                                    <constraint firstAttribute="width" constant="288" id="qz1-Da-Ccm"/>
+                                    <constraint firstAttribute="height" constant="30" id="GHK-Fe-bV9"/>
+                                    <constraint firstAttribute="width" constant="288" id="Q0j-fE-65Y"/>
                                 </constraints>
                                 <state key="normal" title="Cancel">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -175,28 +160,54 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Cx-jk-S92">
-                                <rect key="frame" x="16" y="177" width="288" height="192"/>
+                                <rect key="frame" x="16" y="216" width="288" height="130"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="288" id="Iqw-ws-x7E"/>
-                                    <constraint firstAttribute="height" constant="192" id="dHW-BC-9is"/>
+                                    <constraint firstAttribute="width" constant="288" id="0e9-eE-13k"/>
+                                    <constraint firstAttribute="height" constant="130" id="gc7-fE-Mk7"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Device Description" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="txZ-jk-Zw4">
+                                <rect key="frame" x="16" y="95" width="288" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="415-Wz-Dc7"/>
+                                    <constraint firstAttribute="width" constant="288" id="ul6-8V-VHn"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dl2-i5-p1i">
+                                <rect key="frame" x="16" y="135" width="288" height="30"/>
+                                <color key="backgroundColor" red="0.19874572939999999" green="0.19874572939999999" blue="0.19874572939999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="288" id="RRs-hZ-bxh"/>
+                                    <constraint firstAttribute="height" constant="30" id="fSU-hc-J53"/>
+                                </constraints>
+                                <state key="normal" title="Update Xocialize">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="updateButton:" destination="2Qb-ke-vOi" eventType="touchUpInside" id="M3J-Ic-BfD"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.017309538980000001" green="0.23896944719999999" blue="0.64623231390000002" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="dl2-i5-p1i" firstAttribute="top" secondItem="i1T-S5-37D" secondAttribute="bottom" constant="8" id="4JZ-pu-CJy"/>
-                            <constraint firstItem="ONA-44-BY4" firstAttribute="top" secondItem="3YP-xg-QFB" secondAttribute="bottom" constant="20" id="Bxr-Fo-OJf"/>
-                            <constraint firstAttribute="centerX" secondItem="3Cx-jk-S92" secondAttribute="centerX" id="E1T-lt-3Hj"/>
-                            <constraint firstAttribute="centerX" secondItem="sWS-eZ-g40" secondAttribute="centerX" id="J0G-KG-Tq4"/>
-                            <constraint firstItem="i1T-S5-37D" firstAttribute="top" secondItem="e22-xB-qah" secondAttribute="bottom" constant="24" id="Zvs-YW-ZQ9"/>
-                            <constraint firstItem="sWS-eZ-g40" firstAttribute="top" secondItem="dl2-i5-p1i" secondAttribute="bottom" constant="14" id="hS5-MA-YNx"/>
-                            <constraint firstItem="3Cx-jk-S92" firstAttribute="top" secondItem="sWS-eZ-g40" secondAttribute="bottom" constant="8" id="iw7-Dm-MH2"/>
-                            <constraint firstAttribute="centerX" secondItem="3YP-xg-QFB" secondAttribute="centerX" id="kMq-ZE-Cz3"/>
-                            <constraint firstAttribute="centerX" secondItem="dl2-i5-p1i" secondAttribute="centerX" id="lBv-mS-Sdg"/>
-                            <constraint firstAttribute="centerX" secondItem="i1T-S5-37D" secondAttribute="centerX" id="yrP-lu-7dC"/>
+                            <constraint firstItem="dl2-i5-p1i" firstAttribute="top" secondItem="txZ-jk-Zw4" secondAttribute="bottom" constant="10" id="5Bh-Td-7hr"/>
+                            <constraint firstAttribute="centerX" secondItem="txZ-jk-Zw4" secondAttribute="centerX" id="CJC-d6-QNz"/>
+                            <constraint firstAttribute="centerX" secondItem="sWS-eZ-g40" secondAttribute="centerX" id="EAu-0H-5Wd"/>
+                            <constraint firstAttribute="centerX" secondItem="dl2-i5-p1i" secondAttribute="centerX" id="GNB-xI-6vj"/>
+                            <constraint firstItem="ONA-44-BY4" firstAttribute="top" secondItem="3YP-xg-QFB" secondAttribute="bottom" constant="20" id="Ikl-4j-4Ht"/>
+                            <constraint firstItem="3Cx-jk-S92" firstAttribute="top" secondItem="sWS-eZ-g40" secondAttribute="bottom" constant="13" id="Kwk-68-hv6"/>
+                            <constraint firstAttribute="centerX" secondItem="i1T-S5-37D" secondAttribute="centerX" id="VUj-HB-iSh"/>
+                            <constraint firstItem="i1T-S5-37D" firstAttribute="top" secondItem="e22-xB-qah" secondAttribute="bottom" constant="24" id="mfk-lP-EMl"/>
+                            <constraint firstItem="txZ-jk-Zw4" firstAttribute="top" secondItem="i1T-S5-37D" secondAttribute="bottom" constant="8" id="ntq-bB-bJh"/>
+                            <constraint firstAttribute="centerX" secondItem="3YP-xg-QFB" secondAttribute="centerX" id="o6B-8e-vlx"/>
+                            <constraint firstItem="sWS-eZ-g40" firstAttribute="top" secondItem="dl2-i5-p1i" secondAttribute="bottom" constant="8" id="sRn-wV-cFf"/>
+                            <constraint firstAttribute="centerX" secondItem="3Cx-jk-S92" secondAttribute="centerX" id="wgq-qO-zpe"/>
                         </constraints>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
