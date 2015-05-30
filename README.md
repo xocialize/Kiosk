@@ -23,3 +23,7 @@ Version 1.0 which is currently available in the App Store is just an initial rel
 3. Offline data collection for forms or other data
 4. Remote management via Xocialize remote manager
 
+
+## Credits
+
+Kiosk uses the Swifter HTTP server to serve up the files imported from your repository allowing for offline use.  It also uses the Reachability library to check network availability, HRToast for messaging and a suite of file utilities by Anthony Levings.  
