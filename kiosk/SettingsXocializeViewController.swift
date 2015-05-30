@@ -54,6 +54,10 @@ class SettingsXocializeViewController: UIViewController {
         
         println("Barcode: "+barCodeString)
         
+        settings = dm.getSettings()
+        
+        println(settings)
+        
         if barCodeString != "" {
             
             var myArray = barCodeString.componentsSeparatedByString("::")
@@ -81,7 +85,7 @@ class SettingsXocializeViewController: UIViewController {
             }
         }
         
-        settings = dm.getSettings()
+        
         
         if let enabled = settings["xocializeEnabled"] as? Bool {
             
@@ -168,8 +172,17 @@ class SettingsXocializeViewController: UIViewController {
             
             xocializeMe["barcode"] = barCodeString
             
-            post(xocializeMe, url: "https://xocialize.com/add_device")
+            if let deviceUUID = settings["systemUUID"] as? String {
+                
+                xocializeMe["device_uuid"] = deviceUUID
             
+                post(xocializeMe, url: "https://xocialize.com/add_device")
+            
+            } else {
+            
+                println(settings)
+            
+            }
         
         } else {
             

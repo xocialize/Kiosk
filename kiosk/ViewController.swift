@@ -49,6 +49,8 @@ class ViewController: UIViewController {
             
         } else {
             
+            dm.saveSettings(settings)
+            
             timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: Selector("mainToSettingsDirect"), userInfo: nil, repeats: false)
             
         }

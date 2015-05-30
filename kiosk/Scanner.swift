@@ -66,8 +66,6 @@ class Scanner: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
-        
         let captureDevice = AVCaptureDevice.defaultDeviceWithMediaType(AVMediaTypeVideo)
         
         var error : NSError?
@@ -308,10 +306,6 @@ class Scanner: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
     
     override func viewDidLayoutSubviews() {
         
-        //self.navigationController!.navigationBar.hidden = false
-        
-        self.title = "Scanner"
-        
     }
     
     
@@ -319,26 +313,19 @@ class Scanner: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
         
         if (segue.identifier == "scannerToXocializeSegue") {
             
-            println("here 1")
-            
             var destinationVC = segue!.destinationViewController as! SettingsXocializeViewController;
-            
-            println("here 2")
             
             if let bcString:String = barCodeString {
             
                 destinationVC.barCodeString = barCodeString!
             
             }
-            println("here 3")
             
             if let bcType:String = barCodeType {
             
                 destinationVC.barCodeType = barCodeType!
                 
             }
-            
-            println("here 4")
         }
     }
     
