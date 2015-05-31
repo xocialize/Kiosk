@@ -11,7 +11,13 @@ import UIKit
 
 class XocializeManager: NSObject {
     
-        
+    let dm: DataManager = DataManager()
+    
+    var settings:Dictionary<String,AnyObject> = [:]
+    
+    var queue:Dictionary<String,AnyObject> = [:]
+    
+    var ready:Bool = true
     
     // Mark JSON Utilities Author - Santosh Rajan
     
@@ -60,6 +66,85 @@ class XocializeManager: NSObject {
         }
         
         return [String: AnyObject]()
+    }
+    
+    func process(){
+        
+        settings = dm.getSettings()
+        
+        if var myurl = settings["messagesURL"] as? String, let accountsId = settings["accounts_id"] as? String, let authUUID = settings["auth_uuid"] as? String {
+            
+            myurl = "\(myurl)?accounts_id=\(accountsId)&auth_uuid=\(authUUID)"
+        
+            let url = NSURL(string: myurl)
+            
+            let session = NSURLSession.sharedSession()
+            
+            ready = false
+        
+            let task = session.dataTaskWithURL(url!, completionHandler: {data, response, error -> Void in
+            
+                if let httpResponse = response as? NSHTTPURLResponse {
+                
+                    if let XRateLimit = httpResponse.allHeaderFields["X-RateLimit-Remaining"] as? NSString {
+                    
+                        println("X-RateLimit-Remaining: \(XRateLimit)")
+                    
+                    }
+                }
+            
+                if error != nil {
+                
+                    println(error)
+                
+                } else {
+                
+                    var jsonData: AnyObject = self.processJson(data)
+                    
+                    //println(NSString(data: data, encoding: NSUTF8StringEncoding))
+                    
+                    println(jsonData)
+                
+                }
+                
+                self.ready = true
+            })
+        
+            task.resume()
+            
+        } else { println("messages url not defined") }
+    
+    }
+    
+    func processJson(data: NSData) -> AnyObject {
+        
+        var jsonError: NSError?
+        
+        var completed: AnyObject?
+        
+        if let jsonObject : AnyObject! = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers, error: &jsonError) {
+            
+            if let directoryArray = jsonObject as? NSArray{
+                
+                completed = directoryArray as AnyObject
+                
+            } else if let directoryDictionary = jsonObject as? NSDictionary{
+                
+                completed = directoryDictionary as AnyObject
+                
+            }
+            
+        } else {
+            
+            if let unwrappedError = jsonError {
+                
+                println("json error: \(unwrappedError)")
+                
+            }
+        }
+        
+        return completed!
+        
     }
 
     func post(params : Dictionary<String, String>, url : String) {

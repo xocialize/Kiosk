@@ -20,43 +20,37 @@ class WebViewController: UIViewController, WKScriptMessageHandler, WKNavigationD
     
     let lm: LocationManager = LocationManager()
     
+    let xm: XocializeManager = XocializeManager()
+    
     var settings:Dictionary<String,AnyObject> = [:]
     
+    var barCodeString: String = ""
+    
+    var barCodeType: String = ""
+    
     var orientation = 0
+    
+    var xocializeTimeInterval: NSTimeInterval = 30
+    
+    let url = NSURL(string: "http://localhost:8080")
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         settings = dm.getSettings()
         
-        theWebView?.UIDelegate = self
-        
         if settings["iBeaconEnabled"] as? Bool == true {
             
-            var uuid = NSUUID(UUIDString: (settings["iBeaconUUID"] as? String)!)
-            
-            if uuid != nil {
-                
-                var beaconMajor = 1
-                
-                var beaconMinor = 1
-            
-                if let major:Int = settings["iBeaconMajor"] as? Int {
-                
-                    beaconMajor = major
-                    
-                }
-                
-                if let minor:Int = settings["iBeaconMinor"] as? Int {
-                    
-                    beaconMinor = minor
-                    
-                }
-                
-                lm.iBeaconBroadcast(uuid!, major: beaconMajor, minor: beaconMinor)
-                
-            }
+            startBeacon()
         }
+        
+        if settings["xocializeEnabled"] as? Bool == true {
+            
+            xocialize()
+        
+        }
+        
+        theWebView?.UIDelegate = self
         
         self.view.autoresizesSubviews = true
         
@@ -80,12 +74,46 @@ class WebViewController: UIViewController, WKScriptMessageHandler, WKNavigationD
         
         self.view.addSubview(theWebView!)
         
-       let url = NSURL(string: "http://localhost:8080")
-        
-        let req = NSURLRequest(URL: url!)
+       let req = NSURLRequest(URL: url!)
         
         theWebView!.loadRequest(req)
         
+    }
+    
+    func xocialize(){
+    
+        if xm.ready { xm.process() }
+        
+        timer = NSTimer.scheduledTimerWithTimeInterval(xocializeTimeInterval, target: self, selector: Selector("xocialize"), userInfo: nil, repeats: false)
+        
+    }
+    
+    func startBeacon(){
+    
+        var uuid = NSUUID(UUIDString: (settings["iBeaconUUID"] as? String)!)
+        
+        if uuid != nil {
+            
+            var beaconMajor = 1
+            
+            var beaconMinor = 1
+            
+            if let major:Int = settings["iBeaconMajor"] as? Int {
+                
+                beaconMajor = major
+                
+            }
+            
+            if let minor:Int = settings["iBeaconMinor"] as? Int {
+                
+                beaconMinor = minor
+                
+            }
+            
+            lm.iBeaconBroadcast(uuid!, major: beaconMajor, minor: beaconMinor)
+            
+        }
+    
     }
     
     func screenShotMethod() {
@@ -97,6 +125,19 @@ class WebViewController: UIViewController, WKScriptMessageHandler, WKNavigationD
         
         // Send Image To Xocialize for processing
         
+    }
+    
+    override func prepareForSegue(segue: (UIStoryboardSegue!), sender: AnyObject!) {
+        
+        if (segue.identifier == "webViewToScannerViewSegue") {
+            
+            if let destinationVC = segue.destinationViewController as? Scanner{
+                
+                destinationVC.initiator = "webView"
+                
+            }
+            
+        }
     }
     
     func userContentController(userContentController: WKUserContentController, didReceiveScriptMessage message: WKScriptMessage){

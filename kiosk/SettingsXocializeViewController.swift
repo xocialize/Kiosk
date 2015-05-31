@@ -128,7 +128,6 @@ class SettingsXocializeViewController: UIViewController {
             
             var json = NSJSONSerialization.JSONObjectWithData(data, options: .MutableLeaves, error: &err) as? NSDictionary
             
-            // Did the JSONObjectWithData constructor return an error? If so, log the error to the console
             if(err != nil) {
                 
                 println(err!.localizedDescription)
@@ -138,21 +137,40 @@ class SettingsXocializeViewController: UIViewController {
                 println("Error could not parse JSON: '\(jsonStr)'")
             } else {
                 
-                // The JSONObjectWithData constructor didn't return an error. But, we should still
-                // check and make sure that json has a value using optional binding.
-                
-                if let parseJSON = json {
+               if let parseJSON = json {
                     
-                    // Okay, the parsedJSON is here, let's get the value for 'success' out of it
-                    var success = parseJSON["success"] as? Int
+                    if var success = parseJSON["success"] as? Int {
+                        
+                        if let authUUID = parseJSON["device_auth_uuid"] as? String {
+                            
+                            if var uuid = NSUUID(UUIDString: authUUID) {
+                                
+                                self.settings["auth_uuid"] = authUUID
+                            
+                            }
+                            
+                            if let accountId = parseJSON["accounts_id"] as? String {
+                            
+                                self.settings["accounts_id"] = accountId
+                                
+                            }
+                            
+                            if let messagesUrl = parseJSON["messages_url"] as? String {
+                                
+                                self.settings["messagesURL"] = messagesUrl
+                                
+                            }
+                            
+                            self.enableSwitch.setOn(true, animated:false)
+                            
+                            self.dm.saveSettings(self.settings)
+                            
+                        } else { println("couldn't decode device_auth_uuid") }
                     
-                    
-                    
-                    println("Succes: \(success)")
-                    
+                        println("Success: \(success)")
+                        
+                    }
                 } else {
-                    
-                    // Woa, okay the json object was nil, something went worng. Maybe the server isn't running?
                     
                     let jsonStr = NSString(data: data, encoding: NSUTF8StringEncoding)
                     
@@ -198,11 +216,11 @@ class SettingsXocializeViewController: UIViewController {
             
             println("The Switch is On")
             
-            if let xocializeId = settings["xocializeId"] as? String {
+            if let authUUID = settings["auth_uuid"] as? String {
                 
                 settings["xocializeEnabled"] = true
             
-                println(xocializeId)
+                println(authUUID)
             
             } else {
             
@@ -246,14 +264,6 @@ class SettingsXocializeViewController: UIViewController {
     }
     
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
+   
 
 }
