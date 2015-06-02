@@ -101,10 +101,50 @@ class XocializeManager: NSObject {
                 
                     var jsonData: AnyObject = self.processJson(data)
                     
+                    if let data = jsonData["success"] as? Int where data == 1 {
+                        
+                        if let messages = jsonData["messages"] as? NSArray {
+                            
+                            for message in messages {
+                                
+                                if let command = message["command"] as? String {
+                                
+                                    println(command)
+                                    
+                                }
+                                
+                                if let messageData = message["data"] as? NSDictionary {
+                                    
+                                    for (key,value) in messageData {
+                                    
+                                        var stkey = "\(key)"
+                                        
+                                        println(messageData[stkey])
+                                        
+                                    }
+                                
+                                    
+                                
+                                }
+                            
+                            }
+                            
+                        } else {
+                            
+                            println("unable to convert messages")
+                        
+                            println(jsonData["messages"])
+                        
+                        }
+                        
+                    } else {
+                    
+                        println(jsonData)
+                        
+                    }
+                    
                     //println(NSString(data: data, encoding: NSUTF8StringEncoding))
                     
-                    println(jsonData)
-                
                 }
                 
                 self.ready = true
