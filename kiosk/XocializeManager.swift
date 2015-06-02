@@ -108,25 +108,30 @@ class XocializeManager: NSObject {
                             for message in messages {
                                 
                                 if let command = message["command"] as? String {
-                                
-                                    println(command)
                                     
-                                }
-                                
-                                if let messageData = message["data"] as? NSDictionary {
+                                    switch(command){
                                     
-                                    for (key,value) in messageData {
-                                    
-                                        var stkey = "\(key)"
+                                        case "update_settings":
                                         
-                                        println(messageData[stkey])
+                                            if let messageData = message["data"] as? NSDictionary {
+                                            
+                                                self.updateSettings(messageData)
+                                            
+                                            }
                                         
+                                        break
+                                        
+                                        default:
+                                            println("Not a valid command")
+                                        break
+                                    
                                     }
                                 
-                                    
+                                } else {
                                 
+                                    println("Not a valid message")
+                                    
                                 }
-                            
                             }
                             
                         } else {
@@ -154,6 +159,105 @@ class XocializeManager: NSObject {
             
         } else { println("messages url not defined") }
     
+    }
+    
+    func updateSettings(data: NSDictionary){
+        
+        settings = dm.getSettings()
+        
+        println(settings)
+    
+        for (key,value) in data {
+            
+            var keyText = "\(key)"
+            
+            switch(keyText){
+            
+                case "gitToken":
+                
+                    if let gitToken = data[keyText] as? String {
+                    
+                        settings["gitToken"] = gitToken
+                    }
+                    
+                break;
+                
+                case "gitUser":
+                
+                    if let gitUser = data[keyText] as? String {
+                    
+                        settings["gitUser"] = gitUser
+                    }
+                
+                break;
+                
+                case "gitRepo":
+                
+                    if let gitRepo = data[keyText] as? String {
+                    
+                        settings["gitRepo"] = gitRepo
+                    }
+                
+                break;
+                
+                case "iBeaconEnabled":
+                
+                    if let iBeaconEnabled = data[keyText] as? Bool {
+                    
+                        settings["iBeaconEnabled"] = iBeaconEnabled
+                    }
+                
+                break;
+                
+                case "iBeaconMajor":
+                
+                    if let iBeaconMajor = data[keyText] as? Int {
+                    
+                        settings["iBeaconMajor"] = iBeaconMajor
+                    }
+                
+                break;
+                
+                case "iBeaconMinor":
+                
+                    if let iBeaconMinor = data[keyText] as? Int {
+                    
+                        settings["iBeaconMinor"] = iBeaconMinor
+                    }
+                
+                break;
+                
+                case "iBeaconUUID":
+                
+                    if let iBeaconUUID = data[keyText] as? String {
+                        
+                        var uuid = NSUUID(UUIDString: iBeaconUUID)
+                        
+                        var doSegue:Bool = true
+                        
+                        if uuid != nil {
+                            
+                            settings["iBeaconUUID"] = iBeaconUUID
+                        
+                        }
+                    }
+                
+                break;
+                
+                default:
+                    
+                    println("Not a valid setting")
+                
+                break
+            
+            }
+            
+            println(data[keyText])
+            
+        }
+        
+        dm.saveSettings(settings)
+        
     }
     
     func processJson(data: NSData) -> AnyObject {

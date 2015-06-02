@@ -39,15 +39,14 @@ class WebViewController: UIViewController, WKScriptMessageHandler, WKNavigationD
         
         settings = dm.getSettings()
         
-        if settings["iBeaconEnabled"] as? Bool == true {
-            
-            startBeacon()
-        }
-        
         if settings["xocializeEnabled"] as? Bool == true {
             
             xocialize()
+        }
         
+        if settings["iBeaconEnabled"] as? Bool == true {
+            
+            startBeacon()
         }
         
         theWebView?.UIDelegate = self
@@ -56,7 +55,19 @@ class WebViewController: UIViewController, WKScriptMessageHandler, WKNavigationD
         
         self.view.autoresizingMask = UIViewAutoresizing.FlexibleWidth | UIViewAutoresizing.FlexibleHeight;
         
+        var contentController = WKUserContentController();
+        
+        var userScript = WKUserScript(
+            source: "console.log(\"test\")",
+            injectionTime: WKUserScriptInjectionTime.AtDocumentEnd,
+            forMainFrameOnly: true
+        )
+        
+        contentController.addUserScript(userScript)
+        
         var theConfiguration = WKWebViewConfiguration()
+        
+        theConfiguration.userContentController = contentController
         
         theConfiguration.userContentController.addScriptMessageHandler(self,name: "interOp")
         
@@ -70,7 +81,7 @@ class WebViewController: UIViewController, WKScriptMessageHandler, WKNavigationD
         
         theWebView!.setTranslatesAutoresizingMaskIntoConstraints(true)
         
-       theWebView!.autoresizingMask = UIViewAutoresizing.FlexibleWidth | UIViewAutoresizing.FlexibleHeight
+        theWebView!.autoresizingMask = UIViewAutoresizing.FlexibleWidth | UIViewAutoresizing.FlexibleHeight
         
         self.view.addSubview(theWebView!)
         
