@@ -247,12 +247,14 @@ class XocializeManager: NSObject {
                 default:
                     
                     println("Not a valid setting")
+                    
+                    println("\(key) \(data[keyText])")
                 
                 break
             
             }
             
-            println(data[keyText])
+            
             
         }
         
