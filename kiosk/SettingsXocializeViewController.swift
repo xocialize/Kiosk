@@ -100,6 +100,7 @@ class SettingsXocializeViewController: UIViewController {
         enableSwitch.addTarget(self, action: Selector("stateChanged:"), forControlEvents: UIControlEvents.ValueChanged)
         
     }
+    
     func post(params : Dictionary<String, String>, url : String) {
         
         var request = NSMutableURLRequest(URL: NSURL(string: url)!)
@@ -194,7 +195,7 @@ class SettingsXocializeViewController: UIViewController {
                 
                 xocializeMe["device_uuid"] = deviceUUID
             
-                post(xocializeMe, url: "https://xocialize.com/add_device")
+                post(xocializeMe, url: "https://xocialize.com/device_manager")
             
             } else {
             

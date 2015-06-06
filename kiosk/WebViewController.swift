@@ -39,6 +39,8 @@ class WebViewController: UIViewController, WKScriptMessageHandler, WKNavigationD
         
         settings = dm.getSettings()
         
+        xm.settingsToXocialize()
+        
         if settings["xocializeEnabled"] as? Bool == true {
             
             xocialize()

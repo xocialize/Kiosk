@@ -292,6 +292,38 @@ class XocializeManager: NSObject {
         return completed!
         
     }
+    
+    func settingsToXocialize(){
+    
+        settings = dm.getSettings()
+        
+        var settingsString = JSONStringify(settings, prettyPrinted: false)
+        
+        println("Settings: "+settingsString)
+        
+        if let deviceUUID: String = settings["systemUUID"] as? String,
+            let authUUID: String = settings["auth_uuid"] as? String,
+            let accountsId: String = settings["accounts_id"] as? String{
+        
+                var postme:Dictionary<String,String> = [:]
+                
+                postme["accounts_id"] = accountsId
+                postme["auth_uuid"] = authUUID
+                postme["device_uuid"] = deviceUUID
+                postme["action"] = "updateDeviceSettings"
+                postme["settings"] = settingsString
+                
+                post(postme, url:"https://xocialize.com/device_manager")
+                
+
+                
+        } else {
+        
+            println("not ready to send settings")
+        
+        }
+    
+    }
 
     func post(params : Dictionary<String, String>, url : String) {
         

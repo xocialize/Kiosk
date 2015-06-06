@@ -53,6 +53,8 @@ class SettingsLoginPasswordViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        settings = dm.getSettings()
+        
         if let passwordText = settings["password"] as? String {
             
             password.text = passwordText
