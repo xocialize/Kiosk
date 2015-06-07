@@ -20,6 +20,8 @@ class SettingsXocializeViewController: UIViewController {
     
     @IBOutlet var enableSwitch: UISwitch!
     
+    @IBOutlet var descriptionText: UITextField!
+    
     let reachability = Reachability.reachabilityForInternetConnection()
     
     var barCodeString: String = ""
@@ -45,7 +47,15 @@ class SettingsXocializeViewController: UIViewController {
             
         }
         
+        if let value = descriptionText.text  {
+            
+            settings["xocializeDescription"] = value as String
+            
+        }
+        
         dm.saveSettings(settings)
+        
+        performSegueWithIdentifier("xocializeToSettingsSegue", sender: self)
         
     }
     
@@ -85,7 +95,11 @@ class SettingsXocializeViewController: UIViewController {
             }
         }
         
+        if let descText = settings["xocializeDescription"] as? String {
         
+            descriptionText.text = descText
+        
+        }
         
         if let enabled = settings["xocializeEnabled"] as? Bool {
             

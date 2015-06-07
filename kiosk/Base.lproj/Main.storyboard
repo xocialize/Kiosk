@@ -212,6 +212,7 @@
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
+                        <outlet property="descriptionText" destination="txZ-jk-Zw4" id="UxH-BT-YJp"/>
                         <outlet property="enableSwitch" destination="9EZ-3J-NCC" id="IeZ-JR-5Ed"/>
                         <outlet property="infoLabel" destination="3Cx-jk-S92" id="NZm-zQ-IhS"/>
                         <segue destination="Xha-VG-p0x" kind="show" identifier="xocializeToScannerSegue" id="qgo-kv-wN2"/>

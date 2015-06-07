@@ -7,13 +7,16 @@
 //
 
 import Foundation
-
 import UIKit
 import CoreData
 
 class DataManager: NSObject, NSFileManagerDelegate {
     
     var appDel:AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+    
+    //var xm: XocializeManager = XocializeManager()
+    
+    let reachability = Reachability.reachabilityForInternetConnection()
     
     // *** Mark Core Data Functions ***
     
@@ -107,6 +110,19 @@ class DataManager: NSObject, NSFileManagerDelegate {
         
         context.save(nil)
         
+        if settings["xocializeEnabled"] as? Bool == true {
+            
+            if reachability.isReachable() {
+                
+                var xm = XocializeManager()
+                
+                xm.settingsToXocialize()
+            
+            } else {
+            
+                println("Can't send settings to Xocialize")
+            }
+        }
     }
     
     // *** Mark File Directory Functions ***
