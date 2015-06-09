@@ -39,8 +39,6 @@ class DataManager: NSObject, NSFileManagerDelegate {
                let settings:Dictionary<String,AnyObject> = NSKeyedUnarchiver.unarchiveObjectWithData(xset!)! as! Dictionary
                     
                 return settings
-                
-                
             }
         } 
     
