@@ -2,18 +2,18 @@ var Pleasure = {
 
 	// Pleasure Theme Settings
 	settings: {
-		name: "Pleasure Dashboard Theme",
+		name: "Kiosk",
 		version: "1.0.0",
 		rippledButtons: true,
 
 		paths: {
-			images: "../../assets/globals/img",
-			css: "../assets/globals/css",
-			plugins: "assets/globals/plugins"
+			images: "./assets/globals/img",
+			css: "./assets/globals/css",
+			plugins: "./assets/globals/plugins"
 		},
 
 		ga: {
-			urchin: "UA-11816554-27", // UA-XXXXXX-XX
+			urchin: "", // UA-XXXXXX-XX
 			url: "auto" // or subdomain.teamfox.co
 		}
 	},
