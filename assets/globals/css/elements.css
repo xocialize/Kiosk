@@ -13818,7 +13818,7 @@ pre .hljs {
   margin: 0;
 }
 .bg-login .bg-blur:before {
-  background: url('../../globals/img/picjumbo/large/29.jpg') fixed no-repeat;
+  background: url('../../xocialize/xocialize_bg.png') fixed no-repeat;
   background-size: cover;
 }
 .bg-login .login-screen {
