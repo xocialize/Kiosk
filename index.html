@@ -124,10 +124,23 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h4 class="modal-title">Modal title</h4> </div>
-                <div class="modal-body"> It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that. </div>
+                <div class="modal-body">
+                	<div class="inputer floating-label">
+                        <div class="input-wrapper">
+                            <input type="text" class="form-control" id="emailLogin">
+                            <label for="emailLogin">eMail Address</label>
+                        </div>
+                    </div>
+                    <div class="inputer floating-label">
+                        <div class="input-wrapper">
+                            <input type="text" class="form-control" id="passwordLogin">
+                            <label for="passwordLogin">eMail Address</label>
+                        </div>
+                    </div>
+                </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-flat btn-default" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-flat btn-primary">Save changes</button>
+                    <button type="button" class="btn btn-flat btn-default" data-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-flat btn-primary" id="loginProcessButton">Login</button>
                 </div>
             </div>
             <!--.modal-content-->
