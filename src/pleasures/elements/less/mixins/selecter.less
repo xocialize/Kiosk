@@ -1,0 +1,19 @@
+.selecter-variant(@background) {
+	+.bootstrap-select{
+		.btn{
+				&,
+				&:hover,
+				&.hover,
+				&:active
+				&:focus{
+					color: @background !important;
+					border-color: @background !important;
+				}
+		}
+		li.selected{
+			a{
+				color: @background !important;
+			}
+		}
+	}
+}

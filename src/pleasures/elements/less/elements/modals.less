@@ -1,0 +1,142 @@
+/*
+11 - Modals
+*/
+.modal{
+
+	&.fade{
+		.modal-dialog{
+			position: absolute;
+			left: 50%;
+			top: 50%;
+			margin: 0;
+			transform: translate3d(-50%, -49.9%, 0);
+			backface-visibility: hidden;
+			-webkit-font-smoothing: subpixel-antialiased;
+		}
+	}
+
+	&.scale{
+		transition: transform 280ms ease-out;
+		transform: scale(1.5);
+
+		.modal-dialog{
+			position: absolute;
+			left: 50%;
+			top: 50%;
+			margin: 0;
+			transform: translate3d(-50%, -49.9%, 0);
+		}
+
+		&.in{
+			transform: scale(1);
+		}
+	}
+	&.in{
+		.modal-dialog{
+			transform: translate3d(-50%, -49.9%, 0);
+		}
+	}
+
+	&.full-height{
+		.modal-dialog{
+			position: absolute;
+			margin: 0;
+			height: 100%;
+			left: 50%;
+			top: 0;
+
+			transition: transform 280ms cubic-bezier(0.35, 0, 0.25, 1) 100ms;
+			transform: translate3d(-50%, 0, 0) scale(.5);
+		}
+		.modal-content{
+			border-radius: 0;
+			height: 100%;
+
+			.modal-body{
+				height: calc(~'100% - 117px');
+				max-height: inherit;
+			}
+		}
+		&.in{
+			.modal-dialog{
+				transform: translate3d(-50%, 0, 0) scale(1);
+			}
+		}
+	}
+
+	&.from-right{
+		.modal-dialog{
+			right: 0;
+			left: auto;
+			transform: translate3d(100%, 0, 0);
+		}
+		&.in{
+			.modal-dialog{
+				transform: translate3d(0%, 0, 0);
+			}
+		}
+	}
+
+	&.from-left{
+		.modal-dialog{
+			left: 0;
+			transform: translate3d(-100%, 0, 0);
+		}
+		&.in{
+			.modal-dialog{
+				transform: translate3d(0%, 0, 0);
+			}
+		}
+	}
+
+	.modal-content{
+		box-shadow: none;
+		border: 0;
+		.z-depth(3);
+
+		.modal-header{
+			padding: 24px 24px 0 24px;
+			border: 0;
+		}
+		.modal-body{
+			padding: 16px 24px;
+			max-height: 500px;
+			overflow: auto;
+		}
+		.modal-footer{
+			padding: 8px 16px;
+		}
+	}
+
+	&.video-js-modal{
+		.modal-body{
+			padding: 0;
+		}
+	}
+}
+
+.modal{
+	transition: visibility 0s linear, opacity 500ms cubic-bezier(0.35, 0, 0.25, 1) 250ms;
+	background-color: rgba(0,0,0,.5);
+}
+
+.modal-backdrop{
+	visibility: hidden;
+	opacity: 0;
+	z-index: 1030;
+	width: 100%;
+	height: 100%;
+	transition: visibility 0s linear, opacity 500ms cubic-bezier(0.35, 0, 0.25, 1) 250ms;
+	&.in{
+		visibility: visible;
+		opacity: .6;
+	}
+}
+
+.layout-device{
+	.modal{
+		.modal-dialog{
+			width: 90%;
+		}
+	}
+}

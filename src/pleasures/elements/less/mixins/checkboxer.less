@@ -1,0 +1,26 @@
+.checkboxer-variant(@background) {
+
+	input[type="checkbox"] {
+
+		+ label{
+			&:hover{
+				color: @background;
+				&:before{
+					border-color: @background;
+				}
+			}
+		}
+
+		&:checked{
+			+ label{
+				color: @background;
+				&:before{
+					border-color: @background;
+				}
+				&:after{
+					border-color: @background;
+				}
+			}
+		}
+	}
+}

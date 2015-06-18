@@ -1,0 +1,49 @@
+/*
+24 - About Us
+*/
+
+// About Us
+.about-us{
+	.panel-body{
+		padding: 30px;
+	}
+	h2{
+		margin-top: 0;
+	}
+	.row.no-gutters{
+		margin-top: 50px;
+	}
+	p{
+		color: #999;
+		font-size: 16px;
+		text-align: justify;
+	}
+}
+.client-list{
+	margin: 50px 0;
+	padding: 0;
+
+	div{
+		border: 1px solid @border-color;
+		border-right-color: transparent;
+		border-bottom-color: transparent;
+		margin: 0;
+		padding: 15px 0;
+		text-align: center;
+		img{
+			width: 100px;
+		}
+		&.col-md-3{
+			&:nth-child(1),
+			&:nth-child(2),
+			&:nth-child(3),
+			&:nth-child(4){
+				border-top-color: transparent;
+			}
+			&:nth-of-type(4n+1){
+				border-left-color: transparent;
+			}
+		}
+	}
+	.clearfix()
+}

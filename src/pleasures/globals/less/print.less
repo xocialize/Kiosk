@@ -1,0 +1,122 @@
+/*
+8 - Print
+*/
+
+@media print {
+	@page{
+		margin: 1cm;
+	}
+	body {
+		background-color: #fff !important;
+		padding: 0 !important;
+		margin: 0 !important;
+		font-size: 14px;
+	}
+
+	.page-wrapper{
+		margin: 0;
+	}
+
+	.nav-bar-container{
+		display: none;
+	}
+
+	.page-footer, .footer-links{
+		display: none;
+	}
+
+	.content{
+		padding: 0;
+	}
+
+	.page-content{
+		.content-wrapper{
+			padding: 0;
+		}
+	}
+
+	.invoice{
+		padding: 10px !important;
+	}
+
+	.page-container{
+		margin: 0;
+	}
+
+	.page-header{
+		display: none;
+	}
+
+	.page-sidebar-menu{
+		display: none;
+	}
+
+	.page-sidebar-wrapper{
+		display: none;
+	}
+
+	.breadcrumb, .page-title{
+		display: none;
+	}
+
+	.page-content{
+		margin: 0 !important;
+		padding: 0 !important;
+		height: auto !important;
+		min-height: inherit !important;
+	}
+	.panel{
+		border: 0;
+		margin: 0 0 5px 0;
+		padding: 0;
+		.panel-heading{
+			display: none;
+		}
+		.panel-body{
+			padding: 10px !important;
+		}
+	}
+
+	img{
+		max-width: 500px;
+		border: 0;
+	}
+	ul{
+		list-style: none;
+		margin: 0;
+	}
+	p a{
+		word-wrap: break-word;
+	}
+	a{
+		color: #000;
+	}
+	.customer-logo, .company-logo{
+		display: block;
+	}
+
+	.bg-login.printable{
+		.login-screen{
+			background-color: transparent;
+			box-shadow: none;
+			position: relative;
+			top: auto;
+			transform: none;
+			left: auto;
+		}
+		.inputer{
+			border-bottom: 2px solid #ccc !important;
+		}
+		.btn{
+			background-color: #fff !important;
+			border: 1px solid #111 !important;
+			color: #333 !important;
+			outline: none !important;
+			box-shadow: none !important;
+		}
+		.bg-blur{
+			display: none;
+		}
+	}
+
+}

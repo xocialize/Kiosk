@@ -1,0 +1,124 @@
+/*
+27 - Search Results
+*/
+.search-results{
+
+	&.search-file{
+		.search-list{
+			margin: 0;
+			padding: 0;
+			list-style-type: none;
+			li{
+				border-bottom: 1px solid @border-color;
+				margin: 0;
+				padding: 0;
+
+				.file-icon{
+					float: left;
+					width: 65px;
+					font-size: 30px;
+					padding: 15px 20px 10px 20px;
+					.excel{
+						color: @bc-excel;
+					}
+					.word{
+						color: @bc-word;
+					}
+					.powerpoint{
+						color: @bc-powerpoint;
+					}
+					.pdf{
+						color: @bc-adobe;
+					}
+					.audio{
+						color: @bc-spotify;
+					}
+					.image{
+						color: @bc-flickr-2;
+					}
+					.video{
+						color: @bc-youtube;
+					}
+					.code{
+						color: @bc-codepen-2;
+					}
+					.text{
+						color: @text-color;
+					}
+					.file{
+						color: @bc-google-3;
+					}
+				}
+				.search-result{
+					float: left;
+					width: 80%;
+					padding: 15px 0;
+					overflow: hidden;
+					h6{
+						font-size: 18px;
+						margin: 5px 0;
+						a{
+							color: @text-color;
+						}
+					}
+					.source{
+						margin: 7px 0 5px 0;
+						text-overflow: ellipsis;
+						overflow: hidden;
+						a{
+							color: lighten(@text-color, 30%);
+						}
+					}
+					.highlight{
+						background: fade(@brand-primary, 10%);
+						padding: 3px 0px;
+					}
+					.list-inline{
+						opacity: .5;
+						li{
+							border-bottom: 0;
+							padding: 0;
+							font-size: 13px;
+							a{
+								text-decoration: none;
+							}
+							&:after{
+								display: inline-block;
+								content: '-';
+								padding: 0 8px;
+							}
+							&:first-child{
+								padding-left: 5px;
+							}
+							&:last-child:after{
+								content: '';
+							}
+						}
+					}
+				}
+
+				&:last-child{
+					border-bottom: 0;
+				}
+				&:before, &:after {
+					content: " ";
+					display: table;
+					clear: both;
+				}
+			}
+			&.list-hover{
+				li:hover{
+					background: @striped-color;
+					.list-inline{
+						opacity: 1;
+					}
+				}
+			}
+			&.list-striped{
+				li:nth-child(2n){
+					background: @striped-color;
+				}
+			}
+		}
+	}
+}

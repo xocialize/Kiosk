@@ -1,0 +1,153 @@
+/*
+6.2 - Brown Theme
+*/
+.theme-brown{
+	.nav-menu{
+		.hamburger{
+			.patty{
+				background: @brown;
+			}
+		}
+		&.active{
+			.patty{
+				background: #fff;
+			}
+		}
+	}
+
+	.nav-search{
+		.search{
+			&:before{
+				border-color: @brown;
+			}
+			&:after{
+				background: @brown;
+			}
+		}
+		&.active{
+			.search{
+				&:before{
+					background: #fff;
+					border: none;
+				}
+				&:after{
+					background: #fff;
+				}
+			}
+		}
+	}
+
+	.overlay{
+		.starting-point{
+			span{
+				background-color: @brown;
+			}
+		}
+	}
+
+	.layer-container{
+		.menu-layer{
+			li{
+				&.open,
+				&:hover{
+					> a{
+						color: @brown;
+					}
+					&:before{
+						color: @brown;
+					}
+				}
+
+				.child-menu{
+					li{
+						a{
+							color: @brown;
+						}
+						&.has-child{
+							&:before{
+								color: @brown;
+							}
+							&.open{
+								background: fade(@brown, 5%);
+							}
+						}
+						&:hover{
+							.hover-bg{
+								background: fade(@brown,10%);
+							}
+						}
+						&.open{
+							background: fade(@brown,10%);
+						}
+					}
+				}
+
+			}
+			&.active{
+				background: darken(@brown, 3%);
+			}
+		}
+
+		.search-layer{
+			&.active{
+				background: darken(@brown, 3%);
+			}
+		}
+
+		.user-layer{
+			.nav{
+				>li{
+					> a{
+						color: @brown;
+					}
+					&.active{
+						>a{
+							color: #fff;
+							background: @brown;
+							&:hover,
+							&:focus{
+								background: @brown;
+							}
+						}
+					}
+				}
+			}
+
+			.tab-content{
+				.message-list{
+					.selected{
+						a{
+							background: fade(@brown, 10%) !important;
+						}
+					}
+					.list-content{
+						.title{
+							color: @brown;
+						}
+					}
+				}
+			}
+
+			#messages{
+				.mobile-back{
+					background: @brown;
+				}
+			}
+
+		}
+	}
+
+	.messages{
+		.message{
+			&.right{
+				.message-text{
+					background-color: lighten(@brown, 15%);
+					&:before{
+						background-color: lighten(@brown, 15%);
+					}
+				}
+			}
+		}
+	}
+
+}

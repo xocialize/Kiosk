@@ -1,0 +1,11 @@
+.switcher-variant(@background) {
+	input:checked + label{
+		background: fade(@background, 50%);
+		&:before{
+			background: @background;
+		}
+		&:active::before{
+			box-shadow: 0 2px 8px rgba(0,0,0,0.28), 0 0 0 20px fade(@background, 20%);
+		}
+	}
+}

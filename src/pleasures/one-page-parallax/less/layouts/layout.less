@@ -1,0 +1,41 @@
+.one-page{
+	margin-top: 64px;
+
+	.container{
+		position: relative;
+		.btn-next{
+			bottom: -130px;
+		}
+	}
+
+	// FLOAT BUTTONS
+	.btn-next{
+		position: absolute;
+		z-index: 5;
+		bottom: -28px;
+		font-size: 18px;
+		line-height: 40px;
+	}
+	.btn-next-left{
+		left: 20px;
+	}
+	.btn-next-right{
+		right: 20px;
+	}
+	.btn-next-center{
+		left: 50%;
+		transform: translate3d(-50%, 0, 0);
+	}
+
+}
+
+.vertical-center{
+	position: absolute;
+	transform: translateY(-50%);
+	top: 50%;
+}
+.horizontal-center{
+	position: absolute;
+	transform: translateX(-50%);
+	left: 50%;
+}

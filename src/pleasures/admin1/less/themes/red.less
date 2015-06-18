@@ -1,0 +1,153 @@
+/*
+6.5 - Red Theme
+*/
+.theme-red{
+	.nav-menu{
+		.hamburger{
+			.patty{
+				background: @red;
+			}
+		}
+		&.active{
+			.patty{
+				background: #fff;
+			}
+		}
+	}
+
+	.nav-search{
+		.search{
+			&:before{
+				border-color: @red;
+			}
+			&:after{
+				background: @red;
+			}
+		}
+		&.active{
+			.search{
+				&:before{
+					background: #fff;
+					border: none;
+				}
+				&:after{
+					background: #fff;
+				}
+			}
+		}
+	}
+
+	.overlay{
+		.starting-point{
+			span{
+				background-color: @red;
+			}
+		}
+	}
+
+	.layer-container{
+		.menu-layer{
+			li{
+				&.open,
+				&:hover{
+					> a{
+						color: @red;
+					}
+					&:before{
+						color: @red;
+					}
+				}
+
+				.child-menu{
+					li{
+						a{
+							color: @red;
+						}
+						&.has-child{
+							&:before{
+								color: @red;
+							}
+							&.open{
+								background: fade(@red, 5%);
+							}
+						}
+						&:hover{
+							.hover-bg{
+								background: fade(@red,10%);
+							}
+						}
+						&.open{
+							background: fade(@red,10%);
+						}
+					}
+				}
+
+			}
+			&.active{
+				background: darken(@red, 3%);
+			}
+		}
+
+		.search-layer{
+			&.active{
+				background: darken(@red, 3%);
+			}
+		}
+
+		.user-layer{
+			.nav{
+				>li{
+					> a{
+						color: @red;
+					}
+					&.active{
+						>a{
+							color: #fff;
+							background: @red;
+							&:hover,
+							&:focus{
+								background: @red;
+							}
+						}
+					}
+				}
+			}
+
+			.tab-content{
+				.message-list{
+					.selected{
+						a{
+							background: fade(@red, 10%) !important;
+						}
+					}
+					.list-content{
+						.title{
+							color: @red;
+						}
+					}
+				}
+			}
+
+			#messages{
+				.mobile-back{
+					background: @red;
+				}
+			}
+
+		}
+	}
+
+	.messages{
+		.message{
+			&.right{
+				.message-text{
+					background-color: lighten(@red, 15%);
+					&:before{
+						background-color: lighten(@red, 15%);
+					}
+				}
+			}
+		}
+	}
+
+}

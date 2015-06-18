@@ -1,0 +1,153 @@
+/*
+6.4 - Grey Theme
+*/
+.theme-grey{
+	.nav-menu{
+		.hamburger{
+			.patty{
+				background: darken(@grey, 15%);
+			}
+		}
+		&.active{
+			.patty{
+				background: #fff;
+			}
+		}
+	}
+
+	.nav-search{
+		.search{
+			&:before{
+				border-color: darken(@grey, 15%);
+			}
+			&:after{
+				background: darken(@grey, 15%);
+			}
+		}
+		&.active{
+			.search{
+				&:before{
+					background: #fff;
+					border: none;
+				}
+				&:after{
+					background: #fff;
+				}
+			}
+		}
+	}
+
+	.overlay{
+		.starting-point{
+			span{
+				background-color: darken(@grey, 15%);
+			}
+		}
+	}
+
+	.layer-container{
+		.menu-layer{
+			li{
+				&.open,
+				&:hover{
+					> a{
+						color: darken(@grey, 15%);
+					}
+					&:before{
+						color: darken(@grey, 15%);
+					}
+				}
+
+				.child-menu{
+					li{
+						a{
+							color: darken(@grey, 15%);
+						}
+						&.has-child{
+							&:before{
+								color: darken(@grey, 15%);
+							}
+							&.open{
+								background: fade(darken(@grey, 15%), 5%);
+							}
+						}
+						&:hover{
+							.hover-bg{
+								background: fade(darken(@grey, 15%),10%);
+							}
+						}
+						&.open{
+							background: fade(darken(@grey, 15%),10%);
+						}
+					}
+				}
+
+			}
+			&.active{
+				background: darken(darken(@grey, 15%), 3%);
+			}
+		}
+
+		.search-layer{
+			&.active{
+				background: darken(darken(@grey, 15%), 3%);
+			}
+		}
+
+		.user-layer{
+			.nav{
+				>li{
+					> a{
+						color: darken(@grey, 15%);
+					}
+					&.active{
+						>a{
+							color: #fff;
+							background: darken(@grey, 15%);
+							&:hover,
+							&:focus{
+								background: darken(@grey, 15%);
+							}
+						}
+					}
+				}
+			}
+
+			.tab-content{
+				.message-list{
+					.selected{
+						a{
+							background: fade(darken(@grey, 15%), 10%) !important;
+						}
+					}
+					.list-content{
+						.title{
+							color: darken(@grey, 15%);
+						}
+					}
+				}
+			}
+
+			#messages{
+				.mobile-back{
+					background: darken(@grey, 15%);
+				}
+			}
+
+		}
+	}
+
+	.messages{
+		.message{
+			&.right{
+				.message-text{
+					background-color: @grey;
+					&:before{
+						background-color: @grey;
+					}
+				}
+			}
+		}
+	}
+
+}

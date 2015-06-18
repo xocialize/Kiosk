@@ -1,0 +1,15 @@
+.bg-color-variant(@background; @v-text-color){
+	background: @background;
+	a{
+		color: @v-text-color;
+		&:hover{
+			color: fade(@v-text-color, 60%);
+		}
+	}
+	.v-text{
+		color: @v-text-color;
+	}
+	.header-tabs{
+		background: @background;
+	}
+}

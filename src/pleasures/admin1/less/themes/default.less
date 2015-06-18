@@ -1,0 +1,137 @@
+/*
+6.1 - Default Color
+*/
+.nav-menu{
+	.hamburger{
+		.patty{
+			background: @indigo;
+		}
+	}
+	&.active{
+		.patty{
+			background: #fff;
+		}
+	}
+}
+
+.nav-search{
+	.search{
+		&:before{
+			border-color: @indigo;
+		}
+		&:after{
+			background: @indigo;
+		}
+	}
+	&.active{
+		.search{
+			&:before{
+				background: #fff;
+				border: none;
+			}
+			&:after{
+				background: #fff;
+			}
+		}
+	}
+}
+
+.overlay{
+	.starting-point{
+		span{
+			background-color: @indigo;
+		}
+	}
+}
+
+.layer-container{
+	.menu-layer{
+		li{
+			&.open,
+			&:hover{
+				> a{
+					color: @indigo;
+				}
+				&:before{
+					color: @indigo;
+				}
+			}
+
+			.child-menu{
+				li{
+					a{
+						color: @indigo;
+					}
+					&.has-child{
+						&:before{
+							color: @indigo;
+						}
+						&.open{
+							background: fade(@indigo, 5%);
+						}
+					}
+					&:hover{
+						.hover-bg{
+							background: fade(@indigo,10%);
+						}
+					}
+					&.open{
+						background: fade(@indigo,10%);
+					}
+				}
+			}
+
+		}
+		&.active{
+			background: darken(@indigo, 3%);
+		}
+	}
+
+	.search-layer{
+		&.active{
+			background: darken(@indigo, 3%);
+		}
+	}
+
+	.user-layer{
+		.nav{
+			>li{
+				> a{
+					color: @indigo;
+				}
+				&.active{
+					>a{
+						color: #fff;
+						background: @indigo;
+						&:hover,
+						&:focus{
+							background: @indigo;
+						}
+					}
+				}
+			}
+		}
+
+		.tab-content{
+			.message-list{
+				.selected{
+					a{
+						background: fade(@indigo, 10%) !important;
+					}
+				}
+				.list-content{
+					.title{
+						color: @indigo;
+					}
+				}
+			}
+		}
+
+		#messages{
+			.mobile-back{
+				background: @indigo;
+			}
+		}
+
+	}
+}

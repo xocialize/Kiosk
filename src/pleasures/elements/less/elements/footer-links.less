@@ -1,0 +1,58 @@
+/*
+15 - Footer Links
+*/
+.footer-links{
+	padding: 0;
+	margin-left: -40px;
+	margin-right: -40px;
+	[class^="col-"], [class*=" col-"]{
+	}
+	a{
+		padding: 20px;
+		position: relative;
+		display: block;
+		float: left;
+		padding-left: 70px;
+		width: 100%;
+		text-decoration: none;
+
+		span{
+			display: block;
+			text-overflow: ellipsis;
+			overflow: hidden;
+			white-space: nowrap;
+
+			&.state{
+				font-size: 14px;
+				opacity: .5;
+				line-height: 1;
+				margin-top: 10px;
+			}
+			&.icon{
+				position: absolute;
+				top: 50%;
+				transform: translateY(-50%);
+				left: 40px;
+				overflow: initial;
+  			white-space: inherit;
+			}
+		}
+	}
+	.row{
+		> div{
+			&:nth-child(2){
+				a{
+					float: right;
+					padding-right: 70px;
+					text-align: right;
+					span{
+						&.icon{
+							right: 40px;
+							left: auto;
+						}
+					}
+				}
+			}
+		}
+	}
+}

@@ -1,0 +1,117 @@
+/*
+4 - Alerts
+*/
+
+// Bootstrap Colors
+.alert-primary{
+	.alert-variant(@brand-primary; darken(@brand-primary,5%); @white);
+}
+.alert-success{
+	.alert-variant(@brand-success; darken(@brand-success,5%); @white);
+}
+.alert-info{
+	.alert-variant(@brand-info; darken(@brand-info,5%); @white);
+}
+.alert-warning{
+	.alert-variant(@brand-warning; darken(@brand-warning,5%); @white);
+}
+.alert-danger{
+	.alert-variant(@brand-danger; darken(@brand-danger,5%); @white);
+}
+
+// Transparent
+.alert-primary-transparent{
+	.alert-variant(transparent; @brand-primary; darken(@brand-primary,5%));
+}
+.alert-success-transparent{
+	.alert-variant(transparent; @brand-success; darken(@brand-success,5%));
+}
+.alert-info-transparent{
+	.alert-variant(transparent; @brand-info; darken(@brand-info,5%));
+}
+.alert-warning-transparent{
+	.alert-variant(transparent; @brand-warning; darken(@brand-warning,5%));
+}
+.alert-danger-transparent{
+	.alert-variant(transparent; @brand-danger; darken(@brand-danger,5%));
+}
+
+// Custom Colors
+.alert-red{
+	.alert-variant(@red; darken(@red,5%); @white);
+}
+.alert-pink{
+	.alert-variant(@pink; darken(@pink,5%); @white);
+}
+.alert-purple{
+	.alert-variant(@purple; darken(@purple,5%); @white);
+}
+.alert-deep-purple{
+	.alert-variant(@deep-purple; darken(@deep-purple,5%); @white);
+}
+.alert-indigo{
+	.alert-variant(@indigo; darken(@indigo,5%); @white);
+}
+.alert-blue{
+	.alert-variant(@blue; darken(@blue,5%); @white);
+}
+.alert-light-blue{
+	.alert-variant(@light-blue; darken(@light-blue,5%); @white);
+}
+.alert-cyan{
+	.alert-variant(@cyan; darken(@cyan,5%); @white);
+}
+.alert-teal{
+	.alert-variant(@teal; darken(@teal,5%); @white);
+}
+.alert-green{
+	.alert-variant(@green; darken(@green,5%); @white);
+}
+.alert-light-green{
+	.alert-variant(@light-green; darken(@light-green,5%); @white);
+}
+.alert-lime{
+	.alert-variant(@lime; darken(@lime,5%); @white);
+}
+.alert-yellow{
+	.alert-variant(@yellow; darken(@yellow,5%); @white);
+}
+.alert-amber{
+	.alert-variant(@amber; darken(@amber,5%); @white);
+}
+.alert-orange{
+	.alert-variant(@orange; darken(@orange,5%); @white);
+}
+.alert-deep-orange{
+	.alert-variant(@deep-orange; darken(@deep-orange,5%); @white);
+}
+.alert-brown{
+	.alert-variant(@brown; darken(@brown,5%); @text-color);
+}
+.alert-grey{
+	.alert-variant(@grey; darken(@grey,5%); @white);
+}
+.alert-blue-grey{
+	.alert-variant(@blue-grey; darken(@blue-grey,5%); @white);
+}
+
+
+// Links in Alerts
+.alert{
+	a{
+		color: @white;
+		text-decoration: underline;
+		&:hover{
+			text-decoration: none;
+		}
+	}
+	&.alert-primary-transparent,
+	&.alert-success-transparent,
+	&.alert-info-transparent,
+	&.alert-warning-transparent,
+	&.alert-danger-transparent{
+		a{
+			color: @text-color;
+		}
+	}
+}

@@ -1,0 +1,154 @@
+.header{
+	position: fixed;
+	z-index: 200;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 64px;
+	background-color: #fff;
+	box-shadow: 0 3px 2px rgba(0,0,0,0.05);
+	transform: translate3d(0,0,0);
+	transition: height 280ms cubic-bezier(0.35, 0, 0.25, 1), background-color 280ms cubic-bezier(0.35, 0, 0.25, 1);
+
+	.clearfix();
+
+	.container{
+		position: relative;
+	}
+
+	.logo{
+		position: relative;
+		display: inline-block;
+		top: -1px;
+		cursor: pointer;
+		img{
+			width: 100px;
+		}
+	}
+
+	.animated-selector{
+		position: relative;
+		display: inline-block;
+		margin-left: 15px;
+		.selector{
+			position: absolute;
+			left: 0;
+			bottom: 0;
+			width: 0;
+			height: 0;
+			content: '';
+			background-color: transparent;
+			transition: all 280ms cubic-bezier(0.35, 0, 0.25, 1);
+
+			&.initialised{
+				background-color: @indigo;
+				height: 3px;
+			}
+
+		}
+	}
+
+	.navigation{
+		position: relative;
+		text-align: center;
+		margin: 0;
+
+		> li {
+			display: inline-block;
+			position: relative;
+			padding: 20px;
+			font-size: 15px;
+			font-weight: 500;
+			color: fade(@text-color, 60%);
+			cursor: pointer;
+
+			&:hover{
+				background-color: fade(@grey, 10%);
+				color: @indigo;
+			}
+		}
+
+	}
+
+	.btn-action{
+		position: absolute;
+		right: 0;
+		top: 12px;
+		transition: right 180ms cubic-bezier(0.35, 0, 0.25, 1);
+	}
+
+	.hamburger-btn{
+		display: none;
+		position: absolute;
+		right: 1px;
+		top: 10px;
+		font-size: 26px;
+  	width: 40px;
+  	height: 50px;
+		cursor: pointer;
+		color: fade(@text-color, 60%);
+		z-index: 201;
+		&:after{
+			position: absolute;
+			top: 0;
+  		right: 10px;
+			font-family: 'IonIcons';
+			content: '\f20d';
+		}
+	}
+
+	&.header-red{
+		.header-variant(@red);
+	}
+	&.header-pink{
+		.header-variant(@pink);
+	}
+	&.header-purple{
+		.header-variant(@purple);
+	}
+	&.header-deep-purple{
+		.header-variant(@deep-purple);
+	}
+	&.header-blue{
+		.header-variant(@blue);
+	}
+	&.header-light-blue{
+		.header-variant(@light-blue);
+	}
+	&.header-cyan{
+		.header-variant(@cyan);
+	}
+	&.header-teal{
+		.header-variant(@teal);
+	}
+	&.header-green{
+		.header-variant(@green);
+	}
+	&.header-light-green{
+		.header-variant(@light-green);
+	}
+	&.header-lime{
+		.header-variant(@lime);
+	}
+	&.header-yellow{
+		.header-variant(@yellow);
+	}
+	&.header-amber{
+		.header-variant(@amber);
+	}
+	&.header-orange{
+		.header-variant(@orange);
+	}
+	&.header-deep-orange{
+		.header-variant(@deep-orange);
+	}
+	&.header-brown{
+		.header-variant(@brown);
+	}
+	&.header-grey{
+		.header-variant(@grey);
+	}
+	&.header-blue-grey{
+		.header-variant(@blue-grey);
+	}
+}

@@ -1,0 +1,26 @@
+.radioer-variant(@background) {
+	input[type="radio"] {
+
+		+ label{
+			&:hover{
+				color: @background;
+				&:before{
+					box-shadow: 0 0 0 0 transparent inset, 0 0 0 0 transparent inset, 0 0 0 2px @background inset, 0 0 0 0 @background;
+				}
+			}
+			&:active{
+				&:before{
+					box-shadow: 0 0 0 0 transparent inset, 0 0 0 0 transparent inset, 0 0 0 2px @background inset, 0 0 0 24px fade(@background, 10%);
+				}
+			}
+		}
+		&:checked{
+			+ label{
+				color: @background;
+				&:before{
+					box-shadow: 0 0 0 2px @background inset, 0 0 0 6px #fff inset, 0 0 0 12px @background inset, 0 0 0 24px transparent;
+				}
+			}
+		}
+	}
+}

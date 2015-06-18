@@ -1,0 +1,328 @@
+/*
+19 - Misc
+*/
+
+// Radius
+.img-radius{
+	border-radius: 3px;
+}
+.face-radius{
+	border-radius: 50%;
+}
+
+// Legend
+.legend{
+	display: block;
+	width: 100%;
+	padding: 0;
+	margin-bottom: 29px;
+	font-size: 27px;
+	line-height: inherit;
+	border: 0;
+	border-bottom: 1px solid @border-color;
+	font-weight: 300;
+	margin-top: 30px;
+}
+
+// Loading Bar
+.loading-bar{
+	position: relative;
+	width: 100%;
+	height: 3px;
+	background: #E7E7E7;
+	margin-bottom: 10px;
+
+	&:before{
+		position: absolute;
+		content: '';
+		z-index: 0;
+		left: 0;
+		top: 0;
+		width: 100%;
+		height: 3px;
+		background: @brand-primary;
+	}
+
+	&.indeterminate{
+		&:before{
+			transform-origin: 50% 50%;
+			animation: indeterminate-bar 1s linear infinite;
+		}
+	}
+
+	&.determinate{
+		&:before{
+			transform-origin: left;
+			animation: determinate-bar 2.2s linear infinite;
+		}
+	}
+
+	&.determinate-center{
+		&:before{
+			transform-origin: 50% 50%;
+			animation: determinate-bar 2.2s linear infinite;
+		}
+	}
+
+	&.loading-red{
+		&:before{
+			background: @red;
+		}
+	}
+	&.loading-pink{
+		&:before{
+			background: @pink;
+		}
+	}
+	&.loading-purple{
+		&:before{
+			background: @purple;
+		}
+	}
+	&.loading-deep-purple{
+		&:before{
+			background: @deep-purple;
+		}
+	}
+	&.loading-indigo{
+		&:before{
+			background: @indigo;
+		}
+	}
+	&.loading-blue{
+		&:before{
+			background: @blue;
+		}
+	}
+	&.loading-light-blue{
+		&:before{
+			background: @light-blue;
+		}
+	}
+	&.loading-cyan{
+		&:before{
+			background: @cyan;
+		}
+	}
+	&.loading-teal{
+		&:before{
+			background: @teal;
+		}
+	}
+	&.loading-green{
+		&:before{
+			background: @green;
+		}
+	}
+	&.loading-light-green{
+		&:before{
+			background: @light-green;
+		}
+	}
+	&.loading-lime{
+		&:before{
+			background: @lime;
+		}
+	}
+	&.loading-yellow{
+		&:before{
+			background: @yellow;
+		}
+	}
+	&.loading-amber{
+		&:before{
+			background: @amber;
+		}
+	}
+	&.loading-orange{
+		&:before{
+			background: @orange;
+		}
+	}
+	&.loading-deep-orange{
+		&:before{
+			background: @deep-orange;
+		}
+	}
+	&.loading-brown{
+		&:before{
+			background: @brown;
+		}
+	}
+	&.loading-grey{
+		&:before{
+			background: @grey;
+		}
+	}
+	&.loading-blue-grey{
+		&:before{
+			background: @blue-grey;
+		}
+	}
+}
+
+@keyframes indeterminate-bar{
+	0% {
+		transform: translate(-50%) scaleX(0);
+	}
+	50% {
+		transform: translate(0%) scaleX(0.3);
+	}
+	100% {
+		transform: translate(50%) scaleX(0);
+	}
+}
+
+@keyframes determinate-bar{
+	0% {
+		transform: scaleX(0);
+	}
+	100% {
+		transform: scaleX(1);
+	}
+}
+
+// Tooltip
+.tooltip{
+	font-family: inherit;
+	font-size: 14px;
+
+	.tooltip-arrow{
+		display: none;
+	}
+	.tooltip-inner{
+		padding: 4px 8px;
+		background-color: rgba(40, 40, 40, 0.9);
+	}
+
+	&.top{
+		padding: 10px 0;
+	}
+}
+
+// Notification & Toasts
+#toast-container{
+
+	.toast{
+		opacity: 1;
+
+		background-image: none !important;
+		padding: 16px 24px;
+		box-shadow: none;
+
+		animation: 500ms pulse;
+
+		.toast-title{
+			margin-bottom: 10px;
+		}
+		.toast-message{
+			line-height: 24px;
+			.btn{
+				position: absolute;
+				right: 24px;
+				top: 12px;
+			}
+		}
+
+		&:hover{
+			box-shadow: none;
+		}
+
+		&.toast-info{
+			background-color: #323232;
+		}
+		&.toast-success{
+			background-color: @brand-success;
+		}
+		&.toast-warning{
+			background-color: @brand-warning;
+		}
+		&.toast-error{
+			background-color: @brand-danger;
+		}
+	}
+
+	.toast-close-button {
+		position: absolute;
+		right: 24px;
+		top: 12px;
+		text-shadow: none;
+		&:hover,
+		&:focus{
+			color: #fff;
+			opacity: .5;
+			outline: none;
+		}
+	}
+
+	&.toast-top-right {
+		top: 20px;
+		right: 20px;
+	}
+	&.toast-bottom-right{
+		bottom: 20px;
+		right: 20px;
+	}
+	&.toast-bottom-left{
+		bottom: 20px;
+		left: 106px;
+	}
+	&.toast-top-left {
+		top: 20px;
+		left: 106px;
+	}
+
+	&.toast-top-full-width,
+	&.toast-bottom-full-width{
+		left: 0;
+		.toast{
+			width: 100%;
+			border-radius: 0;
+		}
+	}
+
+}
+
+// originally https://github.com/daneden/animate.css/blob/master/source/attention_seekers/pulse.css
+
+@keyframes pulse {
+	0% {
+		transform: scale3d(.2, .3, 1);
+	}
+
+	50% {
+		transform: scale3d(1.1, 1.2, 1);
+	}
+
+	100% {
+		transform: scale3d(1, 1, 1);
+	}
+}
+
+// Display Animation
+.display-animation .material-animate {
+	transform: scale(0);
+}
+.display-animation .material-animated {
+	animation: display 0.5s cubic-bezier(0.55, 0, 0.1, 1) forwards;
+}
+.no-js .display-animation .material-animate {
+	transform: scale(1);
+}
+
+@keyframes display {
+	from {
+		transform: scale(0);
+	}
+	to {
+		transform: scale(1);
+	}
+}
+
+.transform-bug{
+	transform: translate3d(0,0,0);
+}
+
+.hidden{
+	visibility: hidden;
+}

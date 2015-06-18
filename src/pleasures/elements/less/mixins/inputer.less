@@ -1,0 +1,19 @@
+.inputer-variant(@background) {
+
+	.input-wrapper{
+		&:after{
+			background: @background;
+		}
+	}
+
+	&.floating-label{
+		.form-control{
+			&:focus{
+				~ label{
+					color: @background;
+				}
+			}
+		}
+	}
+
+}

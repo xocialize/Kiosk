@@ -1,0 +1,157 @@
+.layout-rtl{
+	margin: 0 81px 0 0;
+
+	.nav-menu,
+	.nav-search,
+	.nav-user{
+		left: auto;
+		right: 0;
+	}
+
+	.nav-bar-border{
+		left: auto;
+		right: 0;
+		border-right: 0;
+		border-left: 1px solid @border-color;
+	}
+
+	.overlay{
+		left: auto;
+		right: 0;
+		.logo{
+			left: auto;
+			right: -37px;
+			transform: rotateZ(-90deg);
+		}
+		.starting-point{
+			right: 10px;
+			left: auto;
+		}
+	}
+
+	.menu-layer,
+	.search-layer,
+	.user-layer{
+		left: auto;
+		right: 80px;
+	}
+
+	.menu-layer{
+
+		li{
+			a{
+				text-align: right;
+			}
+			&.has-child{
+				&:before{
+					left: 30px;
+					right: auto;
+					content: '\f124';
+				}
+			}
+			.badge{
+				float: left;
+			}
+		}
+	}
+
+	.search-layer{
+		.search{
+			.form-control{
+				text-align: right;
+				padding: 6px 0 6px 80px;
+			}
+			.btn{
+				left: 0;
+				right: auto;
+				padding: 0 25px 0 0;
+			}
+		}
+	}
+
+	#toast-container{
+
+		&.toast-top-right {
+			top: 20px;
+			right: 106px;
+		}
+		&.toast-bottom-right{
+			bottom: 20px;
+			right: 106px;
+		}
+		&.toast-bottom-left{
+			bottom: 20px;
+			left: 20px;
+		}
+		&.toast-top-left {
+			top: 20px;
+			left: 20px;
+		}
+
+	}
+
+}
+
+// Landscape phone to portrait tablet
+@media (max-width: 767px) {
+	.layout-rtl{
+		margin: 61px 0 0 0 !important;
+		.nav-bar-container{
+			.nav-menu{
+				float: right;
+			}
+			.nav-search{
+				float: right;
+				&.active{
+					transform: translateX(65px);
+				}
+			}
+			.nav-user{
+				float: left;
+			}
+		}
+
+		.overlay{
+			&.overlay-nav,
+			&.overlay-search{
+				.logo{
+					left: 20px;
+					right: auto;
+				}
+			}
+			&.overlay-search{
+				.starting-point{
+					left: auto;
+					right: 70px;
+				}
+			}
+			&.overlay-user{
+				.logo{
+					right: 20px;
+					left: auto;
+				}
+				.starting-point{
+					left: 35px;
+					right: auto;
+				}
+			}
+		}
+
+		.menu-layer,
+		.search-layer,
+		.user-layer{
+			left: auto;
+			right: 0;
+		}
+
+		.layer-container{
+			.search-layer{
+				.search{
+					.form-control{
+						padding-right: 0;
+					}
+				}
+			}
+		}
+	}
+}

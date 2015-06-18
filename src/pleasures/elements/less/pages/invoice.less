@@ -1,0 +1,67 @@
+/*
+26 - Invoice
+*/
+
+// Invoice
+.invoice{
+	padding: 20px;
+	.invoice-heading{
+		.date-row{
+			#barcode{
+				position: relative;
+				top: 15px;
+				left: -10px;
+			}
+			.invoice-id{
+				text-align: right;
+			}
+			h4{
+				font-weight: bold;
+				margin-bottom: 10px;
+			}
+			h5{
+				color: #999;
+			}
+		}
+		.customer-row{
+			padding-bottom: 30px;
+			.company{
+				.company-logo{
+					display: inline-block;
+					position: relative;
+					margin-bottom: 10px;
+					img{
+						width: 120px;
+					}
+				}
+			}
+			.customer{
+				text-align: right;
+				.customer-logo{
+					display: inline-block;
+					position: relative;
+					right: -10px;
+					img{
+						width: 120px;
+					}
+				}
+			}
+			h5{
+				font-weight: bold;
+				margin-bottom: 10px;
+			}
+
+		}
+	}
+	.invoice-body{
+		padding: 20px 0;
+		small{
+			margin-top: 5px;
+			display: block;
+		}
+	}
+	.invoice-footer{
+		padding: 20px 0;
+		text-align: right;
+	}
+}

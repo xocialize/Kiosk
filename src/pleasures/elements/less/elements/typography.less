@@ -1,0 +1,169 @@
+/*
+1 - Typography
+*/
+p{
+	margin-bottom: 20px;
+}
+
+.headline{
+	font-size: 24px;
+}
+.title{
+	font-size: 22px;
+	font-weight: 500;
+}
+.subhead{
+	font-size: 20px;
+}
+.caption{
+	font-size: 16px;
+	color: rgba(0,0,0,.54);
+}
+
+.text-dark-shadow{
+	text-shadow: 0 0 20px rgba(0, 0, 0, .6);
+}
+.text-light-shadow{
+	text-shadow: 0 0 20px rgba(255, 255, 255, .6);
+}
+
+legend{
+	font-weight: 300;
+}
+
+// Drop Caps
+.drop-caps{
+	float: left;
+	border-radius: @radius;
+	color: @text-color;
+	font-size: @font-size-h1;
+	line-height: @font-size-h1;
+	padding: 15px;
+	margin: 5px 15px 0 0;
+	border: 1px solid transparent;
+}
+.drop-caps-default{
+	.drop-caps-variant(@white; @border-color; @text-color);
+}
+.drop-caps-primary{
+	.drop-caps-variant(@brand-primary; darken(@brand-primary,10%); @white);
+}
+.drop-caps-success{
+	.drop-caps-variant(@brand-success; darken(@brand-success,10%); @white);
+}
+.drop-caps-info{
+	.drop-caps-variant(@brand-info; darken(@brand-info,10%); @white);
+}
+.drop-caps-warning{
+	.drop-caps-variant(@brand-warning; darken(@brand-warning,10%); @white);
+}
+.drop-caps-danger{
+	.drop-caps-variant(@brand-danger; darken(@brand-danger,10%); @white);
+}
+.drop-caps-borderless{
+	.drop-caps-variant(transparent; darken(@brand-danger,10%); @text-color);
+
+	border: none;
+	padding: 0 5px;
+}
+
+// Blockquotes
+blockquote{
+	font-style: italic;
+	font-size: 18px;
+	border-left: 2px solid @border-color;
+	&.pull-right{
+		border-left: 0;
+		border-right: 2px solid @border-color;
+	}
+	small{
+		margin: 10px 0 0 0;
+	}
+	&.blockquote-primary{
+		border-color: @brand-primary;
+	}
+	&.blockquote-success{
+		border-color: @brand-success;
+	}
+	&.blockquote-info{
+		border-color: @brand-info;
+	}
+	&.blockquote-warning{
+		border-color: @brand-warning;
+	}
+	&.blockquote-danger{
+		border-color: @brand-danger;
+	}
+}
+
+// List Items
+.list-striped{
+	>li:nth-child(even){
+		background: @striped-color;
+	}
+}
+
+// Text
+.text-white{
+	.text-emphasis-variant(#fff);
+}
+.text-black{
+	.text-emphasis-variant(#111);
+}
+.text-red{
+	.text-emphasis-variant(@red);
+}
+.text-pink{
+	.text-emphasis-variant(@pink);
+}
+.text-purple{
+	.text-emphasis-variant(@purple);
+}
+.text-deep-purple{
+	.text-emphasis-variant(@deep-purple);
+}
+.text-indigo{
+	.text-emphasis-variant(@indigo);
+}
+.text-blue{
+	.text-emphasis-variant(@blue);
+}
+.text-light-blue{
+	.text-emphasis-variant(@light-blue);
+}
+.text-cyan{
+	.text-emphasis-variant(@cyan);
+}
+.text-teal{
+	.text-emphasis-variant(@teal);
+}
+.text-green{
+	.text-emphasis-variant(@green);
+}
+.text-light-green{
+	.text-emphasis-variant(@light-green);
+}
+.text-lime{
+	.text-emphasis-variant(@lime);
+}
+.text-yellow{
+	.text-emphasis-variant(@yellow);
+}
+.text-amber{
+	.text-emphasis-variant(@amber);
+}
+.text-orange{
+	.text-emphasis-variant(@orange);
+}
+.text-deep-orange{
+	.text-emphasis-variant(@deep-orange);
+}
+.text-brown{
+	.text-emphasis-variant(@brown);
+}
+.text-grey{
+	.text-emphasis-variant(@grey);
+}
+.text-blue-grey{
+	.text-emphasis-variant(@blue-grey);
+}

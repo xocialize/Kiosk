@@ -1,0 +1,31 @@
+/*
+3 - Global Defaults
+*/
+html{
+	box-sizing: border-box;
+}
+
+body {
+	font-family: @font-primary;
+	-webkit-text-size-adjust: none;
+}
+
+*, *:before, *:after {
+	box-sizing: inherit;
+}
+
+body, input, textarea, select, button {
+	text-rendering: optimizeLegibility;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	font-feature-settings: "liga", "kern";
+	font-kerning: normal;
+}
+
+a{
+	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+p{
+	hyphens: auto;
+}

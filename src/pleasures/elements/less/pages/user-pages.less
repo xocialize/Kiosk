@@ -1,0 +1,428 @@
+/*
+21 - User Pages
+*/
+
+// User Lock Screen
+.bg-lock-screen{
+	margin: 0;
+
+	.bg-blur{
+		&:before{
+			background: url('@{img-url}/picjumbo/large/29.jpg') fixed no-repeat;
+			background-size: cover;
+		}
+	}
+	.lock-screen{
+		position: absolute;
+		z-index: 10;
+		top: 50%;
+		left: 50%;
+		width: 300px;
+		height: 220px;
+		margin: -110px 0 0 -150px;
+		.user-profile{
+			text-align: center;
+			img{
+				width: 100px;
+				border-radius: 100%;
+			}
+			p{
+				margin: 10px 0;
+				font-size: 18px;
+				color: #fff;
+			}
+		}
+		.form-control{
+			.placeholder(rgba(255,255,255,.6));
+		}
+	}
+	.form-buttons{
+		width: 260px;
+		margin: 0 0 0 44px;
+		background: transparent;
+		border: 0;
+		padding: 0;
+		button{
+			background: transparent;
+			font-size: 27px;
+			padding: 0;
+			margin-left: 10px;
+			color: rgba(255,255,255,.3);
+			&:active, &:hover{
+				color: rgba(255,255,255,.6);
+			}
+		}
+	}
+	.form-control{
+		height: 40px;
+		border: 0;
+		color: #fff;
+	}
+}
+
+// User Signup forgotten password page
+.bg-login{
+	margin: 0;
+
+	.bg-blur{
+		&:before{
+			background: url('@{img-url}/picjumbo/large/29.jpg') fixed no-repeat;
+			background-size: cover;
+		}
+	}
+
+	.login-screen{
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		width: 400px;
+		height: 490px;
+		border-radius: 5px;
+		box-shadow: 0 0 20px rgba(0,0,0,.2);
+		background: rgba(0, 0, 0, 0.4);
+		transform: translate(-50%,-50%);
+		z-index: 10;
+
+		transition: height .3s, margin .3s;
+
+		&.forgot-password{
+			height: 300px;
+		}
+		&.create-account{
+			height: 510px;
+		}
+	}
+	.panel-login{
+		.panel-heading{
+			padding: 0px;
+			font-size: 26px;
+			line-height: 26px;
+			margin: 0;
+			color: #666;
+			text-align: center;
+			max-height: 80px;
+		}
+		.panel-body{
+			display: none;
+			padding: 5px 40px 20px 40px;
+			h2{
+				margin: 0 -40px 25px -40px;
+				font-size: 18px;
+				color: #fff;
+				padding: 12px 20px;
+				background: rgba(0,0,0,.3);
+				text-align: center;
+			}
+			.form-control{
+				height: 40px;
+			}
+			.form-buttons{
+				background: transparent;
+				border: 0;
+				padding: 5px 30px;
+			}
+			label{
+				margin: 7px 0 0 0;
+				font-size: 16px;
+				color: rgba(255,255,255,.87);
+				font-weight: normal;
+				input{
+					position: relative;
+					top: -1px;
+					margin-right: 3px;
+				}
+			}
+			[type=submit]{
+				margin-bottom: 10px;
+			}
+			.social-accounts{
+				margin: 25px 0 0 0;
+			}
+			.extra-links{
+				margin: 20px 0 0 0;
+				padding: 0;
+				list-style-type: none;
+				li{
+					margin: 0;
+					text-align: center;
+					a{
+						padding: 5px 0;
+						display: block;
+						color: rgba(255,255,255,.8);
+					}
+				}
+			}
+			&.active{
+				display: block;
+			}
+		}
+		.panel-footer{}
+	}
+}
+
+// User Profile
+.user-profile{
+	>.panel{
+		margin-top: 10px;
+	}
+
+	.panel-heading{
+		padding: 0;
+		overflow: hidden;
+		position: relative;
+		border-radius: @radius;
+		border: 0;
+		.cover-image{
+			position: relative;
+			z-index: 1;
+			height: 280px;
+			background-size: cover;
+			background-position: center;
+		}
+		.overlay{
+			position: absolute;
+			z-index: 2;
+			left: 0;
+			top: 0;
+			width: 100%;
+			height: 100%;
+			background: rgba(0,0,0,.3);
+		}
+		.user-image{
+			position: absolute;
+			z-index: 10;
+			left: 30px;
+			bottom: 70px;
+			img{
+				width: 100px;
+				border-radius: 100%;
+			}
+		}
+		.user-detail{
+			position: absolute;
+			z-index: 10;
+			left: 150px;
+			bottom: 90px;
+			h1{
+				font-size: 25px;
+				font-weight: normal;
+				margin: 0 0 8px 0;
+				color: #fff;
+			}
+			h2{
+				font-size: 18px;
+				font-weight: normal;
+				margin: 0;
+				color: rgba(255,255,255,.8);
+			}
+		}
+		.user-action{
+			position: absolute;
+			bottom: 0;
+			z-index: 10;
+			width: 100%;
+			padding: 0 30px;
+			background: rgba(0,0,0,.3);
+			border-bottom: 2px solid @border-color;
+			.nav.nav-tabs{
+				top: 1px;
+				li{
+					a{
+						border: 0;
+						border-bottom: 2px solid transparent;
+						padding: 12px 10px;
+						color: rgba(255,255,255,.8);
+						margin: 0 10px;
+						font-size: 15px;
+					}
+					&:first-child{
+						a{
+							margin-left: 0;
+						}
+					}
+					&.active{
+						a{
+							background: transparent;
+							border-bottom: 2px solid @brand-primary;
+							color: #fff;
+						}
+					}
+				}
+			}
+		}
+	}
+	.tab-pane{
+		padding-bottom: 40px;
+	}
+	#about{
+		.nav-tabs{
+			margin: 15px 0;
+		}
+		.tab-content{
+			border: 0;
+			.row{
+				margin-top: 15px;
+				margin-bottom: 15px;
+				.col-md-3{
+					color: #999;
+				}
+			}
+		}
+		.legend{
+			margin-top: 0;
+		}
+	}
+	#photos{
+		a{
+			margin: 2px 0;
+			display: block;
+			img{
+				width: 100%;
+				height: auto;
+			}
+		}
+	}
+}
+
+// Blur Backgrounds
+.bg-blur{
+	position: absolute;
+	z-index: 5;
+	background: inherit;
+	overflow: hidden;
+	width: 100%;
+	height: 100%;
+	&:before{
+		position: absolute;
+		top: 0; left: 0; right: 0; bottom: 0;
+		content: '';
+		background: inherit;
+		filter: blur(0px);
+		-webkit-filter: blur(0px);
+		-moz-filter: blur(0px);
+		-o-filter: blur(0px);
+		-ms-filter: blur(0px);
+		transition: all 1s;
+	}
+	&.active{
+		&:before{
+			filter: blur(10px);
+			-webkit-filter: blur(10px);
+			-moz-filter: blur(10px);
+			-o-filter: blur(10px);
+			-ms-filter: blur(10px);
+		}
+	}
+	.blur-content{
+		position: relative;
+		z-index: 10;
+	}
+	.overlay{
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		z-index: 6;
+		background: rgba(255,255,255,.2);
+	}
+	&.dark{
+		.overlay{
+			background: rgba(0,0,0,.2);
+		}
+	}
+}
+.bg-overlay{
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 0;
+	background: rgba(0,0,0,.2);
+}
+
+// User Profile Information
+.page-header,
+.header{
+	.profile-info{
+		position: absolute;
+		left: 40px;
+		bottom: 100px;
+		clear: both;
+
+		.profile-photo{
+			float: left;
+			width: 100px;
+			img{
+				width: 100%;
+				height: auto;
+				border-radius: 50%;
+			}
+		}
+		.profile-text{
+			margin: 10px 0 0 120px;
+			font-size: 30px;
+			.caption{
+				display: block;
+			}
+			&.light{
+				color: #fff;
+				.caption{
+					color: rgba(255,255,255,.54);
+				}
+			}
+		}
+	}
+}
+
+.layout-device{
+	.page-header{
+		.profile-info{
+			left: 20px;
+			.profile-photo{
+				width: 70px;
+			}
+			.profile-text{
+				margin: 0 0 0 90px;
+				font-size: 24px;
+			}
+		}
+	}
+}
+
+// Calendar
+#external-events{
+	.legend{
+		margin-top: 10px;
+	}
+}
+
+.layout-device{
+	&.bg-login{
+		.login-screen{
+			width: 100%;
+			box-shadow: none;
+			background: transparent;
+		}
+		.panel-body{
+			padding: 5px 20px 20px 20px;
+			h2{
+				margin: 0 -20px 25px -20px;
+			}
+		}
+		.bg-blur{
+			&:before{
+			  filter: blur(0px) !important;
+				-webkit-filter: blur(0px) !important;
+				-moz-filter: blur(0px) !important;
+				-o-filter: blur(0px) !important;
+				-ms-filter: blur(0px) !important;
+			}
+			.overlay{
+				background: rgba(0, 0, 0, 0.5);
+				display: block;
+			}
+		}
+	}
+}

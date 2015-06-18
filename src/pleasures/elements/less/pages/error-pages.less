@@ -1,0 +1,38 @@
+/*
+22 - Error Pages
+*/
+
+.http-error-outside{
+	margin: 0;
+	background: #fff;
+	.row{
+		margin-top: 50px;
+	}
+	.error-bg{
+		position: absolute;
+		left: 0;
+		top: 0;
+		width: 100%;
+		height: 100%;
+		background-repeat: no-repeat;
+		background-size: cover;
+
+		&.error-bg1{
+			background-image: url('@{img-url}/picjumbo/large/1.jpg');
+		}
+		&.error-bg2{
+			background-image: url('@{img-url}/picjumbo/large/2.jpg');
+			opacity: .5;
+		}
+	}
+	.error-number{
+		font-size: 60px;
+	}
+	.error-text{
+		margin: 10px 0 20px 0;
+	}
+
+	.icon-list{
+		margin-top: 10px;
+	}
+}

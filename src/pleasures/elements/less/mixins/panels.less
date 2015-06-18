@@ -1,0 +1,91 @@
+.panel-heading-styling(@background; @text-color) {
+
+	&:before{
+		background: fade(darken(@background, 12%), 60%);
+	}
+
+	> .panel-heading{
+		background: @background;
+		color: @text-color;
+		h4{
+			color: @text-color;
+		}
+		small{
+			color: @text-color;
+		}
+		a.panel-link{
+			color: @text-color;
+			&:hover,
+			&:focus,
+			&:active{
+				color: darken(@background, 20%);
+				outline: none;
+			}
+		}
+		.panel-title{
+			a,
+			&:hover,
+			&:focus,
+			&:active{
+				color: @text-color;
+				outline: none;
+			}
+		}
+		.nav-tabs > li > a{
+			color: fade(@text-color, 60%);
+		}
+		.nav-tabs > li.active > a,
+		.nav-tabs > li.active > a:hover,
+		.nav-tabs > li.active > a:focus{
+			background-color: transparent;
+			color: @text-color;
+			&:after{
+				background-color: transparent;
+				border-bottom: 3px solid fade(darken(@background, 12%), 60%);
+			}
+		}
+	}
+	.panel-body{
+		.sub-title{
+			background: fade(@background, 5%);
+		}
+	}
+
+	.loading-bar{
+		&:before{
+			background: @background;
+		}
+	}
+}
+.panel-complete-styling(@background; @text-color) {
+	background: @background;
+	> .panel-heading{
+		color: @text-color;
+		small{
+			color: @text-color;
+		}
+		a.panel-link{
+			&:hover,
+			&:focus,
+			&:active{
+				color: darken(@background, 20%);
+				outline: none;
+			}
+		}
+		.nav-tabs > li > a{
+			color: fade(@text-color, 70%);
+		}
+		.nav-tabs > li.active > a,
+		.nav-tabs > li.active > a:hover,
+		.nav-tabs > li.active > a:focus{
+			background-color: transparent;
+			color: @text-color;
+			&:after{
+				background-color: @text-color;
+			}
+		}
+	}
+	.panel-body{
+		color: @text-color;
+	}
+}

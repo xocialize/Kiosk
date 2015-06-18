@@ -1,0 +1,153 @@
+/*
+6.3 - Deep Purple Theme
+*/
+.theme-deep-purple{
+	.nav-menu{
+		.hamburger{
+			.patty{
+				background: @deep-purple;
+			}
+		}
+		&.active{
+			.patty{
+				background: #fff;
+			}
+		}
+	}
+
+	.nav-search{
+		.search{
+			&:before{
+				border-color: @deep-purple;
+			}
+			&:after{
+				background: @deep-purple;
+			}
+		}
+		&.active{
+			.search{
+				&:before{
+					background: #fff;
+					border: none;
+				}
+				&:after{
+					background: #fff;
+				}
+			}
+		}
+	}
+
+	.overlay{
+		.starting-point{
+			span{
+				background-color: @deep-purple;
+			}
+		}
+	}
+
+	.layer-container{
+		.menu-layer{
+			li{
+				&.open,
+				&:hover{
+					> a{
+						color: @deep-purple;
+					}
+					&:before{
+						color: @deep-purple;
+					}
+				}
+
+				.child-menu{
+					li{
+						a{
+							color: @deep-purple;
+						}
+						&.has-child{
+							&:before{
+								color: @deep-purple;
+							}
+							&.open{
+								background: fade(@deep-purple, 5%);
+							}
+						}
+						&:hover{
+							.hover-bg{
+								background: fade(@deep-purple,10%);
+							}
+						}
+						&.open{
+							background: fade(@deep-purple,10%);
+						}
+					}
+				}
+
+			}
+			&.active{
+				background: darken(@deep-purple, 3%);
+			}
+		}
+
+		.search-layer{
+			&.active{
+				background: darken(@deep-purple, 3%);
+			}
+		}
+
+		.user-layer{
+			.nav{
+				>li{
+					> a{
+						color: @deep-purple;
+					}
+					&.active{
+						>a{
+							color: #fff;
+							background: @deep-purple;
+							&:hover,
+							&:focus{
+								background: @deep-purple;
+							}
+						}
+					}
+				}
+			}
+
+			.tab-content{
+				.message-list{
+					.selected{
+						a{
+							background: fade(@deep-purple, 10%) !important;
+						}
+					}
+					.list-content{
+						.title{
+							color: @deep-purple;
+						}
+					}
+				}
+			}
+
+			#messages{
+				.mobile-back{
+					background: @deep-purple;
+				}
+			}
+
+		}
+	}
+
+	.messages{
+		.message{
+			&.right{
+				.message-text{
+					background-color: lighten(@deep-purple, 15%);
+					&:before{
+						background-color: lighten(@deep-purple, 15%);
+					}
+				}
+			}
+		}
+	}
+
+}

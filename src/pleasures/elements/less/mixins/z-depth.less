@@ -1,0 +1,49 @@
+// Z Depth
+.z-depth(@depth) {
+	&:before,
+	&:after {
+		position: absolute;
+		z-index: -1;
+		top: 0;
+		right: 0;
+		bottom: 0;
+		left: 0;
+		content: '';
+	}
+
+	&:before when (@depth = 1){
+		box-shadow: 0 2px 10px 0 rgba(0,0,0,.16);
+	}
+	&:after when (@depth = 1){
+		box-shadow: 0 2px 5px 0 rgba(0,0,0,.26);
+	}
+
+	&:before when (@depth = 2){
+		box-shadow: 0 6px 20px 0 rgba(0,0,0,.19);
+	}
+	&:after when (@depth = 2){
+		box-shadow: 0 8px 17px 0 rgba(0,0,0,.2);
+	}
+
+	&:before when (@depth = 3){
+		box-shadow: 0 17px 50px 0 rgba(0, 0, 0, 0.19);
+	}
+	&:after when (@depth = 3){
+		box-shadow: 0 12px 15px 0 rgba(0, 0, 0, 0.24);
+	}
+
+	&:before when (@depth = 4){
+		box-shadow: 0 25px 55px 0 rgba(0,0,0,.21);
+	}
+	&:after when (@depth = 4){
+		box-shadow: 0 16px 28px 0 rgba(0,0,0,.22);
+	}
+
+	&:before when (@depth = 5){
+		box-shadow: 0 40px 77px 0 rgba(0,0,0,.22);
+	}
+	&:after when (@depth = 5){
+		box-shadow: 0 27px 24px 0 rgba(0,0,0,.2);
+	}
+
+}

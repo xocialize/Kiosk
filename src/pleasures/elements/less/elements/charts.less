@@ -1,0 +1,71 @@
+/*
+17 - Charts
+*/
+.rickshaw_graph{
+	&.without-time{
+		.x_label{
+			display: none;
+		}
+	}
+
+	.x_label{
+		font-family: inherit;
+	}
+
+	.detail{
+		.item{
+			padding: 4px 8px !important;
+			font-size: 14px !important;
+			font-family: inherit !important;
+			&:after{
+				display: none !important;
+			}
+		}
+		.dot{
+			width: 6px !important;
+			height: 6px !important;
+			margin-left: -4.5px !important;
+			margin-top: -5px !important;
+			border-width: 2px !important;
+			box-shadow: none !important;
+			border-color: rgba(0, 0, 0, 0.8) !important;
+			border-radius: 50% !important;
+		}
+	}
+
+	.x_tick{
+		.title{
+			bottom: -25px !important;
+			left: -14px !important;
+			font-size: 14px !important;
+			font-family: inherit !important;
+		}
+	}
+
+	&.white-tick{
+		.x_tick{
+			border-color: rgba(255,255,255,.2);
+		}
+	}
+}
+
+.gauge-chart{
+	text-align: center;
+	max-width: 300px;
+	display: block;
+	margin: 0 auto;
+	.gauge-canvas{
+		width: 100%;
+	}
+	#preview-textfield{
+		padding: 0 0 10px 0;
+		text-align: center;
+		font-size: 24px;
+	}
+}
+.chart-desc{
+	padding: 0 20px;
+	font-size: 16px;
+	opacity: .9;
+	text-align: center;
+}

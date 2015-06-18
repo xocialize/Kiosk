@@ -1,0 +1,21 @@
+// Notes
+
+.note-variant(@background; @border; @text-color) {
+  background-color: @background;
+  border-color: @border;
+  color: @text-color;
+
+  h4{
+  	color: @border;
+  }
+  hr {
+    border-top-color: darken(@border, 5%);
+  }
+  a,
+  .note-link{
+    color: darken(@border, 10%);
+    &:hover{
+      text-decoration: none;
+    }
+  }
+}

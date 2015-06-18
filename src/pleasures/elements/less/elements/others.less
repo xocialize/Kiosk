@@ -1,0 +1,89 @@
+/*
+20 - Others
+*/
+
+// Row Types
+.row{
+	&.no-gutters{
+		margin-left: 0;
+		margin-right: 0;
+		[class^="col-"], [class*=" col-"]{
+			padding-left: 0;
+			padding-right: 0;
+		}
+	}
+	&.image-row{
+		margin-left: -2px;
+		margin-right: -2px;
+		[class^="col-"], [class*=" col-"]{
+			padding-left: 2px;
+			padding-right: 2px;
+		}
+		.tile{
+			margin-bottom: 4px;
+		}
+		.bx-viewport{
+			margin-bottom: 4px;
+		}
+	}
+}
+.row-centered{
+	text-align: center;
+	.col-centered{
+		display: inline-block;
+		float: none;
+		text-align: left;
+		margin-right: -4px;
+	}
+}
+.row{
+	.square-helper{
+		margin-top: 100%;
+	}
+	.square-content{
+		position: absolute;
+		top: 0;
+		left: 0;
+		bottom: 0;
+		right: 0;
+		margin: 15px;
+		border: 1px solid @border-color;
+		padding-top: calc(50% - 15px);
+		text-align: center;
+		background: #fff;
+	}
+}
+
+// Tables
+.table > thead > tr > th{
+	border-bottom-width: 1px;
+}
+
+.overflow-table{
+	width: 100%;
+	overflow-x: auto;
+	overflow-y: hidden;
+	margin: 10px 0 !important;
+}
+
+pre{
+	padding: 0;
+	margin: 20px 0;
+	code, .hljs{
+		padding: 1em 2em;
+	}
+}
+
+.navbar-spy{
+	margin-bottom: 0;
+}
+.scrollspy{
+	position: relative;
+	height: 200px;
+	margin-top: 0px;
+	overflow: auto;
+	padding: 5px 15px;
+	border: 1px #ddd solid;
+	border-top: 0;
+}
+

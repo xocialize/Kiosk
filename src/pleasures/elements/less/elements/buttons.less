@@ -1,0 +1,541 @@
+/*
+2 - Buttons
+*/
+
+@btn-striped-width: 1px;
+
+.btn{
+	position: relative;
+	outline: 0 !important;
+	box-shadow: 0 2px 5px -1px rgba(0, 0, 0, 0.26);
+	transform: translate3d(0,0,0);
+
+	transition: box-shadow 280ms cubic-bezier(0.35, 0, 0.25, 1) 200ms;
+
+	&:active, &:focus, &:focus{
+		outline: 0 !important;
+	}
+
+	&:active{
+		box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.2);
+		transition-delay: 0;
+	}
+}
+
+// Ink
+.ripple{
+	display: block;
+	position: absolute;
+	background: rgba(0, 0, 0, 0.2);
+	border-radius: 50%;
+	transform: scale(0);
+	&.animate{
+		animation: effect 0.55s linear;
+	}
+}
+.btn-ripple{
+	overflow: hidden;
+}
+@keyframes effect {
+	100% {
+		opacity: 0;
+		transform: scale(2.5);
+	}
+}
+
+// Bootstrap button variant
+// .button-variant(@btn-primary-color; @btn-primary-bg; @btn-primary-border);
+
+.btn-default{
+	.button-variant(@text-color; transparent; transparent);
+}
+.btn-primary{
+	.button-variant(@white; @brand-primary; @brand-primary);
+}
+.btn-info{
+	.button-variant(@white; @brand-info; @brand-info);
+}
+.btn-success{
+	.button-variant(@white; @brand-success; @brand-success);
+}
+.btn-warning{
+	.button-variant(@white; @brand-warning; @brand-warning);
+}
+.btn-danger{
+	.button-variant(@white; @brand-danger; @brand-danger);
+}
+.btn-inverted{
+	.button-variant(@white; @text-color; @text-color);
+}
+
+// Custom Colors
+.btn-white{
+	.button-variant(@text-color; @white; transparent);
+}
+.btn-red{
+	.button-variant(@white; @red; lighten(@red, 2%));
+}
+.btn-pink{
+	.button-variant(@white; @pink; lighten(@pink, 2%));
+}
+.btn-purple{
+	.button-variant(@white; @purple; lighten(@purple, 2%));
+}
+.btn-deep-purple{
+	.button-variant(@white; @deep-purple; lighten(@deep-purple, 2%));
+}
+.btn-indigo{
+	.button-variant(@white; @indigo; lighten(@indigo, 2%));
+}
+.btn-blue{
+	.button-variant(@white; @blue; lighten(@blue, 2%));
+}
+.btn-light-blue{
+	.button-variant(@white; @light-blue; lighten(@light-blue, 2%));
+}
+.btn-cyan{
+	.button-variant(@white; @cyan; lighten(@cyan, 2%));
+}
+.btn-teal{
+	.button-variant(@white; @teal; lighten(@teal, 2%));
+}
+.btn-green{
+	.button-variant(@white; @green; lighten(@green, 2%));
+}
+.btn-light-green{
+	.button-variant(@white; @light-green; lighten(@light-green, 2%));
+}
+.btn-lime{
+	.button-variant(@white; @lime; lighten(@lime, 2%));
+}
+.btn-yellow{
+	.button-variant(@text-color; @yellow; lighten(@yellow, 2%));
+}
+.btn-amber{
+	.button-variant(@white; @amber; lighten(@amber, 2%));
+}
+.btn-orange{
+	.button-variant(@white; @orange; lighten(@orange, 2%));
+}
+.btn-deep-orange{
+	.button-variant(@white; @deep-orange; lighten(@deep-orange, 2%));
+}
+.btn-brown{
+	.button-variant(@white; @brown; lighten(@brown, 2%));
+}
+.btn-grey{
+	.button-variant(@white; @grey; lighten(@grey, 2%));
+}
+.btn-blue-grey{
+	.button-variant(@white; @blue-grey; lighten(@blue-grey, 2%));
+}
+
+.btn-facebook{
+	.button-variant(@bc-facebook; transparent; transparent);
+}
+.btn-twitter{
+	.button-variant(@bc-twitter; transparent; transparent);
+}
+.btn-googleplus{
+	.button-variant(@bc-google; transparent; transparent);
+}
+
+// Striped Buttons
+.button-striped{
+	background: @clouds;
+	color: @text-color;
+	.box-shadow(none);
+	border-radius: 0;
+}
+.button-top-striped{
+	border-width: @btn-striped-width 0 0 0;
+}
+.button-right-striped{
+	border-width: 0 @btn-striped-width 0 0;
+}
+.button-bottom-striped{
+	border-width: 0 0 @btn-striped-width 0;
+}
+.button-left-striped{
+	border-width: 0 0 0 @btn-striped-width;
+}
+.button-full-striped{
+	border-width: @btn-striped-width;
+}
+
+.button-full-striped{
+	border-radius: @radius;
+	background: transparent;
+	&.btn-default{
+		&:hover,
+		&:active,
+		&:focus{
+			color: @text-color;
+		}
+	}
+	&.btn-primary{
+		color: @brand-primary;
+	}
+	&.btn-success{
+		color: @brand-success;
+	}
+	&.btn-info{
+		color: @brand-info;
+	}
+	&.btn-warning{
+		color: @brand-warning;
+	}
+	&.btn-danger{
+		color: @brand-danger;
+	}
+	&:hover,
+	&:active,
+	&:focus{
+		color: white;
+	}
+}
+
+// Extra Button Size
+.btn-xl {
+	.button-size(@padding-xlarge-vertical; @padding-xlarge-horizontal; @font-size-large; @line-height-large; @border-radius-large);
+}
+
+// Dropdown buttons
+.dropdown-menu{
+	label{
+		display: block;
+		.checker{
+			display: inline-block;
+			span{
+				margin: 5px 10px;
+			}
+		}
+		.radio{
+			display: inline-block;
+			margin: 0 0 0 30px;
+			span{
+				margin-right: 1px;
+			}
+		}
+	}
+	form{
+		padding: 5px 10px;
+	}
+}
+
+// Icon Buttons
+.btn-icon{
+	position: relative;
+	min-width: 90px;
+	padding-top: 15px;
+	padding-bottom: 15px;
+	i{
+		font-size: 25px;
+		display: block;
+	}
+	span.title{
+		font-size: 16px;
+		display: block;
+	}
+	span.badge{
+		position: absolute;
+		right: -5px;
+		top: -5px;
+		color: #fff;
+	}
+}
+
+// Flat Buttons
+.btn-flat{
+	color: @text-color;
+	background-color: transparent;
+	border-color: transparent;
+	.box-shadow(none);
+
+	&:hover,
+	&:focus,
+	&.focus,
+	&:active,
+	&.active,
+	.open > .dropdown-toggle& {
+		.box-shadow(none);
+		color: @text-color;
+		background-color: fade(@text-color, 10%);
+				border-color: transparent;
+	}
+	&:active,
+	&.active,
+	.open > .dropdown-toggle& {
+		background-image: none;
+	}
+	&.disabled,
+	&[disabled],
+	fieldset[disabled] & {
+		&,
+		&:hover,
+		&:focus,
+		&.focus,
+		&:active,
+		&.active {
+			background-color: transparent;
+					border-color: transparent;
+		}
+	}
+
+	.badge {
+		color: @text-color;
+		background-color: transparent;
+	}
+
+	&.btn-primary{
+		.button-flat-variant(@brand-primary);
+	}
+	&.btn-info{
+		.button-flat-variant(@brand-info);
+	}
+	&.btn-success{
+		.button-flat-variant(@brand-success);
+	}
+	&.btn-warning{
+		.button-flat-variant(@brand-warning);
+	}
+	&.btn-danger{
+		.button-flat-variant(@brand-danger);
+	}
+
+	&.btn-red{
+		.button-flat-variant(@red);
+	}
+	&.btn-pink{
+		.button-flat-variant(@pink);
+	}
+	&.btn-purple{
+		.button-flat-variant(@purple);
+	}
+	&.btn-deep-purple{
+		.button-flat-variant(@deep-purple);
+	}
+	&.btn-indigo{
+		.button-flat-variant(@indigo);
+	}
+	&.btn-blue{
+		.button-flat-variant(@blue);
+	}
+	&.btn-light-blue{
+		.button-flat-variant(@light-blue);
+	}
+	&.btn-cyan{
+		.button-flat-variant(@cyan);
+	}
+	&.btn-teal{
+		.button-flat-variant(@teal);
+	}
+	&.btn-green{
+		.button-flat-variant(@green);
+	}
+	&.btn-light-green{
+		.button-flat-variant(@light-green);
+	}
+	&.btn-lime{
+		.button-flat-variant(@lime);
+	}
+	&.btn-yellow{
+		.button-flat-variant(@yellow);
+	}
+	&.btn-amber{
+		.button-flat-variant(@amber);
+	}
+	&.btn-orange{
+		.button-flat-variant(@orange);
+	}
+	&.btn-deep-orange{
+		.button-flat-variant(@deep-orange);
+	}
+	&.btn-brown{
+		.button-flat-variant(@brown);
+	}
+	&.btn-grey{
+		.button-flat-variant(@grey);
+	}
+	&.btn-blue-grey{
+		.button-flat-variant(@blue-grey);
+	}
+}
+
+
+// Floating Button
+.btn-floating{
+
+	width: 48px;
+	height: 48px;
+	padding: 6px;
+
+	border-radius: 50%;
+	border: 0;
+
+	font-size: 24px;
+
+	// Fix the safari radial bug
+	-webkit-mask-image: -webkit-radial-gradient(circle, white, black);
+
+	&.btn-large{
+		width: 56px;
+		height: 56px;
+		padding: 10px 14px;
+	}
+
+	ul{
+		position: absolute;
+		left: -3px;
+		top: 0;
+		z-index: 1;
+		visibility: hidden;
+		transition: visibility 280ms cubic-bezier(0.35, 0, 0.25, 1) 280ms;
+
+		padding: 52px 0 0 0;
+
+		li{
+			opacity: 0;
+			transform: scale(0);
+			list-style-type: none;
+			margin: 10px 5px;
+
+			transition: all 280ms cubic-bezier(0.35, 0, 0.25, 1);
+
+			img{
+				width: 36px;
+				height: 36px;
+				border: 1px solid @border-color;
+			}
+			&:nth-child(1){
+				margin: 10px;
+				transition-delay: 420ms;
+			}
+			&:nth-child(2){
+				transition-delay: 320ms;
+			}
+			&:nth-child(3){
+				transition-delay: 220ms;
+			}
+			&:nth-child(4){
+				transition-delay: 120ms;
+			}
+			&:nth-child(5){
+				transition-delay: 20ms;
+			}
+		}
+
+		&.to-right{
+			top: -6px;
+			left: 0;
+			padding: 0 0 0 52px;
+			li{
+				display: inline-block;
+			}
+		}
+		&.to-left{
+			top: -6px;
+			right: 0;
+			left: auto;
+			padding: 0 60px 0 0;
+			li{
+				display: inline-block;
+				&:nth-child(1){
+					transition-delay: 20ms;
+				}
+				&:nth-child(2){
+					transition-delay: 120ms;
+				}
+				&:nth-child(3){
+					transition-delay: 220ms;
+				}
+				&:nth-child(4){
+					transition-delay: 320ms;
+				}
+				&:nth-child(5){
+					transition-delay: 420ms;
+				}
+			}
+		}
+		&.to-top{
+			padding: 0 0 42px 0px;
+			bottom: 0;
+			top: auto;
+			right: -5px;
+
+			li{
+				&:nth-child(1){
+					transition-delay: 20ms;
+				}
+				&:nth-child(2){
+					transition-delay: 120ms;
+				}
+				&:nth-child(3){
+					transition-delay: 220ms;
+				}
+				&:nth-child(4){
+					transition-delay: 320ms;
+				}
+				&:nth-child(5){
+					transition-delay: 420ms;
+				}
+			}
+		}
+	}
+
+	&.show-on-hover{
+		overflow: visible;
+		.ripple{
+			display: none;
+		}
+	}
+
+	&.show-on-hover:hover{
+		ul{
+			visibility: visible;
+			transition-delay: 0;
+			li{
+				opacity: 1;
+				transform: scale(1);
+
+				&:nth-child(1){
+					transition-delay: 20ms;
+				}
+				&:nth-child(2){
+					transition-delay: 120ms;
+				}
+				&:nth-child(3){
+					transition-delay: 220ms;
+				}
+				&:nth-child(4){
+					transition-delay: 320ms;
+				}
+				&:nth-child(5){
+					transition-delay: 420ms;
+				}
+			}
+
+			&.to-top, &.to-left{
+				li{
+					&:nth-child(1){
+						transition-delay: 420ms;
+					}
+					&:nth-child(2){
+						transition-delay: 320ms;
+					}
+					&:nth-child(3){
+						transition-delay: 220ms;
+					}
+					&:nth-child(4){
+						transition-delay: 120ms;
+					}
+					&:nth-child(5){
+						transition-delay: 20ms;
+					}
+				}
+			}
+
+		}
+	}
+
+}

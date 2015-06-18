@@ -1,0 +1,250 @@
+/*
+18 - Pricing Tables
+*/
+.card-pricing{
+
+	.card-heading{
+		h4, h5{
+			margin: 0;
+			display: block;
+			i{
+				font-style: normal;
+			}
+		}
+	}
+	.card-body{
+		padding: 0;
+		.pricing-features{
+			li{
+				padding: 10px 20px;
+				margin: 0;
+				border-bottom: 1px solid transparent;
+				i{
+					margin-right: 10px;
+				}
+				&.disabled{
+					color: lighten(@text-color, 30%);
+					text-decoration: line-through;
+				}
+				&:last-child{
+					border-bottom: 0;
+				}
+			}
+			&.pricing-features-hover{
+				li{
+					&:hover{
+						background: @striped-color;
+					}
+				}
+			}
+		}
+	}
+	.card-footer{}
+
+	&.card-pricing-simple{
+		transition: border-color .3s;
+		.card-heading{
+			padding: 0;
+			border-bottom: 0;
+			h4{
+				padding: 20px 0 5px 0;
+				font-size: 30px;
+				text-align: center;
+			}
+			h5{
+				padding: 10px 0 10px 0;
+				margin: 15px 0 10px 0;
+				background: #f0f0f0;
+				text-align: center;
+				transition: background-color .3s, color .6s;
+			}
+		}
+		.card-body{
+			.pricing-features{
+				li{
+					border-bottom: 0;
+				}
+			}
+		}
+		.card-footer{
+			border-top: 0;
+			padding: 10px 20px 20px 20px;
+		}
+		&:hover, &.active{
+			border-color: @brand-primary;
+			h5{
+				background: @brand-primary;
+				color: #fff;
+			}
+		}
+	}
+
+	&.card-pricing-dark{
+		transition: box-shadow .3s, margin .3s;
+		.card-heading{
+			padding: 0;
+			border-bottom: 0;
+			h4{
+				padding: 20px 0;
+				font-size: 24px;
+				text-align: center;
+				background: #000;
+				color: #fff;
+				border-bottom: 5px solid transparent;
+				transition: background-color .3s, border-color .6s;
+			}
+			h5{
+				padding: 20px 0;
+				text-align: center;
+				background: #f0f0f0;
+			}
+		}
+		.card-body{
+		}
+		.card-footer{
+			border-top: 0;
+			padding: 20px;
+		}
+		&:hover, &.active{
+			margin-top: 5px;
+			box-shadow: 0 2px 10px rgba(0,0,0,.1);
+			h4{
+				background: darken(@brand-primary, 30%);
+				border-color: @brand-primary;
+			}
+		}
+	}
+
+	&.card-pricing-justified{
+		.card-heading{
+			padding: 20px;
+			background: #222;
+
+			h4{
+				display: inline-block;
+				float: left;
+				font-size: 18px;
+				color: rgba(255,255,255,.87);
+			}
+			h5{
+				display: inline-block;
+				float: right;
+				font-size: 18px;
+				color: rgba(255,255,255,.87);
+			}
+		}
+		.card-body{
+			padding: 5px 15px;
+			.pricing-features{
+				li{
+					padding: 7px 5px;
+					border-bottom-color: @border-color;
+					span{
+						float: right;
+						text-align: right;
+						font-weight: bold;
+					}
+					&:before, &:after{
+						content: "";
+						display: table;
+						clear: both;
+					}
+				}
+			}
+		}
+		.card-footer{
+			border-top: 0;
+			padding: 10px 20px 20px 20px;
+		}
+	}
+
+	&.complicated{
+		.card-heading{
+			padding: 0;
+			h4{
+				width: 100%;
+				padding: 15px 0;
+				margin: 0;
+				background: @brand-primary;
+				color: #fff;
+				text-align: center;
+				border-bottom: 1px solid #fff;
+			}
+			h5{
+				width: 100%;
+				padding: 5px 0 20px 0;
+				margin: 0;
+				background: @brand-primary;
+				color: #fff;
+				text-align: center;
+				.price{
+					font-size: 90px;
+					.friction{
+						position: relative;
+						top: -42px;
+						left: 10px;
+						font-size: 30%;
+						color: #fff;
+					}
+				}
+				span{
+					display: block;
+					margin-top: 10px;
+					i{
+						font-style: normal;
+					}
+				}
+			}
+		}
+		.card-body{
+			padding: 0;
+		}
+		.card-footer{}
+	}
+
+}
+
+.pricing-table{
+	margin: 15px 0;
+	background: #fff;
+	border: 1px solid @border-color;
+	border-radius: @radius;
+	overflow: hidden;
+	table{
+		margin: 0;
+		th{
+			padding: 0 20px !important;
+			border-bottom-width: 1px !important;
+		}
+		tfoot{
+			th{
+				padding: 10px 20px !important;
+			}
+		}
+		td{
+			padding: 10px 20px !important;
+			text-align: center;
+		}
+		.categories{
+			text-align: left;
+		}
+		.pack, .price-container{
+			text-align: center;
+			padding: 15px 0 5px 0;
+			margin: 0;
+			display: block;
+			i{
+				font-style: normal;
+			}
+		}
+		.pack{
+			color: @brand-primary;
+			font-size: 23px;
+			font-weight: 300;
+		}
+		.price-container{
+			padding: 10px 0 15px 0;
+			font-size: 16px;
+		}
+	}
+}

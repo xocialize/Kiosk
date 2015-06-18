@@ -1,0 +1,25 @@
+// Tabs active text
+.tabs-active-text-variant(@v-text-color) {
+	>li.active{
+		a,
+		a:hover,
+		a:active,
+		a:focus{
+			color: @v-text-color;
+		}
+	}
+}
+
+// Tabs active border
+.tabs-active-border-variant(@border-color) {
+	>li.active{
+		a,
+		a:hover,
+		a:active,
+		a:focus{
+			&:after{
+				border-color: @border-color;
+			}
+		}
+	}
+}

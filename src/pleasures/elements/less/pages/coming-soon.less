@@ -1,0 +1,64 @@
+/*
+23 - Coming Soon
+*/
+
+// Coming Soon
+.coming-soon{
+	margin: 0;
+	color: #fff;
+	text-align: center;
+	.center{
+		position: absolute;
+		left: 0;
+		top: 50%;
+		width: 100%;
+		height: 412px;
+		margin-top: -260px;
+		z-index: 10;
+	}
+	h1{
+		font-size: 50px;
+	}
+	p{
+		font-size: 20px;
+		color: rgba(255,255,255,.7);
+		margin: 10px 0 30px 0;
+	}
+	.bg-overlay{
+		z-index: 0;
+		background: rgba(0,0,0,.5);
+	}
+	.countdown-container{
+		margin: 30px 0 0 0;
+		li{
+			display: inline-block;
+			width: 25%;
+			text-align: center;
+			span{
+				opacity: .5;
+			}
+			.number{
+				font-size: 70px;
+				line-height: 70px;
+			}
+		}
+	}
+	.social-links{
+		position: absolute;
+		z-index: 9;
+		bottom: 25px;
+		width: 100%;
+		li{
+			font-size: 22px;
+			display: inline;
+			a{
+				opacity: 0.7;
+				padding: 10px;
+				&:hover{
+					color: #fff;
+					opacity: 1;
+				}
+			}
+		}
+	}
+}

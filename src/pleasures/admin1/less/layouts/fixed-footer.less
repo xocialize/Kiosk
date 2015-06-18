@@ -1,0 +1,35 @@
+.fixed-footer{
+	.footer-links,
+	.footer{
+		position: fixed;
+		bottom: 0;
+		width: calc(~'100% - 80px');
+		left: 120px;
+		z-index: 4;
+	}
+
+	.content{
+		padding-bottom: 110px;
+	}
+
+	&.layout-rtl{
+		.footer-links,
+		.footer{
+			left: auto;
+			right: 120px;
+		}
+	}
+}
+
+@media (max-width: 767px) {
+	.fixed-footer{
+		.footer-links,
+		.footer{
+			width: 100%;
+			left: 20px;
+		}
+		.footer{
+			left: 40px;
+		}
+	}
+}

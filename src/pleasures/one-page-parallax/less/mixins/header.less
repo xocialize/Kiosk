@@ -1,0 +1,16 @@
+.header-variant(@active-color) {
+	.animated-selector{
+		.selector{
+			&.initialised{
+				background-color: @active-color;
+			}
+		}
+	}
+	.navigation{
+		> li {
+			&:hover{
+				color: @active-color;
+			}
+		}
+	}
+}

@@ -1,0 +1,11 @@
+// Color Swatch
+
+.color-swatch-variant(@background; @text-color) {
+	.color{
+		background-color: @background;
+	}
+	.color-name{
+		background-color: darken(@background, 5%);
+		color: @text-color;
+	}
+}

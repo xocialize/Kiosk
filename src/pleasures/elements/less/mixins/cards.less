@@ -1,0 +1,185 @@
+// Cards
+
+.card-variant(@background; @v-text-color) {
+	background-color: @background;
+	color: @v-text-color;
+
+	a{
+		opacity: 1;
+		color: @v-text-color;
+
+		&:hover,
+		&:active,
+		&:focus{
+			color: @v-text-color;
+			opacity: .7;
+		}
+	}
+}
+
+.card-user-variant(@background; @v-text-color) {
+	.card-heading{
+		background-color: @background;
+		color: @v-text-color;
+		.subhead{
+			color: darken(@background, 30%);
+		}
+	}
+	a{
+		color: @background;
+		&:hover{
+			color: darken(@background, 20%);
+		}
+	}
+}
+
+.card-meal-variant(@border-color) {
+	.card-heading{
+		border-top-color: @border-color;
+	}
+	a{
+		color: @border-color;
+		&:hover{
+			color: darken(@border-color, 20%);
+		}
+	}
+}
+
+.card-iconic-variant(@background, @v-text-color) {
+	background-color: @background;
+	.card-full-icon{
+		color: @v-text-color;
+	}
+	.card-body{
+		color: @v-text-color;
+	}
+}
+
+.card-music-variant(@background; @v-text-color) {
+	.audiojs{
+		.scrubber{
+			.progress{
+				background: @background;
+			}
+		}
+		.play-pause{
+			.play,
+			.pause,
+			.loading{
+				background: @background;
+				color: @v-text-color;
+			}
+		}
+	}
+	&.card-music-bar-full{
+		.scrubber{
+			.progress{
+				background: fade(@background,50%);
+			}
+		}
+	}
+	&.card-music-list{
+		.card-heading{
+			.list-songs{
+				li{
+					a:hover{
+						background: fade(@background,50%);
+						color: @v-text-color;
+					}
+				}
+			}
+		}
+	}
+	&.card-music-basic{
+		background-color: @background;
+	}
+}
+
+.card-video-variant(@background; @v-text-color) {
+	.play-button-container{
+		.play-button{
+			border-color: @background;
+			color: @background;
+		}
+		&:hover{
+			.play-button{
+				background: @background;
+				color: @v-text-color;
+			}
+		}
+	}
+	.vjs-default-skin{
+		.vjs-big-play-button{
+			border-color: @background;
+			color: @background;
+		}
+		.vjs-volume-level{
+			background-color: @background;
+		}
+		.vjs-play-progress{
+			background-color: @background;
+		}
+		.vjs-control{
+			&:hover{
+				color: @background;
+				&:before{
+					color: @background;
+				}
+			}
+		}
+		&:hover{
+			.vjs-big-play-button{
+				background: @background;
+				color: @v-text-color;
+			}
+		}
+	}
+}
+
+.card-fullvideo-variant(@background; @v-text-color) {
+	.vjs-default-skin{
+		.vjs-big-play-button{
+			border-color: @background;
+			color: @background;
+		}
+		.vjs-volume-level{
+			background-color: @background;
+		}
+		.vjs-play-progress{
+			background-color: @background;
+		}
+		.vjs-control{
+			&:hover{
+				color: @background;
+				&:before{
+					color: @background;
+				}
+			}
+		}
+		&:hover{
+			.vjs-big-play-button{
+				background: @background;
+				color: @v-text-color;
+			}
+		}
+	}
+	.playlist-heading{
+		background: @background;
+		color: @v-text-color;
+	}
+	.video-playlist{
+		.active{
+			&:before{
+				color: @background;
+			}
+		}
+	}
+}
+
+.card-dashboard-info-variant(@background, @v-text-color) {
+	color: @v-text-color;
+	background-color: @background;
+	small{
+		background: darken(@background, 5%);
+	}
+}

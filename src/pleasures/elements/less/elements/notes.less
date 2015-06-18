@@ -1,0 +1,50 @@
+/*
+5 - Notes
+*/
+
+@notes-striped-width: 5px;
+@notes-padding: 15px;
+.note{
+	border-radius: @radius;
+	color: #333;
+	padding: 15px;
+	margin: 0 0 20px 0;
+	border-style: solid;
+	h4{
+		margin-top: 0;
+		color: inherit;
+	}
+	a{
+		color: #fff;
+		text-decoration: underline;
+	}
+	>p,
+	>ul{
+		margin-bottom: 0;
+	}
+	> p+p {
+		margin-top: 5px;
+	}
+}
+
+.note-primary{
+	.note-variant(transparent; @brand-primary; @text-color);
+}
+.note-success{
+	.note-variant(transparent; @brand-success; @text-color);
+}
+.note-info{
+	.note-variant(transparent; @brand-info; @text-color);
+}
+.note-warning{
+	.note-variant(transparent; @brand-warning; @text-color);
+}
+.note-danger{
+	.note-variant(transparent; @brand-danger; @text-color);
+}
+
+// Stripes
+.note-top-striped{ border-width: @notes-striped-width 1px 1px 1px; }
+.note-right-striped{ border-width: 1px @notes-striped-width 1px 1px; }
+.note-bottom-striped{ border-width: 1px 1px @notes-striped-width 1px; }
+.note-left-striped{ border-width: 1px 1px 1px @notes-striped-width; }

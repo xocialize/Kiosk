@@ -14,9 +14,19 @@
 // Include Gulp & Tools We'll Use
 var gulp = require('gulp');
 var $ = require('gulp-load-plugins')();
-var del = require('del');
+var del = require('del'), less = require('gulp-less');
 var runSequence = require('run-sequence');
 var pagespeed = require('psi');
+
+
+
+var		settings = {
+		appFolder: 'src/app/',
+		buildFolder : 'src/build/',
+		assetsFolder : 'src/assets/',
+		assetsPlugins: 'src/assets/globals/plugins/',
+		assetsXocialize: 'src/assets/xocialize/'
+	};
 
 /* This isn't really needed as we're ending up installed on an ios device but... */
 var AUTOPREFIXER_BROWSERS = [ 
@@ -85,6 +95,50 @@ gulp.task('html', function () {
 		.pipe($.size({title: 'html'}));
 });
 
+// Compile Less
+gulp.task('compile-less', function () {
+	gulp.src(settings.buildFolder+'admin1/less/admin1.less')
+		.pipe(less({
+			plugins: [autoprefix, cleancss]
+		  }))
+		.pipe(gulp.dest(settings.assetsFolder+'admin1/css/'));
+		
+	gulp.src(settings.buildFolder+'one-page-parallax/less/one-page-parallax.less')
+		.pipe(less({
+			plugins: [autoprefix, cleancss]
+		  }))
+		.pipe(gulp.dest(settings.assetsFolder+'one-page-parallax/css/'));
+
+	gulp.src(settings.buildFolder+'elements/less/elements.less')
+		.pipe(less({
+			plugins: [autoprefix, cleancss]
+		  }))
+		.pipe(gulp.dest(settings.assetsFolder+'globals/css/'));
+
+	gulp.src(settings.buildFolder+'globals/less/plugins.less')
+		.pipe(less({
+			plugins: [autoprefix, cleancss]
+		  }))
+		.pipe(gulp.dest(settings.assetsFolder+'globals/css/'));
+});
+
+gulp.task('global-vendors', function () {
+	gulp.src([
+		settings.assetsPlugins+'jquery/dist/jquery.js',
+		settings.assetsPlugins+'jquery-ui/jquery-ui.js',
+		settings.assetsPlugins+'bootstrap/dist/js/bootstrap.min.js',
+		settings.assetsPlugins+'velocity/velocity.min.js',
+		settings.assetsPlugins+'moment/min/moment.min.js',
+		settings.assetsPlugins+'toastr/toastr.min.js',
+		settings.assetsPlugins+'scrollMonitor/scrollMonitor.js',
+		settings.assetsPlugins+'textarea-autosize/dist/jquery.textarea_autosize.min.js',
+		settings.assetsPlugins+'bootstrap-select/dist/js/bootstrap-select.min.js',
+		settings.assetsPlugins+'fastclick/lib/fastclick.js',
+		settings.assetsXocialize+'HTML5-History/history.js',
+	])
+	.pipe(concat('global-vendors.js'))
+	.pipe(gulp.dest(settings.assetsFolder+'globals/js/'));
+});
 
 
 // Concatenate And Minify JavaScript
