@@ -91,7 +91,7 @@
 				</div><!--.col-->
 				<div class="col-sm-6">
 					<ol class="breadcrumb">
-						<li id="breadcrumb_content"><a href="#login" class="active" data-toggle="modal" data-target="#defaultModal"><i class="ion-power"></i> Login</a></li>
+						<li id="breadcrumb_content"><a href="#login" class="active" data-toggle="modal" data-target="#loginModal"><i class="ion-power"></i> Login</a></li>
 					</ol>
 				</div><!--.col-->
 			</div><!--.row-->
@@ -119,7 +119,7 @@
 		</div><!--.footer-links-->
 
 	</div><!--.content-->
-    <div class="modal scale fade" id="defaultModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal scale fade" id="loginModal" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -641,6 +641,8 @@
 			event.preventDefault();
 			
 			console.log("login clicked");
+			
+			$('#loginModal').modal('hide');
 		
 		});
 	</script>
