@@ -123,7 +123,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h4 class="modal-title">Modal title</h4> </div>
+                    <h4 class="modal-title">Kiosk Manager Login</h4> </div>
                 <div class="modal-body">
                 	<div class="inputer floating-label">
                         <div class="input-wrapper">
@@ -134,9 +134,10 @@
                     <div class="inputer floating-label">
                         <div class="input-wrapper">
                             <input type="text" class="form-control" id="passwordLogin">
-                            <label for="passwordLogin">eMail Address</label>
+                            <label for="passwordLogin">Password</label>
                         </div>
                     </div>
+                    
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-flat btn-default" data-dismiss="modal">Cancel</button>
@@ -626,18 +627,22 @@
 
 	<script src="./assets/globals/scripts/sliders.js"></script>
 	<script src="./assets/globals/scripts/maps-google.js"></script>
-	<script src="./assets/globals/scripts/widget-audio.js"></script>
-	<script src="./assets/globals/scripts/charts-knob.js"></script>
-	<script src="./assets/globals/scripts/index.js"></script>
+	
+	
 	<!-- BEGIN INITIALIZATION-->
 	<script>
-	$(document).ready(function () {
-		Pleasure.init();
-		Layout.init();
-
+		$(document).ready(function () {
+			Pleasure.init();
+			Layout.init();
+		});
+	
+		$("#loginProcessButton").on("click",function(event){
+			
+			event.preventDefault();
+			
+			console.log("login clicked");
 		
-
-	});
+		});
 	</script>
 	<!-- END INITIALIZATION-->
 
