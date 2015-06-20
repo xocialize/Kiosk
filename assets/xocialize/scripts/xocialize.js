@@ -284,7 +284,7 @@ $(function() {
 		
 		console.log(State);
 		
-		if(State != currentState){
+		if( State != currentState  || typeof (window.currentState) == "undefined" ){
 			
 			if(typeof (window.currentState) == 'undefined') { window.currentState=State; } else { currentState=State; }
 			
