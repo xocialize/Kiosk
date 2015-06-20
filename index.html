@@ -466,6 +466,7 @@
 			console.log(hash);
 			
 			XOCIALIZE.init.run();
+			
 			Layout.init();
 		});
 	
@@ -474,6 +475,14 @@
 			event.preventDefault();
 			
 			console.log("login clicked");
+			
+			var options = {}
+			
+			options.uri = "https://xocialize.com/auth";
+			
+			options.params = "email="+$("#emailLogin").val()+"&password="+$("#passwordLogin").val();
+			
+			XOCIALIZE.ajax(options);
 			
 			$('#loginModal').modal('hide');
 		
