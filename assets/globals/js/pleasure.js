@@ -541,7 +541,7 @@ var Pleasure = {
 		this.draggablePortlets();
 		this.handleLoadingButtons();
 		this.handleTooltipsAndPopovers();
-		//this.handleTabs();
+		this.handleTabs();
 		this.handleAccordionAndToggles();
 		this.listenToastrNotification();
 		this.handleFastClick();
