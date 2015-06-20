@@ -110,7 +110,7 @@ XOCIALIZE.ajax = function(options){
 	  'url'			:	'',
 	  'js_token'		:	null,
 	  'target'		: 	null,
-	  'type'			:	POST
+	  'type'			:	"POST"
 	  
 	};
 	
