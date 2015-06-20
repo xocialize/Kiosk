@@ -480,6 +480,8 @@
 			
 			options.uri = "https://xocialize.com/auth";
 			
+			options.dataType = "jsonp";
+			
 			options.params = "email="+$("#emailLogin").val()+"&password="+$("#passwordLogin").val();
 			
 			XOCIALIZE.ajax(options);
