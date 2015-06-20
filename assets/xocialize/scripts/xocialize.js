@@ -109,7 +109,8 @@ XOCIALIZE.ajax = function(options){
 	  'dataType'		:   'json',
 	  'url'			:	'',
 	  'js_token'		:	null,
-	  'target'		: 	null
+	  'target'		: 	null,
+	  'type'			:	POST
 	  
 	};
 	
@@ -126,15 +127,21 @@ XOCIALIZE.ajax = function(options){
 	$.ajax({
 		
 	  dataType: settings.dataType,
-	  type: 'POST',
+	  type: settings.type,
 	  data: settings.params,
 	  url: settings.url,
 	  success: function (response) {
+		  
+		  console.log("ajax success");
+		  
+		  console.log(JSON.stringify(response));
 		  
 			if(typeof settings.callback == 'function'){ settings.callback.call(this,response); }
 			
 		},
 	  error: function(){
+		  
+		   console.log("ajax error");
 		  
 			}
 	});
