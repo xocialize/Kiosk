@@ -505,9 +505,13 @@
 			
 			options.params = "email="+$("#emailLogin").val()+"&password="+$("#passwordLogin").val();
 			
+			options.callback = function(data){
+				$('#loginModal').modal('hide');
+			};
+			
 			XOCIALIZE.ajax(options);
 			
-			$('#loginModal').modal('hide');
+			
 		
 		});
 		
