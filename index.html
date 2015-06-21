@@ -501,6 +501,8 @@
 			
 			options.dataType = "jsonp";
 			
+			options.method = "client_login";
+			
 			options.params = "email="+$("#emailLogin").val()+"&password="+$("#passwordLogin").val();
 			
 			XOCIALIZE.ajax(options);

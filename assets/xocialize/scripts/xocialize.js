@@ -18,9 +18,9 @@ XOCIALIZE.init.run = function(options){
 	
 	$.each(XOCIALIZE.init,function(v){
 		
-		if (typeof XOCIALIZE.init[v] == 'function') { 
+		if (typeof XOCIALIZE.init[v] === 'function') { 
 		
-			if( v != 'run' ) {
+			if( v !== 'run' ) {
 				XOCIALIZE.init[v](settings.scope);
 				//console.log('RUNNING: '+v);
 			}
@@ -29,9 +29,9 @@ XOCIALIZE.init.run = function(options){
 		
 	});
 	
-}
+};
 
-XOCIALIZE.init['pages'] = function(scope){
+XOCIALIZE.init.pages = function(scope){
 	
 	console.log("running pages init:"+ currentPage);
 	
@@ -56,7 +56,7 @@ XOCIALIZE.init['pages'] = function(scope){
 		break;	
 		
 	}
-}
+};
 
 XOCIALIZE.initDevices =  function(){
 	
@@ -76,7 +76,7 @@ XOCIALIZE.initDevices =  function(){
 			
 		});	
 	});
-}
+};
 
 XOCIALIZE.initDevice =  function(){
 	
@@ -96,7 +96,7 @@ XOCIALIZE.initDevice =  function(){
 			
 		});	
 	});
-}
+};
 
 XOCIALIZE.ajax = function(options){
 	
@@ -118,11 +118,11 @@ XOCIALIZE.ajax = function(options){
 		$.extend( settings, options );
 	  }
 	  
-	if (settings.form!=null) { if ( settings.params == null ) { settings.params=$('#'+settings.form).serialize(); } else { settings.params=settings.params+'&'+$('#'+settings.form).serialize(); } }
+	if (settings.form!==null) { if ( settings.params === null ) { settings.params=$('#'+settings.form).serialize(); } else { settings.params=settings.params+'&'+$('#'+settings.form).serialize(); } }
 	  
-	if (settings.method!=null) { if ( settings.params == null )  { settings.params='method='+settings.method; } else { settings.params=settings.params+'&method='+settings.method; } }
+	if (settings.method!==null) { if ( settings.params === null )  { settings.params='method='+settings.method; } else { settings.params=settings.params+'&method='+settings.method; } }
 	
-	if (settings.js_token!=null) { if ( settings.params == null )  { settings.params='js_token='+settings.token; } else { settings.params=settings.params+'&js_token='+settings.js_token; } } 
+	if (settings.js_token!==null) { if ( settings.params === null )  { settings.params='js_token='+settings.token; } else { settings.params=settings.params+'&js_token='+settings.js_token; } } 
 	
 	$.ajax({
 		
@@ -136,7 +136,7 @@ XOCIALIZE.ajax = function(options){
 		  
 		  console.log(JSON.stringify(response));
 		  
-			if(typeof settings.callback == 'function'){ settings.callback.call(this,response); }
+			if(typeof settings.callback === 'function'){ settings.callback.call(this,response); }
 			
 		},
 	  error: function(){
@@ -146,7 +146,7 @@ XOCIALIZE.ajax = function(options){
 			}
 	});
 	
-}
+};
 
 XOCIALIZE.getPage = function(opts){
 	
@@ -168,9 +168,9 @@ XOCIALIZE.getPage = function(opts){
 		
 		$(settings.target).empty().html(data.content);
 		
-		if(typeof data.page != "undefined"){ currentPage = data.page; }
+		if(typeof data.page !== "undefined"){ window.currentPage = data.page; }
 		
-		if(typeof (window.currentState) == 'undefined') { window.currentState=settings.uri; } else { currentState=settings.uri }
+		if(typeof (window.currentState) === 'undefined') { window.currentState=settings.uri; } else { currentState=settings.uri }
 		
 		console.log(currentState);
 		
