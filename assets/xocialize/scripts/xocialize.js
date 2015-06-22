@@ -204,7 +204,7 @@ XOCIALIZE.logout = function(){
 	
 	$("#loginText").html("Login");
 
-	localStorage.removeItem(key);
+	localStorage.removeItem("accessToken");
 };
 
 //stolen from http://snippets.dzone.com/posts/show/2099
