@@ -55,7 +55,7 @@
 			</div><!--.hamburger-->
 		</div><!--.nav-menu-->
 
-		<div class="nav-user">
+		<div class="nav-user" id="userLayer" style="display:none;">
 			<div class="user">
 				<img src="./assets/globals/img/faces/tolga-ergin.jpg" alt="">
 				<span class="badge">3</span>
@@ -91,7 +91,7 @@
 				</div><!--.col-->
 				<div class="col-sm-6">
 					<ol class="breadcrumb">
-						<li id="breadcrumb_content"><a href="#login" class="active" data-toggle="modal" data-target="#loginModal"><i class="ion-power"></i> Login</a></li>
+						<li id="breadcrumb_content"><a href="#login" class="active" id="loginButton"><i class="ion-power"></i> <span id="loginText">Login</span></a></li>
 					</ol>
 				</div><!--.col-->
 			</div><!--.row-->
@@ -490,11 +490,22 @@
 				
 				access_token = localStorage.accessToken;
 				
+				XOCIALIZE.login();
 			}
+			
+			console.log(access_token);
 			
 			XOCIALIZE.init.run();
 			
 			Layout.init();
+		});
+	
+		$("#loginButton").on("click",function(event){
+			
+			event.preventDefault();
+			
+			$('#loginModal').modal("show");
+			
 		});
 	
 		$("#loginProcessButton").on("click",function(event){
@@ -516,6 +527,8 @@
 			options.callback = function(data){
 				
 				if(data.login === true){
+				
+					XOCIALIZE.login();
 				
 					$('#loginModal').modal('hide');
 					

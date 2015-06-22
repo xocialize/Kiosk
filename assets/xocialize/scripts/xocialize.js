@@ -188,6 +188,25 @@ XOCIALIZE.getPage = function(opts){
 	
 };
 
+XOCIALIZE.login = function(){
+
+	$("#userLayer").css({"display":"block"}):
+	
+	$("#loginText").html("Logout");
+	
+};
+
+XOCIALIZE.logout = function(){
+
+	access_token =null;
+	
+	$("#userLayer").css({"display":"none"}):
+	
+	$("#loginText").html("Login");
+
+	localStorage.removeItem(key)
+};
+
 //stolen from http://snippets.dzone.com/posts/show/2099
 XOCIALIZE.daysInMonth = function (iMonth, iYear)
 {
@@ -221,8 +240,8 @@ XOCIALIZE.timeAgo = function(date1, date2, granularity){
 		granularity = 5;
 	}
 	
-	(typeof(date1) == 'string') ? date1 = new Date(date1).getTime() / 1000 : date1 = new Date().getTime() / 1000;
-	(typeof(date2) == 'string') ? date2 = new Date(date2).getTime() / 1000 : date2 = new Date().getTime() / 1000;
+	(typeof(date1) === 'string') ? date1 = new Date(date1).getTime() / 1000 : date1 = new Date().getTime() / 1000;
+	(typeof(date2) === 'string') ? date2 = new Date(date2).getTime() / 1000 : date2 = new Date().getTime() / 1000;
 	
 	if(date1 > date2){
 		difference = date1 - date2;
@@ -249,13 +268,14 @@ XOCIALIZE.timeAgo = function(date1, date2, granularity){
 		}
 		
 		granularity--;
-		if(granularity == 0){
+		
+		if(granularity === 0){
 			break;
 		}	
 	}
 	
 	return output + ' ago';
-}
+};
 
 $.fn.clearForm = function(ezmode) {
   return this.each(function() {
