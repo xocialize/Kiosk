@@ -484,6 +484,14 @@
 			
 			console.log(hash);
 			
+			var access_token = null;
+			
+			if (localStorage.accessToken && localStorage.accessToken != '') {
+				
+				access_token = localStorage.accessToken;
+				
+			}
+			
 			XOCIALIZE.init.run();
 			
 			Layout.init();
@@ -506,13 +514,18 @@
 			options.params = "email="+$("#emailLogin").val()+"&password="+$("#passwordLogin").val();
 			
 			options.callback = function(data){
-				$('#loginModal').modal('hide');
+				
+				if(data.login === true){
+				
+					$('#loginModal').modal('hide');
+					
+					localStorage.accessToken = data.access_token;
+				}
+				
 			};
 			
 			XOCIALIZE.ajax(options);
 			
-			
-		
 		});
 		
 		$("#registerButton").on("click",function(event){
