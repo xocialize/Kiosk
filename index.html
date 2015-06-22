@@ -474,6 +474,9 @@
 	
 	<!-- BEGIN INITIALIZATION-->
 	<script>
+	
+		var access_token = null;
+		
 		$(document).ready(function () {
 			
 			var pathname = window.location.pathname;
@@ -484,7 +487,7 @@
 			
 			console.log(hash);
 			
-			var access_token = null;
+			
 			
 			if (localStorage.accessToken && localStorage.accessToken != '') {
 				
