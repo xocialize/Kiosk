@@ -190,7 +190,7 @@ XOCIALIZE.getPage = function(opts){
 
 XOCIALIZE.login = function(){
 
-	$("#userLayer").css({"display":"block"}):
+	$("#userLayer").css({"display":"block"});
 	
 	$("#loginText").html("Logout");
 	
@@ -200,11 +200,11 @@ XOCIALIZE.logout = function(){
 
 	access_token =null;
 	
-	$("#userLayer").css({"display":"none"}):
+	$("#userLayer").css({"display":"none"});
 	
 	$("#loginText").html("Login");
 
-	localStorage.removeItem(key)
+	localStorage.removeItem(key);
 };
 
 //stolen from http://snippets.dzone.com/posts/show/2099
