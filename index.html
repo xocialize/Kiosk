@@ -504,7 +504,14 @@
 			
 			event.preventDefault();
 			
-			$('#loginModal').modal("show");
+			if(access_token === null){
+				
+				$('#loginModal').modal("show");
+				
+			} else {
+				
+				XOCIALIZE.logout()
+			}
 			
 		});
 	
