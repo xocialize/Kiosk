@@ -312,6 +312,7 @@
 		DA3C6EBA1ADC2D3500F3AF00 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftUpdateCheck = 0700;
 				LastUpgradeCheck = 0630;
 				ORGANIZATIONNAME = "Dustin Nielson";
 				TargetAttributes = {
