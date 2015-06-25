@@ -34,9 +34,9 @@ class SettingsBeaconViewController: UIViewController {
             
             settings["iBeaconUUID"] = beaconUUID.text
             
-            if beaconMajor.text.toInt() < 65535 && beaconMajor.text.toInt() > 0 {
+            if Int(beaconMajor.text) < 65535 && Int(beaconMajor.text) > 0 {
             
-                settings["iBeaconMajor"] = beaconMajor.text.toInt()
+                settings["iBeaconMajor"] = Int(beaconMajor.text)
                 
             } else {
             
@@ -48,9 +48,9 @@ class SettingsBeaconViewController: UIViewController {
             
             }
             
-            if beaconMinor.text.toInt() < 65535 && beaconMinor.text.toInt() > 0 {
+            if Int(beaconMinor.text) < 65535 && Int(beaconMinor.text) > 0 {
                 
-                settings["iBeaconMinor"] = beaconMinor.text.toInt()
+                settings["iBeaconMinor"] = Int(beaconMinor.text)
                 
             } else {
                 
@@ -102,9 +102,9 @@ class SettingsBeaconViewController: UIViewController {
             
         } else {
         
-            var uuid = NSUUID().UUIDString
+            let uuid = NSUUID().UUIDString
             
-            var uuidString = uuid as String
+            let uuidString = uuid as String
             
             settings["systemUUID"] = uuidString
             
@@ -125,7 +125,7 @@ class SettingsBeaconViewController: UIViewController {
             
             beaconUUID.text = UUID
             
-            println(UUID)
+            print(UUID)
             
         }
         

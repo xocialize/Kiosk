@@ -54,7 +54,7 @@ class GitHubImportManager: NSObject {
             
         }
         
-        getContents(path: "kiosk", stage: "check_kiosk")
+        getContents("kiosk", stage: "check_kiosk")
         
     }
     
@@ -111,13 +111,13 @@ class GitHubImportManager: NSObject {
                         
                             if type == "dir" {
                             
-                                getContents(path: path, stage: "process_directory")
+                                getContents(path, stage: "process_directory")
                                 
                             } else if type == "file" {
                                 
                                 filesCount++
                             
-                                getContents(path: path, stage: "process_file")
+                                getContents(path, stage: "process_file")
                             
                             }
                         }
@@ -153,7 +153,7 @@ class GitHubImportManager: NSObject {
                             
                             if error != nil {
                                 
-                                println(error)
+                                print(error)
                                 
                             } else {
                                 
@@ -165,7 +165,7 @@ class GitHubImportManager: NSObject {
                         
                     }
                     
-                    println("data decode failed.  manually downloaded.")
+                    print("data decode failed.  manually downloaded.")
                     
                 }
         
@@ -204,7 +204,7 @@ class GitHubImportManager: NSObject {
         
         }
         
-        println(urlPath)
+        print(urlPath)
         
         let url = NSURL(string: urlPath)
         
@@ -216,18 +216,18 @@ class GitHubImportManager: NSObject {
                 
                 if let XRateLimit = httpResponse.allHeaderFields["X-RateLimit-Remaining"] as? NSString {
                     
-                    println("X-RateLimit-Remaining: \(XRateLimit)")
+                    print("X-RateLimit-Remaining: \(XRateLimit)")
                     
                 }
             }
             
             if error != nil {
                 
-                println(error)
+                print(error)
                 
             } else {
                 
-                var jsonObject: AnyObject = self.processJson(data)
+                let jsonObject: AnyObject = self.processJson(data)
                 
                 switch stage {
                     
@@ -250,7 +250,7 @@ class GitHubImportManager: NSObject {
                     break
                     
                 default:
-                        println(stage)
+                        print(stage)
                     
                 }
                 
@@ -268,7 +268,8 @@ class GitHubImportManager: NSObject {
         
         var completed: AnyObject?
         
-        if let jsonObject : AnyObject! = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers, error: &jsonError) {
+        do {
+            let jsonObject : AnyObject! = try NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers)
             
             if let directoryArray = jsonObject as? NSArray{
                 
@@ -286,11 +287,12 @@ class GitHubImportManager: NSObject {
                 
             }
             
-        } else {
+        } catch let error as NSError {
+            jsonError = error
             
             if let unwrappedError = jsonError {
                 
-                println("json error: \(unwrappedError)")
+                print("json error: \(unwrappedError)")
                 
             }
         }

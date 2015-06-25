@@ -92,7 +92,7 @@ class SettingsMenuViewController: UITableViewController {
             
         default:
             
-            println(settingItem)
+            print(settingItem)
         
         }
     

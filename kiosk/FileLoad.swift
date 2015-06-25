@@ -70,7 +70,7 @@ struct FileLoad {
         // Add requested save path
         loadPath += newPath
         
-        println(loadPath)
+        print(loadPath)
         // Save the file and see if it was successful
         let data = NSFileManager.defaultManager().contentsAtPath(loadPath)
         
@@ -111,9 +111,15 @@ struct FileLoad {
         loadPath += newPath
 
         var error:NSError?
-        println(loadPath)
+        print(loadPath)
         // Save the file and see if it was successful
-        let text:String? = String(contentsOfFile:loadPath, encoding:enc, error: &error)
+        let text:String?
+        do {
+            text = try String(contentsOfFile:loadPath, encoding:enc)
+        } catch let error1 as NSError {
+            error = error1
+            text = nil
+        }
         
         
         return text
@@ -148,9 +154,15 @@ struct FileLoad {
         loadPath += newPath
         
         var error:NSError?
-        println(loadPath)
+        print(loadPath)
         // Save the file and see if it was successful
-        var text:String? = String(contentsOfFile:loadPath, encoding:enc, error: &error)
+        var text:String?
+        do {
+            text = try String(contentsOfFile:loadPath, encoding:enc)
+        } catch let error1 as NSError {
+            error = error1
+            text = nil
+        }
         
         
         return text

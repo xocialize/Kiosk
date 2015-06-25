@@ -70,7 +70,13 @@ class Scanner: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
         
         var error : NSError?
         
-        let inputDevice = AVCaptureDeviceInput(device: captureDevice, error: &error)
+        let inputDevice: AVCaptureDeviceInput!
+        do {
+            inputDevice = try AVCaptureDeviceInput(device: captureDevice)
+        } catch let error1 as NSError {
+            error = error1
+            inputDevice = nil
+        }
         
         if let inp = inputDevice {
         
@@ -78,7 +84,7 @@ class Scanner: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
         
         } else {
         
-            println(error)
+            print(error)
         
         }
         
@@ -86,7 +92,7 @@ class Scanner: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
         
         self.view.autoresizesSubviews = true
         
-        self.view.autoresizingMask = UIViewAutoresizing.FlexibleWidth | UIViewAutoresizing.FlexibleHeight;
+        self.view.autoresizingMask = [UIViewAutoresizing.FlexibleWidth, UIViewAutoresizing.FlexibleHeight];
         
         self.view.bringSubviewToFront(cancelButton)
         
@@ -222,7 +228,7 @@ class Scanner: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
     func translatePoints(points : [AnyObject], fromView : UIView, toView: UIView) -> [CGPoint] {
         var translatedPoints : [CGPoint] = []
         for point in points {
-            var dict = point as! NSDictionary
+            let dict = point as! NSDictionary
             let x = CGFloat((dict.objectForKey("X") as! NSNumber).floatValue)
             let y = CGFloat((dict.objectForKey("Y")as! NSNumber).floatValue)
             let curr = CGPointMake(x,y)
@@ -313,7 +319,7 @@ class Scanner: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
         
         if (segue.identifier == "scannerToXocializeSegue") {
             
-            var destinationVC = segue!.destinationViewController as! SettingsXocializeViewController;
+            let destinationVC = segue!.destinationViewController as! SettingsXocializeViewController;
             
             if let bcString:String = barCodeString {
             

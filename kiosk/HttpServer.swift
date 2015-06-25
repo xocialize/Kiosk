@@ -13,31 +13,39 @@ class HttpServer
     var handlers: [(expression: NSRegularExpression, handler: Handler)] = []
     var acceptSocket: CInt = -1
     
-    let matchingOptions = NSMatchingOptions(0)
-    let expressionOptions = NSRegularExpressionOptions(0)
+    let matchingOptions = NSMatchingOptions(rawValue: 0)
+    let expressionOptions = NSRegularExpressionOptions(rawValue: 0)
     
     subscript (path: String) -> Handler? {
         get {
             return nil
         }
         set ( newValue ) {
-            if let regex = NSRegularExpression(pattern: path, options: expressionOptions, error: nil) {
+            do {
+                let regex = try NSRegularExpression(pattern: path, options: expressionOptions)
                 if let newHandler = newValue {
                     handlers.append(expression: regex, handler: newHandler)
                 }
+            } catch _ {
             }
         }
     }
         
-    func routes() -> [String] { return map(handlers, { $0.0.pattern }) }
+    func routes() -> [String] { return handlers.map({ $0.0.pattern }) }
     
-    func start(listenPort: in_port_t = 8080, error: NSErrorPointer = nil) -> Bool {
+    func start(listenPort: in_port_t = 8080) throws {
+        var error: NSError! = NSError(domain: "Migrator", code: 0, userInfo: nil)
         releaseAcceptSocket()
-        if let socket = Socket.tcpForListen(port: listenPort, error: error) {
+        do {
+            let socket = try Socket.tcpForListen(listenPort)
             acceptSocket = socket
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), {
+                
+                
+                
                 while let socket = Socket.acceptClientSocket(self.acceptSocket) {
-                    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), {
+                    
+                    try dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), {
                         let parser = HttpParser()
                         while let request = parser.nextHttpRequest(socket) {
                             let keepAlive = parser.supportsKeepAlive(request.headers)
@@ -53,15 +61,21 @@ class HttpServer
                         Socket.release(socket)
                     })
                 }
+                
+                
+                
+                
                 self.releaseAcceptSocket()
             })
-            return true
+            return
+        } catch var error1 as NSError {
+            error = error1
         }
-        return false
+        throw error
     }
     
     func findHandler(url:String) -> (NSRegularExpression, Handler)? {
-        return filter(self.handlers, {
+        return self.handlers.filter({
             $0.0.numberOfMatchesInString(url, options: self.matchingOptions, range: HttpServer.asciiRange(url)) > 0
         }).first
     }
@@ -85,35 +99,56 @@ class HttpServer
     
     class func respond(socket: CInt, response: HttpResponse, keepAlive: Bool) {
         
-        Socket.writeUTF8(socket, string: "HTTP/1.1 \(response.statusCode()) \(response.reasonPhrase())\r\n")
+        do {
+            try Socket.writeUTF8(socket, string: "HTTP/1.1 \(response.statusCode()) \(response.reasonPhrase())\r\n")
+        } catch _ {
+        }
         
         if let body = response.body() {
         
-            Socket.writeASCII(socket, string: "Content-Length: \(body.length)\r\n")
+            do {
+                try Socket.writeASCII(socket, string: "Content-Length: \(body.length)\r\n")
+            } catch _ {
+            }
         
         } else {
         
-            Socket.writeASCII(socket, string: "Content-Length: 0\r\n")
+            do {
+                try Socket.writeASCII(socket, string: "Content-Length: 0\r\n")
+            } catch _ {
+            }
         
         }
         
         if keepAlive {
         
-            Socket.writeASCII(socket, string: "Connection: keep-alive\r\n")
+            do {
+                try Socket.writeASCII(socket, string: "Connection: keep-alive\r\n")
+            } catch _ {
+            }
         
         }
         
         for (name, value) in response.headers() {
         
-            Socket.writeASCII(socket, string: "\(name): \(value)\r\n")
+            do {
+                try Socket.writeASCII(socket, string: "\(name): \(value)\r\n")
+            } catch _ {
+            }
         
         }
         
-        Socket.writeASCII(socket, string: "\r\n")
+        do {
+            try Socket.writeASCII(socket, string: "\r\n")
+        } catch _ {
+        }
         
         if let body = response.body() {
         
-            Socket.writeData(socket, data: body)
+            do {
+                try Socket.writeData(socket, data: body)
+            } catch _ {
+            }
         
         }
     }

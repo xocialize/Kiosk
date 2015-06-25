@@ -16,7 +16,7 @@ func KioskServer(publicDir: String?) -> HttpServer {
     
     server["/"] = { request in
         
-        var path = "kiosk\(request.url)"
+        let path = "kiosk\(request.url)"
         
         let newPath = path.stringByReplacingOccurrencesOfString("/", withString: "_")
         
@@ -36,7 +36,7 @@ func KioskServer(publicDir: String?) -> HttpServer {
         
         } else {
             
-            var folderPath = NSSearchPathForDirectoriesInDomains(.LibraryDirectory, .UserDomainMask, true)[0] as! String
+            var folderPath = NSSearchPathForDirectoriesInDomains(.LibraryDirectory, .UserDomainMask, true)[0] as String
             
             let fileManager = NSFileManager.defaultManager()
             
@@ -56,7 +56,7 @@ func KioskServer(publicDir: String?) -> HttpServer {
             
             if NSFileManager.defaultManager().fileExistsAtPath(folderPath){
                 
-                var file:NSData = FileLoad.loadData(filePath, directory: NSSearchPathDirectory.LibraryDirectory, subdirectory: "webFiles")!
+                let file:NSData = FileLoad.loadData(filePath, directory: NSSearchPathDirectory.LibraryDirectory, subdirectory: "webFiles")!
                 
                 return .RAW(200, file)
                 

@@ -27,13 +27,15 @@ class XocializeManager: NSObject {
         
         if NSJSONSerialization.isValidJSONObject(value) {
         
-            if let data = NSJSONSerialization.dataWithJSONObject(value, options: options, error: nil) {
+            do {
+                let data = try NSJSONSerialization.dataWithJSONObject(value, options: options)
             
                 if let string = NSString(data: data, encoding: NSUTF8StringEncoding) {
                 
                     return string as String
                 
                 }
+            } catch _ {
             }
         }
         
@@ -44,7 +46,7 @@ class XocializeManager: NSObject {
         
         if let data = jsonString.dataUsingEncoding(NSUTF8StringEncoding) {
         
-            if let array = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions(0), error: nil)  as? [AnyObject] {
+            if let array = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions(rawValue: 0))  as? [AnyObject] {
             
                 return array
             
@@ -58,7 +60,7 @@ class XocializeManager: NSObject {
         
         if let data = jsonString.dataUsingEncoding(NSUTF8StringEncoding) {
         
-            if let dictionary = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions(0), error: nil)  as? [String: AnyObject] {
+            if let dictionary = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions(rawValue: 0))  as? [String: AnyObject] {
                 
                 return dictionary
             
@@ -88,18 +90,18 @@ class XocializeManager: NSObject {
                 
                     if let XRateLimit = httpResponse.allHeaderFields["X-RateLimit-Remaining"] as? NSString {
                     
-                        println("X-RateLimit-Remaining: \(XRateLimit)")
+                        print("X-RateLimit-Remaining: \(XRateLimit)")
                     
                     }
                 }
             
                 if error != nil {
                 
-                    println(error)
+                    print(error)
                 
                 } else {
                 
-                    var jsonData: AnyObject = self.processJson(data)
+                    let jsonData: AnyObject = self.processJson(data)
                     
                     if let data = jsonData["success"] as? Int where data == 1 {
                         
@@ -122,29 +124,29 @@ class XocializeManager: NSObject {
                                         break
                                         
                                         default:
-                                            println("Not a valid command")
+                                            print("Not a valid command")
                                         break
                                     
                                     }
                                 
                                 } else {
                                 
-                                    println("Not a valid message")
+                                    print("Not a valid message")
                                     
                                 }
                             }
                             
                         } else {
                             
-                            println("unable to convert messages")
+                            print("unable to convert messages")
                         
-                            println(jsonData["messages"])
+                            print(jsonData["messages"])
                         
                         }
                         
                     } else {
                     
-                        println(jsonData)
+                        print(jsonData)
                         
                     }
                     
@@ -157,7 +159,7 @@ class XocializeManager: NSObject {
         
             task.resume()
             
-        } else { println("messages url not defined") }
+        } else { print("messages url not defined") }
     
     }
     
@@ -165,11 +167,11 @@ class XocializeManager: NSObject {
         
         settings = dm.getSettings()
         
-        println(settings)
+        print(settings)
     
         for (key,value) in data {
             
-            var keyText = "\(key)"
+            let keyText = "\(key)"
             
             switch(keyText){
             
@@ -231,7 +233,7 @@ class XocializeManager: NSObject {
                 
                     if let iBeaconUUID = data[keyText] as? String {
                         
-                        var uuid = NSUUID(UUIDString: iBeaconUUID)
+                        let uuid = NSUUID(UUIDString: iBeaconUUID)
                         
                         var doSegue:Bool = true
                         
@@ -246,9 +248,9 @@ class XocializeManager: NSObject {
                 
                 default:
                     
-                    println("Not a valid setting")
+                    print("Not a valid setting")
                     
-                    println("\(key) \(data[keyText])")
+                    print("\(key) \(data[keyText])")
                 
                 break
             
@@ -268,7 +270,8 @@ class XocializeManager: NSObject {
         
         var completed: AnyObject?
         
-        if let jsonObject : AnyObject! = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers, error: &jsonError) {
+        do {
+            let jsonObject : AnyObject! = try NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers)
             
             if let directoryArray = jsonObject as? NSArray{
                 
@@ -280,11 +283,12 @@ class XocializeManager: NSObject {
                 
             }
             
-        } else {
+        } catch let error as NSError {
+            jsonError = error
             
             if let unwrappedError = jsonError {
                 
-                println("json error: \(unwrappedError)")
+                print("json error: \(unwrappedError)")
                 
             }
         }
@@ -297,9 +301,9 @@ class XocializeManager: NSObject {
     
         settings = dm.getSettings()
         
-        var settingsString = JSONStringify(settings, prettyPrinted: false)
+        let settingsString = JSONStringify(settings, prettyPrinted: false)
         
-        println("Settings: "+settingsString)
+        print("Settings: "+settingsString)
         
         if let deviceUUID: String = settings["systemUUID"] as? String,
             let authUUID: String = settings["auth_uuid"] as? String,
@@ -319,7 +323,7 @@ class XocializeManager: NSObject {
                 
         } else {
         
-            println("not ready to send settings")
+            print("not ready to send settings")
         
         }
     
@@ -335,7 +339,12 @@ class XocializeManager: NSObject {
         
         var err: NSError?
         
-        request.HTTPBody = NSJSONSerialization.dataWithJSONObject(params, options: nil, error: &err)
+        do {
+            request.HTTPBody = try NSJSONSerialization.dataWithJSONObject(params, options: [])
+        } catch var error as NSError {
+            err = error
+            request.HTTPBody = nil
+        }
         
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         
@@ -343,24 +352,24 @@ class XocializeManager: NSObject {
         
         var task = session.dataTaskWithRequest(request, completionHandler: {data, response, error -> Void in
         
-            println("Response: \(response)")
+            print("Response: \(response)")
             
             var strData = NSString(data: data, encoding: NSUTF8StringEncoding)
             
-            println("Body: \(strData)")
+            print("Body: \(strData)")
             
             var err: NSError?
             
-            var json = NSJSONSerialization.JSONObjectWithData(data, options: .MutableLeaves, error: &err) as? NSDictionary
+            var json = NSJSONSerialization.JSONObjectWithData(data, options: .MutableLeaves) as? NSDictionary
             
             // Did the JSONObjectWithData constructor return an error? If so, log the error to the console
             if(err != nil) {
             
-                println(err!.localizedDescription)
+                print(err!.localizedDescription)
                 
                 let jsonStr = NSString(data: data, encoding: NSUTF8StringEncoding)
                 
-                println("Error could not parse JSON: '\(jsonStr)'")
+                print("Error could not parse JSON: '\(jsonStr)'")
             } else {
               
                 // The JSONObjectWithData constructor didn't return an error. But, we should still
@@ -371,7 +380,7 @@ class XocializeManager: NSObject {
                     // Okay, the parsedJSON is here, let's get the value for 'success' out of it
                     var success = parseJSON["success"] as? Int
                     
-                    println("Succes: \(success)")
+                    print("Succes: \(success)")
                 
                 } else {
                   
@@ -379,7 +388,7 @@ class XocializeManager: NSObject {
                     
                     let jsonStr = NSString(data: data, encoding: NSUTF8StringEncoding)
                     
-                    println("Error could not parse JSON: \(jsonStr)")
+                    print("Error could not parse JSON: \(jsonStr)")
                 }
             }
         })

@@ -22,19 +22,24 @@ class DataManager: NSObject, NSFileManagerDelegate {
     
     func getSettings() -> Dictionary<String,AnyObject> {
     
-        var context:NSManagedObjectContext = appDel.managedObjectContext!
+        let context:NSManagedObjectContext = appDel.managedObjectContext!
         
-        var request = NSFetchRequest(entityName: "Settings")
+        let request = NSFetchRequest(entityName: "Settings")
         
         request.returnsObjectsAsFaults = false
         
-        var results = context.executeFetchRequest(request, error: nil)
+        var results: [AnyObject]?
+        do {
+            results = try context.executeFetchRequest(request)
+        } catch _ {
+            results = nil
+        }
         
         if results!.count > 0 {
             
             for result: AnyObject in results! {
                 
-                var xset = result.valueForKey("settingsData") as? NSData
+                let xset = result.valueForKey("settingsData") as? NSData
                 
                let settings:Dictionary<String,AnyObject> = NSKeyedUnarchiver.unarchiveObjectWithData(xset!)! as! Dictionary
                     
@@ -48,11 +53,11 @@ class DataManager: NSObject, NSFileManagerDelegate {
     
     func checkForIndex() -> Bool{
     
-        var folderPath = NSSearchPathForDirectoriesInDomains(.LibraryDirectory, .UserDomainMask, true)[0] as! String
+        var folderPath = NSSearchPathForDirectoriesInDomains(.LibraryDirectory, .UserDomainMask, true)[0] as String
         
         let fileManager = NSFileManager.defaultManager()
         
-        var filePath: String = "kiosk_index.html"
+        let filePath: String = "kiosk_index.html"
         
         folderPath = folderPath + "/webFiles/" + filePath
         
@@ -70,13 +75,18 @@ class DataManager: NSObject, NSFileManagerDelegate {
         
         var settings:Dictionary<String,AnyObject> = dict
         
-        var context:NSManagedObjectContext = appDel.managedObjectContext!
+        let context:NSManagedObjectContext = appDel.managedObjectContext!
         
-        var request = NSFetchRequest(entityName: "Settings")
+        let request = NSFetchRequest(entityName: "Settings")
         
         request.returnsObjectsAsFaults = false
         
-        var results = context.executeFetchRequest(request, error: nil)
+        var results: [AnyObject]?
+        do {
+            results = try context.executeFetchRequest(request)
+        } catch _ {
+            results = nil
+        }
         
         if results!.count > 0 {
             
@@ -92,33 +102,36 @@ class DataManager: NSObject, NSFileManagerDelegate {
             
         } else {
             
-            var uuid = NSUUID().UUIDString
+            let uuid = NSUUID().UUIDString
             
-            var uuidString = uuid as String
+            let uuidString = uuid as String
             
             settings["systemUUID"] = uuidString
             
             let data : NSData = NSKeyedArchiver.archivedDataWithRootObject(settings)
             
-            var newPref = NSEntityDescription.insertNewObjectForEntityForName("Settings", inManagedObjectContext: context) as! NSManagedObject
+            let newPref = NSEntityDescription.insertNewObjectForEntityForName("Settings", inManagedObjectContext: context) as NSManagedObject
             
             newPref.setValue(data, forKey: "settingsData")
         
         }
         
-        context.save(nil)
+        do {
+            try context.save()
+        } catch _ {
+        }
         
         if settings["xocializeEnabled"] as? Bool == true {
             
             if reachability.isReachable() {
                 
-                var xm = XocializeManager()
+                let xm = XocializeManager()
                 
                 xm.settingsToXocialize()
             
             } else {
             
-                println("Can't send settings to Xocialize")
+                print("Can't send settings to Xocialize")
             }
         }
     }
@@ -128,7 +141,7 @@ class DataManager: NSObject, NSFileManagerDelegate {
     
     func showLibraryFiles(){
     
-        var folderPath = NSSearchPathForDirectoriesInDomains(.LibraryDirectory, .UserDomainMask, true)[0] as! String
+        let folderPath = NSSearchPathForDirectoriesInDomains(.LibraryDirectory, .UserDomainMask, true)[0] as String
         
         let fileManager = NSFileManager.defaultManager()
         
@@ -139,7 +152,7 @@ class DataManager: NSObject, NSFileManagerDelegate {
             if element != "" {
                 
                 let filePath = folderPath + "/" + element
-                println(filePath)
+                print(filePath)
                 
             }
         }
@@ -148,7 +161,7 @@ class DataManager: NSObject, NSFileManagerDelegate {
     
     func clearLibraryDirectory(){
         
-        var folderPath = NSSearchPathForDirectoriesInDomains(.LibraryDirectory, .UserDomainMask, true)[0] as! String
+        var folderPath = NSSearchPathForDirectoriesInDomains(.LibraryDirectory, .UserDomainMask, true)[0] as String
         
         let fileManager = NSFileManager.defaultManager()
         
@@ -156,7 +169,10 @@ class DataManager: NSObject, NSFileManagerDelegate {
         
         if NSFileManager.defaultManager().fileExistsAtPath(folderPath){
             
-            fileManager.removeItemAtPath(folderPath, error: nil)
+            do {
+                try fileManager.removeItemAtPath(folderPath)
+            } catch _ {
+            }
             
         }
         
@@ -168,7 +184,7 @@ class DataManager: NSObject, NSFileManagerDelegate {
         
         FileSave.saveData(file, directory:NSSearchPathDirectory.LibraryDirectory, path: newPath, subdirectory: "webFiles")
         
-        var paths = NSSearchPathForDirectoriesInDomains(.LibraryDirectory, .UserDomainMask, true)[0] as! String
+        var paths = NSSearchPathForDirectoriesInDomains(.LibraryDirectory, .UserDomainMask, true)[0] as String
         
         // Don't backup these files to iCloud
         
@@ -176,13 +192,14 @@ class DataManager: NSObject, NSFileManagerDelegate {
     
         var num:NSNumber = 1
         
-        if localUrl.setResourceValue(num, forKey: "NSURLIsExcludedFromBackupKey", error: nil) {
+        do {
+            try localUrl.setResourceValue(num, forKey: "NSURLIsExcludedFromBackupKey")
         
-            println("Backup Disabled")
+            print("Backup Disabled")
             
-        } else {
+        } catch _ {
         
-            println("Backup Enabled")
+            print("Backup Enabled")
         
         }
         

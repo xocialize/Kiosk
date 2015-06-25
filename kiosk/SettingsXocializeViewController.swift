@@ -62,11 +62,11 @@ class SettingsXocializeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        println("Barcode: "+barCodeString)
+        print("Barcode: "+barCodeString)
         
         settings = dm.getSettings()
         
-        println(settings)
+        print(settings)
         
         if barCodeString != "" {
             
@@ -76,7 +76,7 @@ class SettingsXocializeViewController: UIViewController {
             
                 if  myArray[0] as String == "xocialize_add_device" {
                     
-                    println("Is a valid device add")
+                    print("Is a valid device add")
                     
                     enableSwitch.setOn(true, animated:false)
                     
@@ -125,7 +125,12 @@ class SettingsXocializeViewController: UIViewController {
         
         var err: NSError?
         
-        request.HTTPBody = NSJSONSerialization.dataWithJSONObject(params, options: nil, error: &err)
+        do {
+            request.HTTPBody = try NSJSONSerialization.dataWithJSONObject(params, options: [])
+        } catch var error as NSError {
+            err = error
+            request.HTTPBody = nil
+        }
         
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         
@@ -133,23 +138,23 @@ class SettingsXocializeViewController: UIViewController {
         
         var task = session.dataTaskWithRequest(request, completionHandler: {data, response, error -> Void in
             
-            println("Response: \(response)")
+            print("Response: \(response)")
             
             var strData = NSString(data: data, encoding: NSUTF8StringEncoding)
             
-            println("Body: \(strData)")
+            print("Body: \(strData)")
             
             var err: NSError?
             
-            var json = NSJSONSerialization.JSONObjectWithData(data, options: .MutableLeaves, error: &err) as? NSDictionary
+            var json = NSJSONSerialization.JSONObjectWithData(data, options: .MutableLeaves) as? NSDictionary
             
             if(err != nil) {
                 
-                println(err!.localizedDescription)
+                print(err!.localizedDescription)
                 
                 let jsonStr = NSString(data: data, encoding: NSUTF8StringEncoding)
                 
-                println("Error could not parse JSON: '\(jsonStr)'")
+                print("Error could not parse JSON: '\(jsonStr)'")
             } else {
                 
                if let parseJSON = json {
@@ -180,16 +185,16 @@ class SettingsXocializeViewController: UIViewController {
                             
                             self.dm.saveSettings(self.settings)
                             
-                        } else { println("couldn't decode device_auth_uuid") }
+                        } else { print("couldn't decode device_auth_uuid") }
                     
-                        println("Success: \(success)")
+                        print("Success: \(success)")
                         
                     }
                 } else {
                     
                     let jsonStr = NSString(data: data, encoding: NSUTF8StringEncoding)
                     
-                    println("Error could not parse JSON: \(jsonStr)")
+                    print("Error could not parse JSON: \(jsonStr)")
                 }
             }
         })
@@ -213,7 +218,7 @@ class SettingsXocializeViewController: UIViewController {
             
             } else {
             
-                println(settings)
+                print(settings)
             
             }
         
@@ -229,13 +234,13 @@ class SettingsXocializeViewController: UIViewController {
         
         if enableSwitch.on {
             
-            println("The Switch is On")
+            print("The Switch is On")
             
             if let authUUID = settings["auth_uuid"] as? String {
                 
                 settings["xocializeEnabled"] = true
             
-                println(authUUID)
+                print(authUUID)
             
             } else {
             
@@ -245,7 +250,7 @@ class SettingsXocializeViewController: UIViewController {
         
         } else {
         
-            println("The Switch is Off")
+            print("The Switch is Off")
             
             settings["xocializeEnabled"] = false
         

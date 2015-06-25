@@ -47,10 +47,10 @@ class LocationManager: NSObject, CLLocationManagerDelegate, CBPeripheralManagerD
             switch CLLocationManager.authorizationStatus() {
                 case .AuthorizedAlways:
                     // Yes, always
-                    println("LocationManager: Authorized")
+                    print("LocationManager: Authorized")
                 case .AuthorizedWhenInUse:
                     // Yes, only when our app is in use
-                    println("LocationManager: Authorized")
+                    print("LocationManager: Authorized")
                 case .Denied:
                     // NO
                     displayAlertWithTitle("Not Determined", message: "Location services are not allowed for this app")
@@ -86,7 +86,7 @@ class LocationManager: NSObject, CLLocationManagerDelegate, CBPeripheralManagerD
                     locationManager.startUpdatingLocation()
             
             default:
-                    println("Location Manager: Not started")
+                    print("Location Manager: Not started")
             }
         
         } else {
@@ -100,16 +100,16 @@ class LocationManager: NSObject, CLLocationManagerDelegate, CBPeripheralManagerD
         locationManager.stopUpdatingLocation()
     }
     
-    func locationManager(manager: CLLocationManager!, didFailWithError error: NSError!) {
+    func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
         
         locationManager.stopUpdatingLocation()
         
         if error != nil {
-            println(error)
+            print(error)
         }
     }
     
-    func locationManager(manager: CLLocationManager!, didUpdateLocations locations: [AnyObject]!) {
+    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [AnyObject]) {
         
         currentLocation = locations.last as? CLLocation
         
@@ -117,7 +117,7 @@ class LocationManager: NSObject, CLLocationManagerDelegate, CBPeripheralManagerD
             
             if error != nil {
             
-                return println("Error: \(error)")
+                return print("Error: \(error)")
             
             } else {
             
@@ -133,9 +133,9 @@ class LocationManager: NSObject, CLLocationManagerDelegate, CBPeripheralManagerD
         
         let beaconIdentifier = "kiosk"
         
-        var majorValue = UInt16(major)
+        let majorValue = UInt16(major)
         
-        var minorValue = UInt16(minor)
+        let minorValue = UInt16(minor)
         
         let beaconRegion:CLBeaconRegion = CLBeaconRegion(proximityUUID: beaconId, major: majorValue as CLBeaconMajorValue, minor: minorValue as CLBeaconMinorValue, identifier: beaconIdentifier)
         
@@ -167,21 +167,21 @@ class LocationManager: NSObject, CLLocationManagerDelegate, CBPeripheralManagerD
     
     }
     
-    func peripheralManagerDidUpdateState(peripheral: CBPeripheralManager!) {
+    func peripheralManagerDidUpdateState(peripheral: CBPeripheralManager) {
         
         if(peripheral.state == CBPeripheralManagerState.PoweredOn) {
         
-            println("powered on")
+            print("powered on")
             self.peripheralManager.startAdvertising(beaconData as AnyObject as! [NSObject : AnyObject])
             
         } else if(peripheral.state == CBPeripheralManagerState.PoweredOff) {
             
-            println("powered off")
+            print("powered off")
             self.peripheralManager.stopAdvertising()
         
         } else {
         
-            println("something else changed")
+            print("something else changed")
         
         }
     }

@@ -55,11 +55,11 @@ class WebViewController: UIViewController, WKScriptMessageHandler, WKNavigationD
         
         self.view.autoresizesSubviews = true
         
-        self.view.autoresizingMask = UIViewAutoresizing.FlexibleWidth | UIViewAutoresizing.FlexibleHeight;
+        self.view.autoresizingMask = [UIViewAutoresizing.FlexibleWidth, UIViewAutoresizing.FlexibleHeight];
         
-        var contentController = WKUserContentController();
+        let contentController = WKUserContentController();
         
-        var userScript = WKUserScript(
+        let userScript = WKUserScript(
             source: "console.log(\"test\")",
             injectionTime: WKUserScriptInjectionTime.AtDocumentEnd,
             forMainFrameOnly: true
@@ -67,7 +67,7 @@ class WebViewController: UIViewController, WKScriptMessageHandler, WKNavigationD
         
         contentController.addUserScript(userScript)
         
-        var theConfiguration = WKWebViewConfiguration()
+        let theConfiguration = WKWebViewConfiguration()
         
         theConfiguration.userContentController = contentController
         
@@ -81,9 +81,9 @@ class WebViewController: UIViewController, WKScriptMessageHandler, WKNavigationD
         
         view.backgroundColor = UIColor.redColor()
         
-        theWebView!.setTranslatesAutoresizingMaskIntoConstraints(true)
+        theWebView!.translatesAutoresizingMaskIntoConstraints = true
         
-        theWebView!.autoresizingMask = UIViewAutoresizing.FlexibleWidth | UIViewAutoresizing.FlexibleHeight
+        theWebView!.autoresizingMask = [UIViewAutoresizing.FlexibleWidth, UIViewAutoresizing.FlexibleHeight]
         
         self.view.addSubview(theWebView!)
         
@@ -103,7 +103,7 @@ class WebViewController: UIViewController, WKScriptMessageHandler, WKNavigationD
     
     func startBeacon(){
     
-        var uuid = NSUUID(UUIDString: (settings["iBeaconUUID"] as? String)!)
+        let uuid = NSUUID(UUIDString: (settings["iBeaconUUID"] as? String)!)
         
         if uuid != nil {
             
@@ -155,7 +155,7 @@ class WebViewController: UIViewController, WKScriptMessageHandler, WKNavigationD
     
     func userContentController(userContentController: WKUserContentController, didReceiveScriptMessage message: WKScriptMessage){
         
-        println("got message: \(message.body)")
+        print("got message: \(message.body)")
     
     }
     
@@ -174,7 +174,7 @@ class WebViewController: UIViewController, WKScriptMessageHandler, WKNavigationD
         return true
     }
     
-    override func supportedInterfaceOrientations() -> Int {
+    override func supportedInterfaceOrientations() -> UIInterfaceOrientationMask {
         
         if let orientationInt = settings["orientation"] as? Int {
             
@@ -186,11 +186,11 @@ class WebViewController: UIViewController, WKScriptMessageHandler, WKNavigationD
         
         case 1:
             
-            return Int(UIInterfaceOrientationMask.Landscape.rawValue)
+            return UIInterfaceOrientationMask.Landscape
             
         case 2:
             
-            return Int(UIInterfaceOrientationMask.Portrait.rawValue)
+            return UIInterfaceOrientationMask.Portrait
             
         default:
             
@@ -206,7 +206,7 @@ class WebViewController: UIViewController, WKScriptMessageHandler, WKNavigationD
     // MARK: WKUIDelegate methods
     func webView(webView: WKWebView, runJavaScriptAlertPanelWithMessage message: String, initiatedByFrame frame: WKFrameInfo, completionHandler: (() -> Void)) {
         
-        println("webView:\(webView) runJavaScriptAlertPanelWithMessage:\(message) initiatedByFrame:\(frame) completionHandler:\(completionHandler)")
+        print("webView:\(webView) runJavaScriptAlertPanelWithMessage:\(message) initiatedByFrame:\(frame) completionHandler:\(completionHandler)")
         
         let alertController = UIAlertController(title: frame.request.URL!.host, message: message, preferredStyle: .Alert)
         
@@ -220,7 +220,7 @@ class WebViewController: UIViewController, WKScriptMessageHandler, WKNavigationD
     
     func webView(webView: WKWebView, runJavaScriptConfirmPanelWithMessage message: String, initiatedByFrame frame: WKFrameInfo, completionHandler: ((Bool) -> Void)) {
         
-        println("webView:\(webView) runJavaScriptConfirmPanelWithMessage:\(message) initiatedByFrame:\(frame) completionHandler:\(completionHandler)")
+        print("webView:\(webView) runJavaScriptConfirmPanelWithMessage:\(message) initiatedByFrame:\(frame) completionHandler:\(completionHandler)")
         
         let alertController = UIAlertController(title: frame.request.URL!.host, message: message, preferredStyle: .Alert)
         
@@ -235,9 +235,9 @@ class WebViewController: UIViewController, WKScriptMessageHandler, WKNavigationD
         self.presentViewController(alertController, animated: true, completion: nil)
     }
     
-    func webView(webView: WKWebView, runJavaScriptTextInputPanelWithPrompt prompt: String, defaultText: String?, initiatedByFrame frame: WKFrameInfo, completionHandler: ((String!) -> Void)) {
+    func webView(webView: WKWebView, runJavaScriptTextInputPanelWithPrompt prompt: String, defaultText: String?, initiatedByFrame frame: WKFrameInfo, completionHandler: ((String?) -> Void)) {
         
-        println("webView:\(webView) runJavaScriptTextInputPanelWithPrompt:\(prompt) defaultText:\(defaultText) initiatedByFrame:\(frame) completionHandler:\(completionHandler)")
+        print("webView:\(webView) runJavaScriptTextInputPanelWithPrompt:\(prompt) defaultText:\(defaultText) initiatedByFrame:\(frame) completionHandler:\(completionHandler)")
         
         let alertController = UIAlertController(title: frame.request.URL!.host, message: prompt, preferredStyle: .Alert)
         

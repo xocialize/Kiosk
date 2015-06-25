@@ -162,7 +162,7 @@ class SettingsGitHubViewController: UIViewController {
     
     func finalizeProcessing(){
     
-        println(gp.working)
+        print(gp.working)
         
         if gp.working == true {
         
@@ -170,7 +170,7 @@ class SettingsGitHubViewController: UIViewController {
         
         } else {
         
-            println("Finished Processing")
+            print("Finished Processing")
             
             self.view.hideToastActivity()
             

@@ -27,9 +27,9 @@ public struct FileSave {
         // Add requested save path
         savePath += newPath
         
-        println(savePath)
+        print(savePath)
         // Save the file and see if it was successful
-        var ok:Bool = NSFileManager.defaultManager().createFileAtPath(savePath,contents:fileData, attributes:nil)
+        let ok:Bool = NSFileManager.defaultManager().createFileAtPath(savePath,contents:fileData, attributes:nil)
         
         // Return status of file save
         return ok
@@ -73,8 +73,8 @@ public struct FileSave {
     
   public static func saveString(fileString:String, directory:NSSearchPathDirectory, path:String, subdirectory:String) -> Bool {
         // Remove unnecessary slash if need
-        var newPath = self.stripSlashIfNeeded(path)
-        var newSubdirectory:String? = self.stripSlashIfNeeded(subdirectory)
+        let newPath = self.stripSlashIfNeeded(path)
+        let newSubdirectory:String? = self.stripSlashIfNeeded(subdirectory)
         
         // Create generic beginning to file save path
         var savePath = ""
@@ -94,9 +94,16 @@ public struct FileSave {
     
         var error:NSError?
         // Save the file and see if it was successful
-        var ok:Bool = fileString.writeToFile(savePath, atomically:false, encoding:NSUTF8StringEncoding, error:&error)
+        var ok:Bool
+        do {
+            try fileString.writeToFile(savePath, atomically:false, encoding:NSUTF8StringEncoding)
+            ok = true
+        } catch let error1 as NSError {
+            error = error1
+            ok = false
+        }
         
-        if (error != nil) {println(error)}
+        if (error != nil) {print(error)}
         
         // Return status of file save
         return ok
@@ -104,8 +111,8 @@ public struct FileSave {
     }
    public static func saveStringToTemporaryDirectory(fileString:String, path:String, subdirectory:String) -> Bool {
         
-        var newPath = self.stripSlashIfNeeded(path)
-        var newSubdirectory:String? = self.stripSlashIfNeeded(subdirectory)
+        let newPath = self.stripSlashIfNeeded(path)
+        let newSubdirectory:String? = self.stripSlashIfNeeded(subdirectory)
         
         // Create generic beginning to file save path
         var savePath = ""
@@ -125,10 +132,17 @@ public struct FileSave {
         
         var error:NSError?
         // Save the file and see if it was successful
-        var ok:Bool = fileString.writeToFile(savePath, atomically:false, encoding:NSUTF8StringEncoding, error:&error)
+        var ok:Bool
+        do {
+            try fileString.writeToFile(savePath, atomically:false, encoding:NSUTF8StringEncoding)
+            ok = true
+        } catch let error1 as NSError {
+            error = error1
+            ok = false
+        }
         
         if (error != nil) {
-            println(error)
+            print(error)
         }
         
         // Return status of file save
@@ -184,7 +198,7 @@ public struct FileSave {
     private static func createSubDirectory(subdirectoryPath:String) -> Bool {
         var error:NSError?
         var isDir:ObjCBool=false;
-        var exists:Bool = NSFileManager.defaultManager().fileExistsAtPath(subdirectoryPath, isDirectory:&isDir)
+        let exists:Bool = NSFileManager.defaultManager().fileExistsAtPath(subdirectoryPath, isDirectory:&isDir)
         if (exists) {
             /* a file of the same name exists, we don't care about this so won't do anything */
             if isDir {
@@ -192,9 +206,16 @@ public struct FileSave {
                 return true;
             }
         }
-        var success:Bool = NSFileManager.defaultManager().createDirectoryAtPath(subdirectoryPath, withIntermediateDirectories:true, attributes:nil, error:&error)
+        var success:Bool
+        do {
+            try NSFileManager.defaultManager().createDirectoryAtPath(subdirectoryPath, withIntermediateDirectories:true, attributes:nil)
+            success = true
+        } catch let error1 as NSError {
+            error = error1
+            success = false
+        }
         
-        if (error != nil) { println(error) }
+        if (error != nil) { print(error) }
         
         return success;
     }

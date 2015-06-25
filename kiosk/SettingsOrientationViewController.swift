@@ -20,7 +20,7 @@ class SettingsOrientationViewController: UIViewController, UIPickerViewDelegate 
     
     @IBAction func updateButton(sender: AnyObject) {
         
-        if var selected = pickerView.selectedRowInComponent(0) as Int? {
+        if let selected = pickerView.selectedRowInComponent(0) as Int? {
             
             settings["orientation"] = selected
             
@@ -70,7 +70,7 @@ class SettingsOrientationViewController: UIViewController, UIPickerViewDelegate 
     
     func pickerView(pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
         
-        var attributedString = NSAttributedString(string: orientations[row], attributes: [NSForegroundColorAttributeName : UIColor.whiteColor()])
+        let attributedString = NSAttributedString(string: orientations[row], attributes: [NSForegroundColorAttributeName : UIColor.whiteColor()])
         
         return attributedString
     }

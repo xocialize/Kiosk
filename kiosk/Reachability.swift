@@ -30,12 +30,12 @@ import Foundation
 
 public let ReachabilityChangedNotification = "ReachabilityChangedNotification"
 
-public class Reachability: NSObject, Printable {
+public class Reachability: NSObject, CustomStringConvertible {
 
     public typealias NetworkReachable = (Reachability) -> ()
     public typealias NetworkUneachable = (Reachability) -> ()
 
-    public enum NetworkStatus: Printable {
+    public enum NetworkStatus: CustomStringConvertible {
 
         case NotReachable, ReachableViaWiFi, ReachableViaWWAN
 
@@ -294,40 +294,40 @@ public class Reachability: NSObject, Printable {
 
     private func isOnWWAN(flags: SCNetworkReachabilityFlags) -> Bool {
         #if os(iOS)
-            return flags & SCNetworkReachabilityFlags(kSCNetworkReachabilityFlagsIsWWAN) != 0
+            return flags & SCNetworkReachabilityFlags(SCNetworkReachabilityFlags.IsWWAN) != 0
         #else
             return false
         #endif
     }
     private func isReachable(flags: SCNetworkReachabilityFlags) -> Bool {
-        return flags & SCNetworkReachabilityFlags(kSCNetworkReachabilityFlagsReachable) != 0
+        return flags & SCNetworkReachabilityFlags(SCNetworkReachabilityFlags.Reachable) != 0
     }
     private func isConnectionRequired(flags: SCNetworkReachabilityFlags) -> Bool {
-        return flags & SCNetworkReachabilityFlags(kSCNetworkReachabilityFlagsConnectionRequired) != 0
+        return flags & SCNetworkReachabilityFlags(SCNetworkReachabilityFlags.ConnectionRequired) != 0
     }
     private func isInterventionRequired(flags: SCNetworkReachabilityFlags) -> Bool {
-        return flags & SCNetworkReachabilityFlags(kSCNetworkReachabilityFlagsInterventionRequired) != 0
+        return flags & SCNetworkReachabilityFlags(SCNetworkReachabilityFlags.InterventionRequired) != 0
     }
     private func isConnectionOnTraffic(flags: SCNetworkReachabilityFlags) -> Bool {
-        return flags & SCNetworkReachabilityFlags(kSCNetworkReachabilityFlagsConnectionOnTraffic) != 0
+        return flags & SCNetworkReachabilityFlags(SCNetworkReachabilityFlags.ConnectionOnTraffic) != 0
     }
     private func isConnectionOnDemand(flags: SCNetworkReachabilityFlags) -> Bool {
-        return flags & SCNetworkReachabilityFlags(kSCNetworkReachabilityFlagsConnectionOnDemand) != 0
+        return flags & SCNetworkReachabilityFlags(SCNetworkReachabilityFlags.ConnectionOnDemand) != 0
     }
     func isConnectionOnTrafficOrDemand(flags: SCNetworkReachabilityFlags) -> Bool {
-        return flags & SCNetworkReachabilityFlags(kSCNetworkReachabilityFlagsConnectionOnTraffic | kSCNetworkReachabilityFlagsConnectionOnDemand) != 0
+        return flags & SCNetworkReachabilityFlags(SCNetworkReachabilityFlags.ConnectionOnTraffic | SCNetworkReachabilityFlags.ConnectionOnDemand) != 0
     }
     private func isTransientConnection(flags: SCNetworkReachabilityFlags) -> Bool {
-        return flags & SCNetworkReachabilityFlags(kSCNetworkReachabilityFlagsTransientConnection) != 0
+        return flags & SCNetworkReachabilityFlags(SCNetworkReachabilityFlags.TransientConnection) != 0
     }
     private func isLocalAddress(flags: SCNetworkReachabilityFlags) -> Bool {
-        return flags & SCNetworkReachabilityFlags(kSCNetworkReachabilityFlagsIsLocalAddress) != 0
+        return flags & SCNetworkReachabilityFlags(SCNetworkReachabilityFlags.IsLocalAddress) != 0
     }
     private func isDirect(flags: SCNetworkReachabilityFlags) -> Bool {
-        return flags & SCNetworkReachabilityFlags(kSCNetworkReachabilityFlagsIsDirect) != 0
+        return flags & SCNetworkReachabilityFlags(SCNetworkReachabilityFlags.IsDirect) != 0
     }
     private func isConnectionRequiredOrTransient(flags: SCNetworkReachabilityFlags) -> Bool {
-        let testcase = SCNetworkReachabilityFlags(kSCNetworkReachabilityFlagsConnectionRequired | kSCNetworkReachabilityFlagsTransientConnection)
+        let testcase = SCNetworkReachabilityFlags(SCNetworkReachabilityFlags.ConnectionRequired | SCNetworkReachabilityFlags.TransientConnection)
         return flags & testcase == testcase
     }
 
