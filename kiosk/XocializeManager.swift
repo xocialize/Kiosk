@@ -23,7 +23,7 @@ class XocializeManager: NSObject {
     
     func JSONStringify(value: AnyObject, prettyPrinted: Bool = false) -> String {
         
-        var options = prettyPrinted ? NSJSONWritingOptions.PrettyPrinted : nil
+        var options = prettyPrinted ? NSJSONWritingOptions.PrettyPrinted? : nil
         
         if NSJSONSerialization.isValidJSONObject(value) {
         
@@ -45,11 +45,18 @@ class XocializeManager: NSObject {
     func JSONParseArray(jsonString: String) -> [AnyObject] {
         
         if let data = jsonString.dataUsingEncoding(NSUTF8StringEncoding) {
+            
+            do {
         
-            if let array = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions(rawValue: 0))  as? [AnyObject] {
+                    if let array = try NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions(rawValue: 0))  as? [AnyObject] {
             
-                return array
+                        return array
             
+                    }
+            } catch {
+            
+                print(error)
+                
             }
         }
         
@@ -60,10 +67,17 @@ class XocializeManager: NSObject {
         
         if let data = jsonString.dataUsingEncoding(NSUTF8StringEncoding) {
         
-            if let dictionary = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions(rawValue: 0))  as? [String: AnyObject] {
+            do {
+                    if let dictionary = try NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions(rawValue: 0))  as? [String: AnyObject] {
                 
-                return dictionary
+                            return dictionary
             
+                    }
+                
+            } catch {
+            
+                print(error)
+                
             }
         }
         
@@ -101,7 +115,7 @@ class XocializeManager: NSObject {
                 
                 } else {
                 
-                    let jsonData: AnyObject = self.processJson(data)
+                    let jsonData: AnyObject = self.processJson(data!)
                     
                     if let data = jsonData["success"] as? Int where data == 1 {
                         
@@ -157,7 +171,7 @@ class XocializeManager: NSObject {
                 self.ready = true
             })
         
-            task.resume()
+            task!.resume()
             
         } else { print("messages url not defined") }
     
@@ -169,7 +183,7 @@ class XocializeManager: NSObject {
         
         print(settings)
     
-        for (key,value) in data {
+        for (key,_) in data {
             
             let keyText = "\(key)"
             
@@ -235,7 +249,7 @@ class XocializeManager: NSObject {
                         
                         let uuid = NSUUID(UUIDString: iBeaconUUID)
                         
-                        var doSegue:Bool = true
+                       // Set something true here
                         
                         if uuid != nil {
                             
@@ -354,20 +368,20 @@ class XocializeManager: NSObject {
         
             print("Response: \(response)")
             
-            var strData = NSString(data: data, encoding: NSUTF8StringEncoding)
+            var strData = NSString(data: data!, encoding: NSUTF8StringEncoding)
             
             print("Body: \(strData)")
             
             var err: NSError?
             
-            var json = NSJSONSerialization.JSONObjectWithData(data, options: .MutableLeaves) as? NSDictionary
+            var json = NSJSONSerialization.JSONObjectWithData(data!, options: .MutableLeaves) as? NSDictionary
             
             // Did the JSONObjectWithData constructor return an error? If so, log the error to the console
             if(err != nil) {
             
                 print(err!.localizedDescription)
                 
-                let jsonStr = NSString(data: data, encoding: NSUTF8StringEncoding)
+                let jsonStr = NSString(data: data!, encoding: NSUTF8StringEncoding)
                 
                 print("Error could not parse JSON: '\(jsonStr)'")
             } else {
@@ -386,14 +400,14 @@ class XocializeManager: NSObject {
                   
                     // Woa, okay the json object was nil, something went worng. Maybe the server isn't running?
                     
-                    let jsonStr = NSString(data: data, encoding: NSUTF8StringEncoding)
+                    let jsonStr = NSString(data: data!, encoding: NSUTF8StringEncoding)
                     
                     print("Error could not parse JSON: \(jsonStr)")
                 }
             }
         })
         
-        task.resume()
+        task!.resume()
     }
     
     

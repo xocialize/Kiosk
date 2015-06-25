@@ -12,67 +12,55 @@ class HttpParser {
         return NSError(domain: "HttpParser", code: 0, userInfo: [NSLocalizedDescriptionKey : reason])
     }
     
-    func nextHttpRequest(socket: CInt) throws -> HttpRequest {
-        var error: NSError! = NSError(domain: "Migrator", code: 0, userInfo: nil)
-        do {
-            let statusLine = try nextLine(socket)
-            let statusTokens = split(statusLine.characters, isSeparator: { $0 == " " }).map { String($0) }
-            //println(statusTokens)
+    func nextHttpRequest(socket: CInt, error:NSErrorPointer = nil) -> HttpRequest? {
+        if let statusLine = nextLine(socket, error: error) {
+            let statusTokens = statusLine.componentsSeparatedByString(" ")
+            print(statusTokens)
             if ( statusTokens.count < 3 ) {
-                # /* TODO: Finish migration: rewrite code to move the next statement out of enclosing do/catch */
-                throw err("Invalid status line: \(statusLine)")
+                if error != nil { error.memory = err("Invalid status line: \(statusLine)") }
+                return nil
             }
             let method = statusTokens[0]
             let path = statusTokens[1]
             let urlParams = extractUrlParams(path)
             // TODO extract query parameters
-            do {
-                let headers = try nextHeaders(socket)
+            if let headers = nextHeaders(socket, error: error) {
                 // TODO detect content-type and handle:
                 // 'application/x-www-form-urlencoded' -> Dictionary
                 // 'multipart' -> Dictionary
-                if let contentSize = Int(headers["content-length"]?) {
-                    let body: String?
-                    do {
-                        body = try nextBody(socket, size: contentSize)
-                    } catch var error1 as NSError {
-                        error = error1
-                        body = nil
-                    }
-                    return HttpRequest(url: path, urlParams: urlParams, method: method, headers: headers, body: body, capturedUrlGroups: [])
+                if let contentLength = headers["content-length"], let contentLengthValue = Int(contentLength) {
+                    let body = nextBody(socket, size: contentLengthValue, error: error)
+                    return HttpRequest(url: path, urlParams: urlParams, method: method, headers: headers, body: body, capturedUrlGroups: [], address: nil)
                 }
-                return HttpRequest(url: path, urlParams: urlParams, method: method, headers: headers, body: nil, capturedUrlGroups: [])
-            } catch var error1 as NSError {
-                error = error1
+                return HttpRequest(url: path, urlParams: urlParams, method: method, headers: headers, body: nil, capturedUrlGroups: [], address: nil)
             }
-        } catch var error1 as NSError {
-            error = error1
         }
-        throw error
+        return nil
     }
     
     private func extractUrlParams(url: String) -> [(String, String)] {
-        if let query = split(url.characters, isSeparator: { $0 == "?" }).map { String($0) }.last {
-            return split(query.characters, isSeparator: { $0 == "&" }).map { String($0) }.map({ (param:String) -> (String, String) in
-                let tokens = split(param.characters, isSeparator: { $0 == "=" }).map { String($0) }
+        if let query = url.componentsSeparatedByString("?").last {
+            return query.componentsSeparatedByString("&").map { (param:String) -> (String, String) in
+                let tokens = param.componentsSeparatedByString("=")
                 if tokens.count >= 2 {
                     let key = tokens[0].stringByRemovingPercentEncoding
                     let value = tokens[1].stringByRemovingPercentEncoding
                     if key != nil && value != nil { return (key!, value!) }
                 }
                 return ("","")
-            })
+            }
         }
         return []
     }
     
-    private func nextBody(socket: CInt, size: Int ) throws -> String {
+    private func nextBody(socket: CInt, size: Int , error:NSErrorPointer) -> String? {
         var body = ""
         var counter = 0;
         while ( counter < size ) {
             let c = nextInt8(socket)
             if ( c < 0 ) {
-                throw err("IO error while reading body")
+                if error != nil { error.memory = err("IO error while reading body") }
+                return nil
             }
             body.append(UnicodeScalar(c))
             counter++;
@@ -80,14 +68,13 @@ class HttpParser {
         return body
     }
     
-    private func nextHeaders(socket: CInt) throws -> Dictionary<String, String> {
-        var error: NSError! = NSError(domain: "Migrator", code: 0, userInfo: nil)
+    private func nextHeaders(socket: CInt, error:NSErrorPointer) -> Dictionary<String, String>? {
         var headers = Dictionary<String, String>()
-        while let headerLine = nextLine(socket) {
+        while let headerLine = nextLine(socket, error: error) {
             if ( headerLine.isEmpty ) {
                 return headers
             }
-            let headerTokens = split(headerLine.characters, isSeparator: { $0 == ":" }).map { String($0) }
+            let headerTokens = headerLine.componentsSeparatedByString(":")
             if ( headerTokens.count >= 2 ) {
                 // RFC 2616 - "Hypertext Transfer Protocol -- HTTP/1.1", paragraph 4.2, "Message Headers":
                 // "Each header field consists of a name followed by a colon (":") and the field value. Field names are case-insensitive."
@@ -99,7 +86,7 @@ class HttpParser {
                 }
             }
         }
-        throw error
+        return nil
     }
 
     private func nextInt8(socket: CInt) -> Int {
@@ -109,7 +96,7 @@ class HttpParser {
         return Int(buffer[0])
     }
     
-    private func nextLine(socket: CInt) throws -> String {
+    private func nextLine(socket: CInt, error:NSErrorPointer) -> String? {
         var characters: String = ""
         var n = 0
         repeat {
@@ -117,7 +104,8 @@ class HttpParser {
             if ( n > 13 /* CR */ ) { characters.append(Character(UnicodeScalar(n))) }
         } while ( n > 0 && n != 10 /* NL */)
         if ( n == -1 && characters.isEmpty ) {
-            throw Socket.lastErr("recv(...) failed.")
+            if error != nil { error.memory = Socket.lastErr("recv(...) failed.") }
+            return nil
         }
         return characters
     }

@@ -31,10 +31,11 @@ class HttpHandlers {
                         do {
                             let files = try fileManager.contentsOfDirectoryAtPath(filePath)
                             var response = "<h3>\(filePath)</h3></br><table>"
-                            response += "".join(files.map({ "<tr><td><a href=\"\(request.url)/\($0)\">\($0)</a></td></tr>"}))
+                            response += "".join(files.map { "<tr><td><a href=\"\(request.url)/\($0)\">\($0)</a></td></tr>"} )
                             response += "</table>"
                             return HttpResponse.OK(.HTML(response))
-                        } catch _ {
+                        } catch  {
+                            return HttpResponse.NotFound
                         }
                     } else {
                         if let fileBody = NSData(contentsOfFile: filePath) {
